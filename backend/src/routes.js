@@ -2,7 +2,7 @@
 import {Router} from 'express';
 
 // Importando middlewares
-import jwtAuthorization from './app/middlewares/authorization';
+import jwtAuthorization from './app/middlewares/authorizationJwt';
 
 // Importando controllers
 import UserController from './app/controllers/UserController/UserController';
