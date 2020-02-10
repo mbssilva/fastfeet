@@ -1,9 +1,20 @@
+// Importando bibliotecas
 import {Router} from 'express';
 
+// Importando middlewares
+import jwtAuthorization from './app/middlewares/authorization';
+
+// Importando controllers
+import UserController from './app/controllers/UserController/UserController';
 import SessionController from './app/controllers/SessionController/SessionController';
+import RecipientController from './app/controllers/RecipientController/RecipientController';
 
 const routes = new Router();
 
-routes.get('/sessions', SessionController.store);
+routes.post('/users', UserController.store);
+
+routes.post('/sessions', SessionController.store);
+
+routes.post('/recipients', jwtAuthorization, RecipientController.store);
 
 export default routes;

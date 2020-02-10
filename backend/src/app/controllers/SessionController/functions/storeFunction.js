@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 
 // Importando models
-import User from '../../../models/UserModel/UserModel';
+import User from '../../../models/UserModel';
 
 // Importando arquivo de configuração
 import authConfig from '../../../../config/authJwt';
@@ -13,16 +13,14 @@ export default async (req, res) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) return res.status(400).json({
-    error: 'Email not valid',
-    code: 'session-email'
+    error: 'Email not valid'
   });
 
-  if (!(await user.checkPassword(password))) return res.status(401).json({
-    error: 'Password does not match',
-    code: 'session-password'
+  if (!( await user.checkPassword(password) )) return res.status(401).json({
+    error: 'Password does not match'
   });
 
-  const { id, name } = req.body;
+  const { id, name } = user;
 
   return res.json({
     user: {
