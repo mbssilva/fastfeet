@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import storeFunction from './functions/storeFunction';
 
-class SessionController {
+class RecipientController {
   async store (req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -29,4 +29,4 @@ class SessionController {
   }
 }
 
-export default new SessionController();
+export default new RecipientController();
