@@ -26,6 +26,27 @@ class DelivererController {
   }
 
   async update(req, res) {
+      const schema = Yup.object().shape({
+        oldEmail: Yup.string().email(),
+        newEmail: Yup.string().email().when('oldEmail', (oldEmail, option) => {
+          return oldEmail ? option.required() : option;
+        }),
+        oldName: Yup.string(),
+        newName: Yup.string().when('oldPassword', (oldPassword, option) => {
+          return oldPassword ? option.required() : option;
+        }),
+      });
+
+      const { oldEmail, newEmail, oldName, newName } = req.body;
+
+      if (!oldEmail && !oldName) {
+        res.status(401).json({ error: 'You need to fill at least a field' });
+      }
+
+      if (!(await schema.isValid({ oldEmail, newEmail, oldName, newName }))) {
+        return res.status(400).json({ error: 'Validation failed' });
+      }
+
     return updateFunction(req, res);
   }
 
