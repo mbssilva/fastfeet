@@ -7,7 +7,8 @@ export default async (req, res) => {
   const { page = 1 } = req.query;
 
   const orders = await Order.findAndCountAll({
-    canceled_at: null,
+    order: [['id', 'ASC']],
+    where: { canceled_at: null },
     limit: 5,
     offset: (page - 1)*5,
     attributes: ['id', 'product', 'start_date', 'end_date'],
@@ -25,7 +26,7 @@ export default async (req, res) => {
           {
             model: File,
             as: 'avatar',
-            attributes: ['name', 'path']
+            attributes: ['name', 'path', 'url']
           }
         ]
       },

@@ -1,3 +1,4 @@
+import { setSeconds, setMinutes, setHours, setMilliseconds } from 'date-fns';
 import Order from '../../../models/OrderModel';
 
 export default async (req, res) => {
@@ -8,6 +9,15 @@ export default async (req, res) => {
   }
 
   const { product, signature_id, start_date, end_date } = req.body;
+
+  const beginHour = setMilliseconds(setSeconds(setMinutes(setHours(new Date(), 8), 0), 0), 0);
+  const endHour = setMilliseconds(setSeconds(setMinutes(setHours(new Date(), 18), 0), 0), 0);
+
+  if (!(beginHour < new Date() < endHour)) {
+    return res.status(400).json({
+      error: 'You can take products away just between 08:00h and 18:00h'
+    });
+  }
 
   if (product) order.product = product;
   if (start_date) order.start_date = start_date;

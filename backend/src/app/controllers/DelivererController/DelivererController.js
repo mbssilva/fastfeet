@@ -37,9 +37,9 @@ class DelivererController {
         }),
       });
 
-      const { oldEmail, newEmail, oldName, newName } = req.body;
+      const { oldEmail, newEmail, oldName, newName, avatar_id } = req.body;
 
-      if (!oldEmail && !oldName) {
+      if (!oldEmail && !oldName && !avatar_id) {
         res.status(401).json({ error: 'You need to fill at least a field' });
       }
 

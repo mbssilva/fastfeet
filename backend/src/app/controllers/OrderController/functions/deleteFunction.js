@@ -7,6 +7,10 @@ export default async (req, res) => {
     return res.status(400).json({ error: 'This order does not exist' });
   }
 
+  if (order.canceled_at) {
+    return res.status(400).json({ error: 'This order has already been canceled' });
+  }
+
   if (order.signature_id) {
     return res.status(400).json({ error: 'This order has already been delivered' });
   }

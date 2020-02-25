@@ -1,0 +1,27 @@
+{{> dear }}
+<strong
+  style="
+    margin-left: 20px;
+  "
+>
+  {{ delivererName }}
+</strong><br />
+
+<p>Você tem uma nova encomenda cadastrada no sistema.<p>
+<p>Confira os dados do destinatário: </p>
+<div
+  style="
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightgrey;
+  "
+>
+  <p>Nome: {{ recipientName }}</p>
+  <p>Rua: {{ recipientStreet }}</p>
+  <p>Número: {{ recipientNumber }}</p>
+  <p>Complemento: {{ recipientComplement }}</p>
+  <p>CEP: {{ recipientCep }}</p>
+  <p>Cidade: {{ recipientCity }}</p>
+  <p>Estado: {{ recipientState }}</p>
+</div>
