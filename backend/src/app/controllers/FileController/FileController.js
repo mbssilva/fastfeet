@@ -1,10 +1,11 @@
 import * as Yup from 'yup';
 
-// import deleteFunction from './functions/deleteFunction';
+import storeFunction from './functions/storeFunction';
+import deleteFunction from './functions/deleteFunction';
 
 class DelivererController {
   async store(req, res) {
-    return res.json({ok: true});
+    return storeFunction(req, res);
   }
 
   async delete(req, res) {

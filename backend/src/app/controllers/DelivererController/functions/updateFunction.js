@@ -8,7 +8,7 @@ export default async (req, res) => {
     return res.status(400).json({ error: 'This deliverer does not exist' });
   }
 
-  const { oldEmail, newEmail, oldName, newName } = req.body;
+  const { oldEmail, newEmail, oldName, newName, avatar_id } = req.body;
 
   if (oldName) {
     if (oldName !== deliverer.name) {
@@ -28,6 +28,10 @@ export default async (req, res) => {
     }
 
     deliverer.email = newEmail;
+  }
+
+  if (avatar_id) {
+    deliverer.avatar_id = avatar_id;
   }
 
   await deliverer.save();

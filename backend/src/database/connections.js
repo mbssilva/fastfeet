@@ -6,11 +6,12 @@ import User from '../app/models/UserModel';
 import Recipient from '../app/models/RecipientModel';
 import Deliverer from '../app/models/DelivererModel';
 import File from '../app/models/FileModel';
+import Order from '../app/models/OrderModel';
 
 // Importando as configuraçõs da DB
 import databaseConfig from '../config/database';
 
-const models = [User, Recipient, Deliverer, File];
+const models = [User, Recipient, Deliverer, File, Order];
 
 class Database {
   constructor() {
