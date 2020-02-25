@@ -3,7 +3,12 @@ import Notification from '../../../schemas/NotificationSchema';
 import Recipient from '../../../models/RecipientModel';
 import Deliverer from '../../../models/DelivererModel';
 
-import Mail from '../../../../lib/Mail';
+// Importando a fila de execução de background jobs
+import Queue from '../../../../lib/Queue';
+
+// Importando o modelo do job
+import newOrderMail from '../../../jobs/newOrderEmail';
+import newOrderEmail from '../../../jobs/newOrderEmail';
 
 export default async (req, res) => {
   const { recipient_id, deliveryman_id, product } = req.body;
@@ -53,20 +58,9 @@ export default async (req, res) => {
     attributes: ['name', 'email']
   });
 
-  await Mail.sendMail({
-    to: `${deliverer.name} <${deliverer.email}>`,
-    subject: 'Nova encomenda cadastrada no sistema',
-    template: 'newOrder',
-    context: {
-      delivererName: deliverer.name,
-      recipientName: recipient.name,
-      recipientStreet: recipient.street,
-      recipientNumber: recipient.number ? recipient.number : 'Sem número',
-      recipientComplement: recipient.complement ? recipient.complement : 'Sem complemento',
-      recipientCep: recipient.cep,
-      recipientCity: recipient.city,
-      recipientState: recipient.state,
-    }
+  Queue.add(newOrderEmail.key, {
+    deliverer,
+    recipient
   });
 
   return res.json(order);
