@@ -8,6 +8,7 @@
 </strong><br />
 
 <p>Você tem uma nova encomenda cadastrada no sistema.<p>
+
 <p>Confira os dados do destinatário: </p>
 <div
   style="
@@ -26,3 +27,14 @@
   <p>Estado: {{ recipientState }}</p>
 </div>
 {{> remember}}
+<div
+ style="
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightgrey;
+  "
+>
+  <strong>Encomenda: {{ product }} </strong><br />
+  <strong>Cadastrada em: {{ hour }} </strong>
+</div>

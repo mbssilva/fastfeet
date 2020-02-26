@@ -7,7 +7,6 @@ import Deliverer from '../../../models/DelivererModel';
 import Queue from '../../../../lib/Queue';
 
 // Importando o modelo do job
-import newOrderMail from '../../../jobs/newOrderEmail';
 import newOrderEmail from '../../../jobs/newOrderEmail';
 
 export default async (req, res) => {
@@ -54,13 +53,15 @@ export default async (req, res) => {
 
   await notification.save();
 
-  const deliverer = await Deliverer.findByPk(deliveryman_id,{
+  const deliverer = await Deliverer.findByPk(deliveryman_id, {
     attributes: ['name', 'email']
   });
 
   Queue.add(newOrderEmail.key, {
     deliverer,
-    recipient
+    recipient,
+    product,
+    date: order.createdAt
   });
 
   return res.json(order);

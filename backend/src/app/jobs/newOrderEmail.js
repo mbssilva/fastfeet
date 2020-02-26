@@ -1,12 +1,18 @@
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import Mail from '../../lib/Mail';
 
-class newOrderEmail {
+class NewOrderEmail {
   get key() {
     return 'newOrderEmail';
   }
 
   async handle(info) {
-    const { deliverer, recipient } = info.data;
+    const { deliverer, recipient, product, date } = info.data;
+
+    const hour = format(parseISO(date), "dd 'de' MMMM' às ' HH:mm", {
+      locale: pt, // Português
+    });
 
     await Mail.sendMail({
       to: `${deliverer.name} <${deliverer.email}>`,
@@ -21,6 +27,8 @@ class newOrderEmail {
         recipientCep: recipient.cep,
         recipientCity: recipient.city,
         recipientState: recipient.state,
+        product,
+        hour
       }
     });
   }
@@ -28,4 +36,4 @@ class newOrderEmail {
 
 }
 
-export default new newOrderEmail();
+export default new NewOrderEmail();
