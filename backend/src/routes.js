@@ -40,5 +40,6 @@ routes.delete('/orders/:id', jwtAuthorization, OrderController.delete);
 
 routes.get('/deliveryman/:id', DeliverymanController.index);
 routes.get('/deliveryman/:id/deliveries', DeliverymanController.show);
+routes.put('/deliveryman/:id', DeliverymanController.update);
 
 export default routes;

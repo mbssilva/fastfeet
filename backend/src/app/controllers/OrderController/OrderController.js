@@ -27,12 +27,7 @@ class OrderController {
 
   async update (req, res) {
     const schema = Yup.object().shape({
-      product: Yup.string(),
-      start_date: Yup.date(),
-      end_date: Yup.date(),
-      signature_id: Yup.number().when('end_date', (end_date, option) => {
-        return end_date ? option.required() : option;
-      }),
+      product: Yup.string()
     });
 
     if (!(await schema.isValid(req.body))) return res.status(400).json({
