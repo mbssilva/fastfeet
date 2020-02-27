@@ -8,12 +8,13 @@ import Recipient from '../app/models/RecipientModel';
 import Deliverer from '../app/models/DelivererModel';
 import File from '../app/models/FileModel';
 import Order from '../app/models/OrderModel';
+import Problem from '../app/models/ProblemModel';
 
 // Importando as configuraçõs da DB
 import databaseConfig from '../config/database';
 import mongoConfig from '../config/mongo';
 
-const models = [User, Recipient, Deliverer, File, Order];
+const models = [User, Recipient, Deliverer, File, Order, Problem];
 
 class Database {
   constructor() {

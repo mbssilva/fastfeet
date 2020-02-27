@@ -52,9 +52,9 @@ export default async (req, res) => {
   // Filtragem pelas encomendas já entregues
   const filteredOrders = orders.rows.filter(order => !!order.signature);
 
-  if (page > Math.round(filteredOrders.length / 5)) {
+  if (page > Math.ceil(filteredOrders.length / 5)) {
     return res.status(400).json({
-      error: `You exceeded the current maximum number of pages: ${Math.round(
+      error: `You exceeded the current maximum number of pages: ${Math.ceil(
         filteredOrders.length / 5)}`,
     });
   }

@@ -13,6 +13,7 @@ import DelivererController from './app/controllers/DelivererController/Deliverer
 import FileController from './app/controllers/FileController/FileController';
 import OrderController from './app/controllers/OrderController/OrderController';
 import DeliverymanController from './app/controllers/DeliverymanController/DeliverymanController';
+import ProblemController from './app/controllers/ProblemController/ProblemController';
 
 // Importando configurações
 import multerConfig from './config/multer';
@@ -41,5 +42,10 @@ routes.delete('/orders/:id', jwtAuthorization, OrderController.delete);
 routes.get('/deliveryman/:id', DeliverymanController.index);
 routes.get('/deliveryman/:id/deliveries', DeliverymanController.show);
 routes.put('/deliveryman/:id', DeliverymanController.update);
+
+routes.get('/problems', jwtAuthorization, ProblemController.index);
+routes.get('/problems/:id', jwtAuthorization, ProblemController.show);
+routes.delete('/problems/:id', jwtAuthorization, ProblemController.delete);
+routes.post('/problems', ProblemController.store);
 
 export default routes;

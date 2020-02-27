@@ -20,11 +20,11 @@ export default async (req, res) => {
     ]
   });
 
-  if (page > Math.trunc(1 + deliverers.count/5)) {
+  if (page > Math.ceil(deliverers.count/5)) {
     return res
       .status(400)
       .json({
-        error: `You exceeded the current maximum number of pages: ${Math.trunc(1 + deliverers.count/5)}`
+        error: `You exceeded the current maximum number of pages: ${Math.ceil(deliverers.count/5)}`
       });
   }
 

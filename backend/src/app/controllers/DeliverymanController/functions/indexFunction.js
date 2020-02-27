@@ -38,11 +38,11 @@ export default async (req, res) => {
     ],
   });
 
-  if (page > Math.round(orders.count/5)) {
+  if (page > Math.ceil(orders.count/5)) {
     return res
       .status(400)
       .json({
-        error: `You exceeded the current maximum number of pages: ${Math.round(orders.count/5)}`
+        error: `You exceeded the current maximum number of pages: ${Math.ceil(orders.count/5)}`
       });
   }
 

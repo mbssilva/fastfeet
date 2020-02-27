@@ -23,8 +23,6 @@ class RecipientController {
         error: 'Validation failed'
     });
 
-    // if (req.body.withoutNumber) req.body.number = null;
-
     return storeFunction(req, res);
   }
 }
