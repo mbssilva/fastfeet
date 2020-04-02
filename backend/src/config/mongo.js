@@ -1,5 +1,5 @@
 export default {
-  url: 'mongodb://localhost:27017/mongofeet',
+  url: process.env.MONGO_URL,
   // user: 'username',
   // pwd: 'password'
 }
