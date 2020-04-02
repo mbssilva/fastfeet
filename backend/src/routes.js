@@ -25,19 +25,20 @@ routes.post('/users', UserController.store);
 
 routes.post('/sessions', SessionController.store);
 
+routes.get('/recipients', jwtAuthorization, RecipientController.index);
 routes.post('/recipients', jwtAuthorization, RecipientController.store);
 
 routes.get('/deliverers', jwtAuthorization, DelivererController.index);
 routes.post('/deliverers', jwtAuthorization, DelivererController.store);
-routes.put('/deliverers/:id', jwtAuthorization, DelivererController.update);
-routes.delete('/deliverers/:id', jwtAuthorization, DelivererController.delete);
+routes.put('/deliverers', jwtAuthorization, DelivererController.update);
+routes.delete('/deliverers', jwtAuthorization, DelivererController.delete);
 
 routes.post('/files', jwtAuthorization, upload.single('file'), FileController.store);
 
-routes.get('/orders/', jwtAuthorization, OrderController.index);
+routes.get('/orders', jwtAuthorization, OrderController.index);
 routes.post('/orders', jwtAuthorization, OrderController.store);
-routes.put('/orders/:id', jwtAuthorization, OrderController.update);
-routes.delete('/orders/:id', jwtAuthorization, OrderController.delete);
+routes.put('/orders', jwtAuthorization, OrderController.update);
+routes.delete('/orders', jwtAuthorization, OrderController.delete);
 
 routes.get('/deliveryman/:id', DeliverymanController.index);
 routes.get('/deliveryman/:id/deliveries', DeliverymanController.show);

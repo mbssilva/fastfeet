@@ -3,7 +3,7 @@ import Deliverer from '../../../models/DelivererModel';
 import File from '../../../models/FileModel';
 
 export default async (req, res) => {
-  const { id } = req.params;
+  const id = req.userId;
 
   const deliverer = await Deliverer.findByPk(id);
 

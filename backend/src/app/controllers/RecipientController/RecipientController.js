@@ -1,8 +1,13 @@
 import * as Yup from 'yup';
 
+import indexFunction from './functions/indexFunction';
 import storeFunction from './functions/storeFunction';
 
 class RecipientController {
+  async index(req, res) {
+    return indexFunction(req, res);
+  }
+
   async store (req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

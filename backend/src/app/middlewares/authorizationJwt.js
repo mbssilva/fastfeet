@@ -14,7 +14,9 @@ export default async (req, res, next) => {
 
   try {
     const jwtVerifyPromise = await promisify(jwt.verify);
-    await jwtVerifyPromise(token, authConfig.secret);
+    const decoded = await jwtVerifyPromise(token, authConfig.secret);
+
+    req.userId = decoded.id;
 
     return next();
   } catch(err) {

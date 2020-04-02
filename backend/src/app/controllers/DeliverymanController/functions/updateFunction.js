@@ -7,7 +7,6 @@ import {
 } from 'date-fns';
 import { Op } from 'sequelize';
 
-// import { parse } from 'date-fns/esm';
 import Order from '../../../models/OrderModel';
 
 export default async (req, res) => {
@@ -51,7 +50,7 @@ export default async (req, res) => {
 
     if (todayOrders.count >= 5) {
       return res.status(400).json({
-        error: 'You can just take 5 products away for day',
+        error: 'You can just take 5 products away during a day',
       });
     }
 

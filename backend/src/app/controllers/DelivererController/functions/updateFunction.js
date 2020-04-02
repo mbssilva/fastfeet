@@ -2,7 +2,7 @@
 import Deliverer from '../../../models/DelivererModel';
 
 export default async (req, res) => {
-  const deliverer = await Deliverer.findByPk(req.params.id);
+  const deliverer = await Deliverer.findByPk(req.userId);
 
   if (!deliverer) {
     return res.status(400).json({ error: 'This deliverer does not exist' });

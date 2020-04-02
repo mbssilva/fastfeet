@@ -7,7 +7,6 @@ import deleteFunction from './functions/deleteFunction';
 
 class OrderController {
   async index(req, res) {
-
     return indexFunction(req, res);
   }
 
@@ -38,7 +37,6 @@ class OrderController {
   }
 
   async delete (req, res) {
-
     return deleteFunction(req, res);
   }
 }
