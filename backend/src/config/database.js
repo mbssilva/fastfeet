@@ -5,7 +5,7 @@ module.exports = {
   host: 'localhost',
   username: 'postgres',
   password: 'docker',
-  database: 'fastfeet',
+  database: 'postgres',
   define: {
     timestamps: true, // Garante que haverá uma coluna criated_at e updated_at na DB
     underscored: true,
