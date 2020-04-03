@@ -1,11 +1,22 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container, Image } from './styles';
 
 export default function Login() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <Container>
+      <Image />
+
+      <form>
+        <h1>SEU E-MAIL</h1>
+        <input placeholder="Digite seu login" />
+        <h1>SUA SENHA</h1>
+        <input placeholder="Digite sua senha" />
+
+        <button type="submit" to="/">
+          Entrar no sistema
+        </button>
+      </form>
+    </Container>
   );
 }

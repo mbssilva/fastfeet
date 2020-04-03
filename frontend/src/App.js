@@ -6,11 +6,15 @@ import history from './config/history';
 
 import Routes from './Routes';
 
+import Layout from './pages/layout';
+
 function App() {
   return (
     <Router history={history}>
       <GlobalStyles />
-      <Routes />
+      <Layout>
+        <Routes />
+      </Layout>
     </Router>
   );
 }
