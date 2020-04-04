@@ -25,6 +25,17 @@ export function* createSession({ payload }) {
   }
 }
 
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.session;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
 export default all([
   takeLatest('@session/CREATE_SESSION_REQUEST', createSession),
+  takeLatest('persist/REHYDRATE', setToken),
 ]);
