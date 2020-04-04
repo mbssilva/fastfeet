@@ -1,6 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { darken } from 'polished';
 
 import logo from '../../assets/fastfeet-logo@2x.png';
+
+const rotateFaSpinner = keyframes`
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const Container = styled.div`
   min-width: 450px;
@@ -27,7 +37,6 @@ export const Container = styled.div`
     width: 100%;
 
     h1 {
-      /* margin-top: 10px; */
       font-weight: bold;
       font-size: 18px;
       color: #333;
@@ -47,17 +56,37 @@ export const Container = styled.div`
     }
 
     button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
       background: #7159c1;
       width: 100%;
       height: 60px;
       margin: 25px 0 15px;
+      padding: 5px;
 
       border: 0;
       border-radius: 8px;
 
-      font-size: 16px;
+      h6 {
+        font-size: 18px;
+      }
+
       color: #fff;
       font-weight: bold;
+      cursor: pointer;
+
+      svg {
+        margin-right: 20px;
+        animation: ${rotateFaSpinner} 2s linear infinite;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background: ${darken(0.15, '#7159c1')};
+      }
     }
   }
 `;

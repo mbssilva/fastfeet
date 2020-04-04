@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaSpinner } from 'react-icons/fa';
 
 import { Container, Image } from './styles';
 
@@ -7,6 +8,7 @@ import { createSessionRequest } from '../../store/modules/session/actions';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.session.loading);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,8 +52,9 @@ export default function Login() {
           }}
         />
 
-        <button type="submit" onClick={handleSubmit}>
-          Entrar no sistema
+        <button type="submit" onClick={handleSubmit} disabled={loading}>
+          {loading ? <FaSpinner size={25} /> : ''}
+          <h6>Entrar no sistema</h6>
         </button>
       </form>
     </Container>

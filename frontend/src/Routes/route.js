@@ -5,8 +5,16 @@ import propTypes from 'prop-types';
 import AuthLayout from '../pages/layouts/auth';
 import SignedLayout from '../pages/layouts/signed';
 
-function RouteExported({ component: Component, ...rest }) {
+function RouteExported({ component: Component, isPrivate, ...rest }) {
   const signed = false;
+
+  if (!signed && isPrivate) {
+    return <Redirect to="/" />;
+  }
+
+  if (signed && !isPrivate) {
+    return <Redirect to="/dashboard" />;
+  }
 
   const Layout = signed ? SignedLayout : AuthLayout;
 
@@ -25,6 +33,11 @@ function RouteExported({ component: Component, ...rest }) {
 RouteExported.propTypes = {
   component: propTypes.oneOfType([propTypes.element, propTypes.func])
     .isRequired,
+  isPrivate: propTypes.bool,
+};
+
+RouteExported.defaultProps = {
+  isPrivate: false,
 };
 
 export default RouteExported;
