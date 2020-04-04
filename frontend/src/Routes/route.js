@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route as RouteImported, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import propTypes from 'prop-types';
 
 import AuthLayout from '../pages/layouts/auth';
 import SignedLayout from '../pages/layouts/signed';
 
 function RouteExported({ component: Component, isPrivate, ...rest }) {
-  const signed = false;
+  const signed = useSelector((state) => state.session.signed);
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />;

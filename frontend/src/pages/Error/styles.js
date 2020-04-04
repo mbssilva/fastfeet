@@ -17,10 +17,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  svg {
+    animation: ${translate} 2.5s linear infinite;
+    margin-bottom: -12px;
+  }
+
+  hr {
+    margin-bottom: 5px;
+    width: 480px;
+  }
+
   h1 {
     font-size: 25px;
-  }
-  svg {
-    animation: ${translate} 2s linear infinite;
   }
 `;
