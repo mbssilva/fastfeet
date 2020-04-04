@@ -1,10 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import { Container } from './styles';
+import { Wrapper, Container } from './styles';
+
+import Header from '../../../components/Header';
 
 export default function GlobalLayout({ children }) {
-  return <Container>{children}</Container>;
+  return (
+    <Wrapper>
+      <Header />
+      <Container>{children}</Container>
+    </Wrapper>
+  );
 }
 
 GlobalLayout.propTypes = {

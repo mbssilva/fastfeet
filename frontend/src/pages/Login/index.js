@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 
-import { Container, Image } from './styles';
+import { Container, Logo } from './styles';
 
 import { createSessionRequest } from '../../store/modules/session/actions';
 
@@ -30,7 +30,7 @@ export default function Login() {
 
   return (
     <Container>
-      <Image />
+      <Logo />
 
       <form>
         <h1>SEU E-MAIL</h1>

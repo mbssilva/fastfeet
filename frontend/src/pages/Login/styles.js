@@ -91,9 +91,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Image = styled.img.attrs({
+export const Logo = styled.img.attrs({
   src: logo,
-  alt: 'Fast Feet',
+  alt: 'FastFeet',
   height: '62',
   width: '364',
 })``;
