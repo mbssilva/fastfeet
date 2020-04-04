@@ -1,22 +1,30 @@
 import React, { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Container, Image } from './styles';
 
+import { createSessionRequest } from '../../store/modules/session/actions';
+
 export default function Login() {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
 
-    try {
-      // DISPARAR UMA ACTION PARA TENTAR CRIAR UMA SESSÃO
-    } catch (err) {
-    } finally {
-      setEmail('');
-      setPassword('');
-    }
-  }, []);
+      try {
+        dispatch(createSessionRequest(email, password));
+      } catch (err) {
+      } finally {
+        setEmail('');
+        setPassword('');
+      }
+    },
+    [email, password, dispatch]
+  );
 
   return (
     <Container>
@@ -26,7 +34,7 @@ export default function Login() {
         <h1>SEU E-MAIL</h1>
         <input
           type="email"
-          placeholder="Digite seu login"
+          placeholder="exemplo@email.com"
           value={email}
           onChange={(event) => {
             setEmail(event.target.value);
@@ -35,7 +43,7 @@ export default function Login() {
         <h1>SUA SENHA</h1>
         <input
           type="password"
-          placeholder="Digite sua senha"
+          placeholder="***********"
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
