@@ -1,7 +1,61 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { FaSearch } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
-export default function Deliverers() {
-  return <div />;
+// import api from '../../services/api';
+
+import OrderRow from '../../../components/OrderRow';
+
+export default function Orders() {
+  const [orderSearch, setOrderSearch] = useState('');
+  const [orders, setOrders] = useState(['1', '2', '3', '4', '5', '6', '7']);
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    setOrderSearch('');
+  }, []);
+
+  return (
+    <Container>
+      <h1>Gerenciamento de encomendas</h1>
+
+      <form>
+        <div>
+          <FaSearch size={18} color="#888" />
+          <input
+            type="text"
+            placeholder="Buscar por encomendas"
+            value={orderSearch}
+            onChange={(event) => {
+              setOrderSearch(event.target.value);
+            }}
+          />
+        </div>
+        <button type="submit" onClick={handleSubmit}>
+          CADASTRAR
+        </button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Destinatário</th>
+            <th>Entregador</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order, index) => (
+            <OrderRow key={order} order={order} index={index} />
+          ))}
+        </tbody>
+      </table>
+    </Container>
+  );
 }
