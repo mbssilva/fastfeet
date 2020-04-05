@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Container } from './styles';
 
 // import api from '../../services/api';
 
-export default function dashboard() {
+export default function Orders() {
+  const [orders, setOrders] = useState([
+    '1',
+    '2',
+    '3',
+    '1',
+    '2',
+    '3',
+    '1',
+    '2',
+    '3',
+    '1',
+    '2',
+    '3',
+    '1',
+    '2',
+    '3',
+    '1',
+    '2',
+    '3',
+  ]);
+
   return (
     <Container>
       <h1>Gerenciamento de encomendas</h1>
@@ -27,32 +48,31 @@ export default function dashboard() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="LeftestTh">ID</td>
-            <td>Destinatário</td>
-            <td>Entregador</td>
-            <td>Cidade</td>
-            <td>Estado</td>
-            <td>Status</td>
-            <td className="RightestTh">Ações</td>
-          </tr>
-          <tr>
-            <td className="LeftestTh">ID</td>
-            <td>Destinatário</td>
-            <td>Entregador</td>
-            <td>Cidade</td>
-            <td>Estado</td>
-            <td>Status</td>
-            <td className="RightestTh">Ações</td>
-          </tr><tr>
-            <td className="LeftestTh">ID</td>
-            <td>Destinatário</td>
-            <td>Entregador</td>
-            <td>Cidade</td>
-            <td>Estado</td>
-            <td>Status</td>
-            <td className="RightestTh">Ações</td>
-          </tr>
+          {orders.map((order) => (
+            <tr key={order}>
+              <td>
+                <div className="LeftestTh">{`#0${order}`}</div>
+              </td>
+              <td>
+                <div>Destinatário</div>
+              </td>
+              <td>
+                <div>Entregador</div>
+              </td>
+              <td>
+                <div>Cidade</div>
+              </td>
+              <td>
+                <div>Estado</div>
+              </td>
+              <td>
+                <div>Status</div>
+              </td>
+              <td>
+                <div className="RightestTh">...</div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Container>

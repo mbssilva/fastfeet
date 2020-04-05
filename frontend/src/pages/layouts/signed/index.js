@@ -7,10 +7,10 @@ import Header from '../../../components/Header';
 
 export default function GlobalLayout({ children }) {
   return (
-    <Wrapper>
+    <>
       <Header />
       <Container>{children}</Container>
-    </Wrapper>
+    </>
   );
 }
 
