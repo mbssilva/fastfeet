@@ -40,6 +40,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
     "no-empty": "off",
+    "no-nested-ternary": "off",
   },
   // settings: {
   //   "import/resolver": {

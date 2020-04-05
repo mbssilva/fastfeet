@@ -48,6 +48,10 @@ export const Container = styled.div`
   table {
     border-collapse: collapse;
 
+    tr {
+      border: 10px solid #eee;
+    }
+
     thead {
       > tr {
         color: #333;
@@ -59,28 +63,45 @@ export const Container = styled.div`
     tbody {
       > tr {
         color: #444;
-        border: 10px solid #eee;
 
         td {
-          height: 50px;
+          height: 55px;
 
-          div {
+          > div {
             height: 100%;
             width: 100%;
+            padding: 5px 0;
 
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            span {
+              font-size: 15px;
+              background: #ddd;
+              padding: 10px 6.5px;
+              border-radius: 50%;
+              margin-right: 5px;
+              color: #7159c1;
+            }
           }
         }
 
-        .LeftestTh {
-          border-radius: 8px 0 0 8px;
+        .LeftestTd {
+          border-radius: 7px 0 0 7px;
         }
 
-        .RightestTh {
-          border-radius: 0 8px 8px 0;
+        .RightestTd {
+          border-radius: 0 7px 7px 0;
+          position: relative;
+
+          button {
+            background: none;
+            border: none;
+            padding: 0 3px;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 
 // import api from '../../services/api';
+
+import OrderRow from '../../../components/OrderRow';
 
 export default function Orders() {
   const [orders, setOrders] = useState([
     '1',
     '2',
     '3',
-    '1',
-    '2',
-    '3',
-    '1',
-    '2',
-    '3',
-    '1',
-    '2',
-    '3',
-    '1',
-    '2',
-    '3',
-    '1',
-    '2',
-    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
   ]);
 
   return (
@@ -48,30 +41,8 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr key={order}>
-              <td>
-                <div className="LeftestTh">{`#0${order}`}</div>
-              </td>
-              <td>
-                <div>Destinatário</div>
-              </td>
-              <td>
-                <div>Entregador</div>
-              </td>
-              <td>
-                <div>Cidade</div>
-              </td>
-              <td>
-                <div>Estado</div>
-              </td>
-              <td>
-                <div>Status</div>
-              </td>
-              <td>
-                <div className="RightestTh">...</div>
-              </td>
-            </tr>
+          {orders.map((order, index) => (
+            <OrderRow order={order} index={index} />
           ))}
         </tbody>
       </table>
