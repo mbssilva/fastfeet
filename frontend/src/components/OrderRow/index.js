@@ -12,7 +12,7 @@ export default function OrderRow({ order, index }) {
   }
 
   return (
-    <tr key={order}>
+    <tr>
       <td>
         <div className="LeftestTd">{`#${
           index + 1 < 10 ? `0${index + 1}` : index
