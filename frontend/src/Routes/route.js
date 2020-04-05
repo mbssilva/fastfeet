@@ -14,7 +14,7 @@ function RouteExported({ component: Component, isPrivate, ...rest }) {
   }
 
   if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard/orders" />;
   }
 
   const Layout = signed ? SignedLayout : AuthLayout;

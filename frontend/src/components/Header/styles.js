@@ -25,7 +25,7 @@ export const Switch = styled.div`
 
   h3 {
     color: #444;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     margin: 0 10px;
   }

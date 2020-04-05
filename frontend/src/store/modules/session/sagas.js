@@ -18,7 +18,7 @@ export function* createSession({ payload }) {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    history.push('/dashboard');
+    history.push('/dashboard/orders');
   } catch (err) {
     toast.error('Verifique seu Login e Senha!');
     yield put(createSessionFailure());

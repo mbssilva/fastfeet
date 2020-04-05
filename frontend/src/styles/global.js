@@ -31,7 +31,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, button, input {
+  body, button, input, header {
     font: 14px, 'Roboto', sans-serif;
   }
 `;
