@@ -13,7 +13,7 @@ export const Status = styled.div.attrs((props) => {
         : '#e4b100', // Pendente - pending (Amarelo)
     lighteningAmount:
       props.status === 'delivered'
-        ? 0.49 // Entregue - delivered (Verde)
+        ? 0.53 // Entregue - delivered (Verde)
         : props.status === 'took'
         ? 0.3 // Retirada - took (Azul)
         : props.status === 'canceled'

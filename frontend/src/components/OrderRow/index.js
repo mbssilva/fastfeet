@@ -4,6 +4,8 @@ import propTypes from 'prop-types';
 
 import { Status, OptionsMenu } from './styles';
 
+import getInitialLetters from '../../utils/getInitialLetters';
+
 export default function OrderRow({ order, index }) {
   const [visible, setVisible] = useState(false);
 
@@ -23,7 +25,14 @@ export default function OrderRow({ order, index }) {
       </td>
       <td>
         <div>
-          <span>MB</span>
+          <span className="profilePicture">
+            {getInitialLetters('Matheus Bernardi')}
+          </span>
+          {/* <img
+            className="profilePicture"
+            src=""
+            alt={getInitialLetters('Matheus Bernardi')}
+          /> */}
           <aside>Matheus Bernardi</aside>
         </div>
       </td>
@@ -35,7 +44,7 @@ export default function OrderRow({ order, index }) {
       </td>
       <td>
         <div>
-          <Status status="pending">
+          <Status status="delivered">
             <div />
             <aside>ENTREGUE</aside>
           </Status>

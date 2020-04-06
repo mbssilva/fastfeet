@@ -50,7 +50,7 @@ export default function Recipients() {
         </thead>
         <tbody>
           {recipients.map((recipient, index) => (
-            <RecipientRow key={recipient} order={recipient} index={index} />
+            <RecipientRow key={recipient} recipient={recipient} index={index} />
           ))}
         </tbody>
       </table>

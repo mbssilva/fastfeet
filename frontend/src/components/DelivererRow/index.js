@@ -4,6 +4,8 @@ import propTypes from 'prop-types';
 
 import { OptionsMenu } from './styles';
 
+import getInitialLetters from '../../utils/getInitialLetters';
+
 export default function DelivererRow({ deliverer, index }) {
   const [visible, setVisible] = useState(false);
 
@@ -20,7 +22,14 @@ export default function DelivererRow({ deliverer, index }) {
       </td>
       <td>
         <div>
-          <span className="profilePicture">MB</span>
+          <span className="profilePicture">
+            {getInitialLetters('Matheus Bernardi')}
+          </span>
+          {/* <img
+            className="profilePicture"
+            src=""
+            alt={getInitialLetters('Matheus Bernardi')}
+          /> */}
         </div>
       </td>
       <td>

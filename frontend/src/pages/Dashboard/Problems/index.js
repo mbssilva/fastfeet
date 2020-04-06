@@ -25,7 +25,7 @@ export default function Problems() {
         </thead>
         <tbody>
           {problems.map((problem, index) => (
-            <ProblemRow key={problem} order={problem} index={index} />
+            <ProblemRow key={problem} problem={problem} index={index} />
           ))}
         </tbody>
       </table>

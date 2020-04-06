@@ -51,7 +51,7 @@ export default function Deliverers() {
         </thead>
         <tbody>
           {deliverers.map((deliverer, index) => (
-            <DelivererRow key={deliverer} order={deliverer} index={index} />
+            <DelivererRow key={deliverer} deliverer={deliverer} index={index} />
           ))}
         </tbody>
       </table>

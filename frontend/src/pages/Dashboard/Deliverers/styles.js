@@ -112,12 +112,16 @@ export const Container = styled.div`
             align-items: center;
             justify-content: center;
 
-            span {
-              font-size: 15px;
+            .profilePicture {
+              font-size: 16px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              text-align: center;
               background: #ddd;
-              padding: 10px 6.5px;
+              width: 40px;
+              height: 40px;
               border-radius: 50%;
-              margin-right: 5px;
               color: #7159c1;
             }
           }
