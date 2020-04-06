@@ -17,3 +17,9 @@ export function createSessionFailure() {
     type: '@session/CREATE_SESSION_FAILURE',
   };
 }
+
+export function signOut() {
+  return {
+    type: '@session/SIGN_OUT',
+  };
+}

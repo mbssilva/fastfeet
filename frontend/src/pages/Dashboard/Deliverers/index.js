@@ -8,7 +8,7 @@ import { Container } from './styles';
 
 import DelivererRow from '../../../components/DelivererRow';
 
-export default function Orders() {
+export default function Deliverers() {
   const [delivererSearch, setDelivererSearch] = useState('');
   const [deliverers, setDeliverers] = useState(['1', '2', '3', '4', '5', '6']);
 

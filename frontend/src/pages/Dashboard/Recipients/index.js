@@ -8,7 +8,7 @@ import { Container } from './styles';
 
 import RecipientRow from '../../../components/RecipientRow';
 
-export default function Orders() {
+export default function Recipients() {
   const [recipientSearch, setRecipientSearch] = useState('');
   const [recipients, setRecipients] = useState(['1', '2', '3', '4', '5', '6']);
 

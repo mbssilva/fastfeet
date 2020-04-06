@@ -3,10 +3,10 @@ import propTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function GlobalLayout({ children }) {
+export default function AuthLayout({ children }) {
   return <Container>{children}</Container>;
 }
 
-GlobalLayout.propTypes = {
+AuthLayout.propTypes = {
   children: propTypes.oneOfType([propTypes.func, propTypes.element]).isRequired,
 };

@@ -23,12 +23,18 @@ export const Switch = styled.div`
   border-left: 1px solid #ddd;
   padding-left: 15px;
 
-  h3 {
-    color: #444;
-    font-size: 15px;
-    font-weight: bold;
+  button {
+    background: none;
+    border: none;
     margin: 0 10px;
+    cursor: pointer;
   }
+`;
+
+export const Text = styled.h3`
+  color: ${(props) => (props.inPage ? '#444' : '#888')};
+  font-size: 15px;
+  font-weight: bold;
 `;
 
 export const Control = styled.div`
@@ -46,10 +52,16 @@ export const Control = styled.div`
     margin: 3px 10px;
   }
 
-  h3 {
-    color: #f11;
-    font-size: 14px;
+  button {
+    background: none;
+    border: none;
     margin: 3px 10px;
+    cursor: pointer;
+
+    h3 {
+      color: #f11;
+      font-size: 14px;
+    }
   }
 `;
 

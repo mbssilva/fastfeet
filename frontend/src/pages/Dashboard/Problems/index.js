@@ -8,14 +8,8 @@ import { Container } from './styles';
 
 import ProblemRow from '../../../components/ProblemRow';
 
-export default function Orders() {
-  const [problemSearch, setProblemSearch] = useState('');
+export default function Problems() {
   const [problems, setProblems] = useState(['1', '2', '3', '4', '5', '6']);
-
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    setProblemSearch('');
-  }, []);
 
   return (
     <Container>

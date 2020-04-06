@@ -26,6 +26,13 @@ export default function session(state = INITIAL_STATE, action) {
         draft.loading = false;
       });
 
+    case '@session/SIGN_OUT':
+      return produce(state, (draft) => {
+        draft.token = null;
+        draft.signed = false;
+        draft.loading = false;
+      });
+
     default:
       return state;
   }

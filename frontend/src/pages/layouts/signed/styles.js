@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  min-height: 100%;
-  width: 100%;
-
-  background: yellow;
-`;
-
 export const Container = styled.div`
   min-height: 100%;
   width: 100%;

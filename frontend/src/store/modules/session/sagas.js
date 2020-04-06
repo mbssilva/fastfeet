@@ -25,6 +25,10 @@ export function* createSession({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 export function setToken({ payload }) {
   if (!payload) return;
 
@@ -37,5 +41,6 @@ export function setToken({ payload }) {
 
 export default all([
   takeLatest('@session/CREATE_SESSION_REQUEST', createSession),
+  takeLatest('@session/SIGN_OUT', signOut),
   takeLatest('persist/REHYDRATE', setToken),
 ]);
