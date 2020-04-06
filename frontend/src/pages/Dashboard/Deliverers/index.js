@@ -10,7 +10,7 @@ import DelivererRow from '../../../components/DelivererRow';
 
 export default function Orders() {
   const [delivererSearch, setDelivererSearch] = useState('');
-  const [orders, setOrders] = useState(['1', '2', '3', '4', '5', '6', '7']);
+  const [deliverers, setDeliverers] = useState(['1', '2', '3', '4', '5', '6']);
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
@@ -50,8 +50,8 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order, index) => (
-            <DelivererRow key={order} order={order} index={index} />
+          {deliverers.map((deliverer, index) => (
+            <DelivererRow key={deliverer} order={deliverer} index={index} />
           ))}
         </tbody>
       </table>

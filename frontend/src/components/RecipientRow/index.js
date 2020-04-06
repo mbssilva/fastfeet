@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 import { OptionsMenu } from './styles';
 
-export default function DelivererRow({ deliverer, index }) {
+export default function RecipientRow({ recipient, index }) {
   const [visible, setVisible] = useState(false);
 
   function handleMenuVisible() {
@@ -19,15 +19,10 @@ export default function DelivererRow({ deliverer, index }) {
         }`}</div>
       </td>
       <td>
-        <div>
-          <span className="profilePicture">MB</span>
-        </div>
+        <div>Thiago Bernardi</div>
       </td>
       <td>
-        <div>Matheus Bernardi</div>
-      </td>
-      <td>
-        <div>matheus@hotmail.com</div>
+        <div>Avenida Ministro Cirne Lima</div>
       </td>
       <td>
         <div className="RightestTd">
@@ -53,7 +48,7 @@ export default function DelivererRow({ deliverer, index }) {
   );
 }
 
-DelivererRow.propTypes = {
-  deliverer: propTypes.string.isRequired,
+RecipientRow.propTypes = {
+  recipient: propTypes.string.isRequired,
   index: propTypes.number.isRequired,
 };
