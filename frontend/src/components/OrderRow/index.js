@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaEllipsisH, FaEye, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
 import { Status, OptionsMenu } from './styles';
 
+import { openOrderVisualizeContainer } from '../../store/modules/application/actions';
+
 import getInitialLetters from '../../utils/getInitialLetters';
 
 export default function OrderRow({ order, index }) {
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const applicationReduxlState = useSelector((state) => state.application);
 
   function handleMenuVisible() {
     setVisible(!visible);
+  }
+
+  function handleShowOrderVisualize() {
+    if (applicationReduxlState.orderVisualizeContainerOpened) return;
+
+    setVisible(!visible);
+    dispatch(openOrderVisualizeContainer(order));
   }
 
   return (
@@ -58,7 +70,7 @@ export default function OrderRow({ order, index }) {
 
           <OptionsMenu visible={visible}>
             <div>
-              <button type="button">
+              <button type="button" onClick={handleShowOrderVisualize}>
                 <FaEye size={17} color="#7159c1" />
                 <h6>Visualizar</h6>
               </button>

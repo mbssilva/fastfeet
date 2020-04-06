@@ -119,6 +119,7 @@ export const Container = styled.div`
               justify-content: center;
               text-align: center;
               background: #ddd;
+              margin: 0 5px 0 0;
               width: 40px;
               height: 40px;
               border-radius: 50%;
