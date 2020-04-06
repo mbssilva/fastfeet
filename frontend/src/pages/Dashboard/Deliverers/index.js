@@ -1,40 +1,41 @@
 import React, { useState, useCallback } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaPlus } from 'react-icons/fa';
 // import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 
 // import api from '../../services/api';
 
-import OrderRow from '../../../components/OrderRow';
+import DelivererRow from '../../../components/DelivererRow';
 
 export default function Orders() {
-  const [orderSearch, setOrderSearch] = useState('');
+  const [delivererSearch, setDelivererSearch] = useState('');
   const [orders, setOrders] = useState(['1', '2', '3', '4', '5', '6', '7']);
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
-    setOrderSearch('');
+    setDelivererSearch('');
   }, []);
 
   return (
     <Container>
-      <h1>Gerenciamento de encomendas</h1>
+      <h1>Gerenciamento de entregadores</h1>
 
       <form>
         <div>
           <FaSearch size={18} color="#888" />
           <input
             type="text"
-            placeholder="Buscar por encomendas"
-            value={orderSearch}
+            placeholder="Buscar por entregadores"
+            value={delivererSearch}
             onChange={(event) => {
-              setOrderSearch(event.target.value);
+              setDelivererSearch(event.target.value);
             }}
           />
         </div>
         <button type="submit" onClick={handleSubmit}>
-          CADASTRAR
+          <FaPlus size={17} />
+          <p>CADASTRAR</p>
         </button>
       </form>
 
@@ -42,17 +43,15 @@ export default function Orders() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Destinatário</th>
-            <th>Entregador</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
+            <th>Foto</th>
+            <th>Nome</th>
+            <th>E-mail</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order, index) => (
-            <OrderRow key={order} order={order} index={index} />
+            <DelivererRow key={order} order={order} index={index} />
           ))}
         </tbody>
       </table>

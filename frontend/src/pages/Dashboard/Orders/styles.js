@@ -25,7 +25,6 @@ export const Container = styled.div`
     div {
       display: flex;
       flex-direction: row;
-      /* align-items: baseline; */
 
       position: relative;
       background-color: #fff;
@@ -58,14 +57,26 @@ export const Container = styled.div`
     button {
       background: #7159c1;
       margin: 0 5px 15px 0;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 4px;
-      height: 35px;
+      height: 40px;
       padding: 2px 10px;
       color: #fff;
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      svg {
+        margin: 0 4px;
+      }
+
+      p {
+        margin: 0 4px;
+      }
     }
   }
 
@@ -85,7 +96,7 @@ export const Container = styled.div`
     }
 
     tbody {
-      > tr {
+      tr {
         color: #444;
 
         td {
@@ -120,7 +131,7 @@ export const Container = styled.div`
           border-radius: 0 7px 7px 0;
           position: relative;
 
-          button {
+          > button {
             background: none;
             border: none;
             padding: 0 3px;

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaPlus } from 'react-icons/fa';
 // import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
@@ -34,7 +34,8 @@ export default function Orders() {
           />
         </div>
         <button type="submit" onClick={handleSubmit}>
-          CADASTRAR
+          <FaPlus size={17} />
+          <p>CADASTRAR</p>
         </button>
       </form>
 
