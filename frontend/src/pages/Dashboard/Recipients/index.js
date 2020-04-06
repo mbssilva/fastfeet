@@ -9,12 +9,12 @@ import { Container } from './styles';
 import RecipientRow from '../../../components/RecipientRow';
 
 export default function Orders() {
-  const [recipientSearch, setRecipientSearchh] = useState('');
+  const [recipientSearch, setRecipientSearch] = useState('');
   const [recipients, setRecipients] = useState(['1', '2', '3', '4', '5', '6']);
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
-    setRecipientSearchh('');
+    setRecipientSearch('');
   }, []);
 
   return (
@@ -29,7 +29,7 @@ export default function Orders() {
             placeholder="Buscar por destinatários"
             value={recipientSearch}
             onChange={(event) => {
-              setRecipientSearchh(event.target.value);
+              setRecipientSearch(event.target.value);
             }}
           />
         </div>
