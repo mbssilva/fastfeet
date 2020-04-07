@@ -43,5 +43,9 @@ export default function OrderVisualize({ visible, order }) {
 
 OrderVisualize.propTypes = {
   visible: propTypes.bool.isRequired,
-  order: propTypes.object.isRequired,
+  order: propTypes.object,
+};
+
+OrderVisualize.defaultProps = {
+  order: {},
 };

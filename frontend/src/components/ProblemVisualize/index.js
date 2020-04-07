@@ -31,5 +31,9 @@ export default function ProblemVisualize({ visible, problem }) {
 
 ProblemVisualize.propTypes = {
   visible: propTypes.bool.isRequired,
-  problem: propTypes.object.isRequired,
+  problem: propTypes.object,
+};
+
+ProblemVisualize.defaultProps = {
+  problem: {},
 };

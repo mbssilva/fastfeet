@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.div`
   background: none;
   width: 100%;
   min-height: 100%;
@@ -68,13 +68,34 @@ export const Container = styled.div`
       margin: 0 5px;
       height: 50px;
 
+      h3 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 3px;
+      }
+
       input {
         height: 100%;
         width: 100%;
         border: 1px solid #ccc;
         border-radius: 6px;
         padding: 0 10px;
+        color: #333;
       }
+
+      select {
+        height: 100%;
+        width: 100%;
+        border: 1px solid #ccc;
+        background: #fff;
+        border-radius: 6px;
+        padding: 0 10px;
+        color: #333;
+      }
+    }
+
+    #recipientName {
+      width: 1500px;
     }
   }
 `;

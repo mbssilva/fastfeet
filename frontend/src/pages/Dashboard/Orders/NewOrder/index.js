@@ -12,14 +12,18 @@ export default function NewOrder({ order }) {
   }
 
   function handleSubmit(event) {
+    const data = {
+      deliverer: document.getElementById('deliverer').value,
+      ...event,
+    };
+
     // eslint-disable-next-line no-console
-    console.log(document.getElementById('cars').value);
-    console.log(event);
+    console.log(data);
   }
 
   return (
     <Wrapper>
-      <Form initialData={{ order }} onSubmit={handleSubmit}>
+      <Form initialData={{ product: order }} onSubmit={handleSubmit}>
         <header>
           <h1>Cadastro de encomendas</h1>
           <span>
@@ -40,9 +44,9 @@ export default function NewOrder({ order }) {
               <h3>Destinatário</h3>
               <Input name="recipient" />
             </div>
-            <div id="recipientStreet">
+            <div>
               <h3>Entregador</h3>
-              <select id="cars">
+              <select id="deliverer">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
@@ -51,7 +55,7 @@ export default function NewOrder({ order }) {
             </div>
           </span>
           <span>
-            <div id="recipientCity">
+            <div>
               <h3>Nome do produto</h3>
               <Input name="product" />
             </div>

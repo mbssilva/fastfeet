@@ -11,7 +11,7 @@ import NewOrder from './NewOrder';
 export default function Orders() {
   const [orderSearch, setOrderSearch] = useState('');
   const [orders, setOrders] = useState(['1']);
-  const [newOrderPageOpened, setNewOrderPageOpened] = useState(true);
+  const [newOrderPageOpened, setNewOrderPageOpened] = useState(false);
 
   const orderVisualizeReduxState = useSelector(
     (state) => state.application.orderVisualize
@@ -74,6 +74,6 @@ export default function Orders() {
       />
     </>
   ) : (
-    <NewOrder order={orderSearch} />
+    <NewOrder order={orderSearch || ''} />
   );
 }
