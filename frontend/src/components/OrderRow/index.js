@@ -5,7 +5,10 @@ import propTypes from 'prop-types';
 
 import { Status, OptionsMenu } from './styles';
 
-import { openOrderVisualizeContainer } from '../../store/modules/application/actions';
+import {
+  openOrderVisualizeContainer,
+  openEditOrderPage,
+} from '../../store/modules/application/actions';
 
 import getInitialLetters from '../../utils/getInitialLetters';
 
@@ -20,6 +23,11 @@ export default function OrderRow({ order, index }) {
   function handleShowOrderVisualize() {
     setVisible(!visible);
     dispatch(openOrderVisualizeContainer(order));
+  }
+
+  function handleOpenEditOrder() {
+    setVisible(!visible);
+    dispatch(openEditOrderPage(order));
   }
 
   return (
@@ -71,7 +79,7 @@ export default function OrderRow({ order, index }) {
                 <FaEye size={17} color="#7159c1" />
                 <h6>Visualizar</h6>
               </button>
-              <button type="button">
+              <button type="button" onClick={handleOpenEditOrder}>
                 <FaPen size={17} color="#33e" />
                 <h6>Editar</h6>
               </button>
@@ -88,6 +96,13 @@ export default function OrderRow({ order, index }) {
 }
 
 OrderRow.propTypes = {
-  order: propTypes.string.isRequired,
+  order: propTypes.shape({
+    recipient: propTypes.string,
+    deliverer: propTypes.string,
+    city: propTypes.string,
+    state: propTypes.string,
+    status: propTypes.string,
+    product: propTypes.string,
+  }).isRequired,
   index: propTypes.number.isRequired,
 };

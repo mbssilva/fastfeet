@@ -13,6 +13,10 @@ const INITIAL_STATE = {
     editRecipientPageOpened: false,
     recipient: null,
   },
+  editOrderPage: {
+    editOrderPageOpened: false,
+    order: null,
+  },
 };
 
 export default function application(state = INITIAL_STATE, action) {
@@ -54,6 +58,19 @@ export default function application(state = INITIAL_STATE, action) {
       return produce(state, (draft) => {
         draft.editRecipientPage.editRecipientPageOpened = false;
         draft.editRecipientPage.recipient = null;
+      });
+
+    case '@application/OPEN_EDIT_ORDER_PAGE':
+      return produce(state, (draft) => {
+        const { order } = action.payload;
+        draft.editOrderPage.editOrderPageOpened = true;
+        draft.editOrderPage.order = order;
+      });
+
+    case '@application/CLOSE_EDIT_ORDER_PAGE':
+      return produce(state, (draft) => {
+        draft.editOrderPage.editOrderPageOpened = false;
+        draft.editOrderPage.order = null;
       });
 
     default:

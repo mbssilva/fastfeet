@@ -42,3 +42,18 @@ export function closeEditRecipientPage() {
     type: '@application/CLOSE_EDIT_RECIPIENT_PAGE',
   };
 }
+
+export function openEditOrderPage(order) {
+  return {
+    type: '@application/OPEN_EDIT_ORDER_PAGE',
+    payload: {
+      order,
+    },
+  };
+}
+
+export function closeEditOrderPage() {
+  return {
+    type: '@application/CLOSE_EDIT_ORDER_PAGE',
+  };
+}

@@ -7,14 +7,28 @@ import { Container } from './styles';
 import OrderVisualize from '../../../components/OrderVisualize';
 import OrderRow from '../../../components/OrderRow';
 import NewOrder from './NewOrder';
+import EditOrder from './EditOrder';
 
 export default function Orders() {
   const [orderSearch, setOrderSearch] = useState('');
-  const [orders, setOrders] = useState(['1']);
+  const [orders, setOrders] = useState([
+    {
+      recipient: 'José',
+      deliverer: 'Matheus Bernardi',
+      city: 'toledocity',
+      state: 'paraná',
+      status: 'took',
+      product: 'Geladeira',
+    },
+  ]);
   const [newOrderPageOpened, setNewOrderPageOpened] = useState(false);
 
   const orderVisualizeReduxState = useSelector(
     (state) => state.application.orderVisualize
+  );
+
+  const editOrderPageReduxState = useSelector(
+    (state) => state.application.editOrderPage
   );
 
   const handleSubmit = useCallback(
@@ -25,6 +39,8 @@ export default function Orders() {
     },
     [newOrderPageOpened]
   );
+
+  if (editOrderPageReduxState.editOrderPageOpened) return <EditOrder />;
 
   return !newOrderPageOpened ? (
     <>
