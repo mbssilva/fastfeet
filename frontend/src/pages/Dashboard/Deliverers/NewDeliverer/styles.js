@@ -26,9 +26,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Button = styled.button.attrs({
-  type: 'button',
-})`
+export const Button = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,12 +46,49 @@ export const Button = styled.button.attrs({
 `;
 
 export const Container = styled.div`
-  height: 400px;
+  height: 350px;
   width: 100%;
 
   background: #fff;
   margin-top: 30px;
-  padding: 10px;
+  padding: 25px 10px;
 
   border-radius: 8px;
+
+  label {
+    cursor: pointer;
+    margin-left: calc(50% - 60px);
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      height: 120px;
+      width: 120px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      background-color: #eee;
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  h1 {
+    margin: 15px 10px 3px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  input {
+    height: 40px;
+    width: 100%;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 10px;
+    color: #333;
+  }
 `;
