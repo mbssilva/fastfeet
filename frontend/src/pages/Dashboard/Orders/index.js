@@ -6,21 +6,27 @@ import { Container } from './styles';
 
 import OrderVisualize from '../../../components/OrderVisualize';
 import OrderRow from '../../../components/OrderRow';
+import NewOrder from './NewOrder';
 
 export default function Orders() {
   const [orderSearch, setOrderSearch] = useState('');
   const [orders, setOrders] = useState(['1']);
+  const [newOrderPageOpened, setNewOrderPageOpened] = useState(true);
 
   const orderVisualizeReduxState = useSelector(
     (state) => state.application.orderVisualize
   );
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    setOrderSearch('');
-  }, []);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
 
-  return (
+      setNewOrderPageOpened(!newOrderPageOpened);
+    },
+    [newOrderPageOpened]
+  );
+
+  return !newOrderPageOpened ? (
     <>
       <Container>
         <h1>Gerenciamento de encomendas</h1>
@@ -67,5 +73,7 @@ export default function Orders() {
         order={orderVisualizeReduxState.order}
       />
     </>
+  ) : (
+    <NewOrder order={orderSearch} />
   );
 }

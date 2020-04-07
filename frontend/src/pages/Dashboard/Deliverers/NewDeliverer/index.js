@@ -5,7 +5,7 @@ import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Wrapper, Container, Button } from './styles';
 import history from '../../../../config/history';
 
-export default function newDeliverer({ name }) {
+export default function NewDeliverer({ name }) {
   function handleGoBack() {
     history.push('/dashboard/deliverers');
   }
@@ -34,6 +34,6 @@ export default function newDeliverer({ name }) {
   );
 }
 
-newDeliverer.propTypes = {
+NewDeliverer.propTypes = {
   name: propTypes.string.isRequired,
 };

@@ -66,7 +66,7 @@ export const Container = styled.div`
     div {
       width: 100%;
       margin: 0 5px;
-      height: 45px;
+      height: 50px;
 
       input {
         height: 100%;
@@ -75,18 +75,6 @@ export const Container = styled.div`
         border-radius: 6px;
         padding: 0 10px;
       }
-    }
-
-    #recipientStreet {
-      width: 7000px;
-    }
-
-    #recipientCep {
-      width: 1500px;
-    }
-
-    #recipientState {
-      width: 500px;
     }
   }
 `;

@@ -1,10 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { FaSearch, FaPlus } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
-
-// import api from '../../services/api';
 
 import RecipientRow from '../../../components/RecipientRow';
 import NewRecipient from './NewRecipient';
