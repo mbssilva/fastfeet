@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
 import { OptionsMenu } from './styles';
 
+import { openEditRecipientPage } from '../../store/modules/application/actions';
+
 export default function RecipientRow({ recipient, index }) {
+  const dispatch = useDispatch();
+
   const [visible, setVisible] = useState(false);
 
   function handleMenuVisible() {
     setVisible(!visible);
+  }
+
+  function handleOpenEditPage() {
+    setVisible(!visible);
+    dispatch(openEditRecipientPage(recipient));
   }
 
   return (
@@ -32,7 +42,7 @@ export default function RecipientRow({ recipient, index }) {
 
           <OptionsMenu visible={visible}>
             <div>
-              <button type="button">
+              <button type="button" onClick={handleOpenEditPage}>
                 <FaPen size={17} color="#33e" />
                 <h6>Editar</h6>
               </button>

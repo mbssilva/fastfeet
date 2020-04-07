@@ -27,3 +27,18 @@ export function closeProblemVisualizeContainer() {
     type: '@application/CLOSE_PROBLEM_VISUALIZE',
   };
 }
+
+export function openEditRecipientPage(recipient) {
+  return {
+    type: '@application/OPEN_EDIT_RECIPIENT_PAGE',
+    payload: {
+      recipient,
+    },
+  };
+}
+
+export function closeEditRecipientPage() {
+  return {
+    type: '@application/CLOSE_EDIT_RECIPIENT_PAGE',
+  };
+}

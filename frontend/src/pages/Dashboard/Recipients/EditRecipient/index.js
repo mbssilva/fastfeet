@@ -1,26 +1,33 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
 import { Wrapper, Container, Button } from './styles';
-import history from '../../../../config/history';
 
-export default function NewRecipient({ name }) {
+import { closeEditRecipientPage } from '../../../../store/modules/application/actions';
+
+export default function EditRecipient() {
+  const dispatch = useDispatch();
+  const { recipient } = useSelector(
+    (state) => state.application.editRecipientPage
+  );
+
   function handleGoBack() {
-    history.push('/dashboard/recipients');
+    dispatch(closeEditRecipientPage());
   }
 
   function handleSubmit(event) {
     // eslint-disable-next-line no-console
     console.log(event);
+    dispatch(closeEditRecipientPage());
   }
 
   return (
     <Wrapper>
-      <Form initialData={{ name }} onSubmit={handleSubmit}>
+      <Form initialData={recipient} onSubmit={handleSubmit}>
         <header>
-          <h1>Cadastro de destinatários</h1>
+          <h1>Edição de destinatário</h1>
           <span>
             <Button back type="button" onClick={handleGoBack}>
               <FaChevronLeft color="#fff" />
@@ -73,11 +80,3 @@ export default function NewRecipient({ name }) {
     </Wrapper>
   );
 }
-
-NewRecipient.propTypes = {
-  name: propTypes.string,
-};
-
-NewRecipient.defaultProps = {
-  name: '',
-};

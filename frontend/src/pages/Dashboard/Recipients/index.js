@@ -1,15 +1,31 @@
 import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { FaSearch, FaPlus } from 'react-icons/fa';
 
 import { Container } from './styles';
 
 import RecipientRow from '../../../components/RecipientRow';
 import NewRecipient from './NewRecipient';
+import EditRecipient from './EditRecipient';
 
 export default function Recipients() {
   const [recipientSearch, setRecipientSearch] = useState('');
-  const [recipients, setRecipients] = useState(['1', '2', '3', '4', '5', '6']);
+  const [recipients, setRecipients] = useState([
+    {
+      name: 'Matheus',
+      street: 'Rua do teste',
+      number: '1155',
+      cep: '85903450',
+      city: 'toledocity',
+      state: 'rússia',
+      complement: 'sibéria tupiniquim',
+    },
+  ]);
   const [newRecipientPageOpened, setNewRecipientPageOpened] = useState(false);
+
+  const editRecipientPageReduxState = useSelector(
+    (state) => state.application.editRecipientPage
+  );
 
   const handleSubmit = useCallback(
     (event) => {
@@ -19,6 +35,9 @@ export default function Recipients() {
     },
     [newRecipientPageOpened]
   );
+
+  if (editRecipientPageReduxState.editRecipientPageOpened)
+    return <EditRecipient />;
 
   return !newRecipientPageOpened ? (
     <Container>

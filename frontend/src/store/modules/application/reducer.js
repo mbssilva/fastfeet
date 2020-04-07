@@ -9,6 +9,10 @@ const INITIAL_STATE = {
     problemVisualizeContainerOpened: false,
     problem: null,
   },
+  editRecipientPage: {
+    editRecipientPageOpened: false,
+    recipient: null,
+  },
 };
 
 export default function application(state = INITIAL_STATE, action) {
@@ -37,6 +41,19 @@ export default function application(state = INITIAL_STATE, action) {
       return produce(state, (draft) => {
         draft.problemVisualize.problemVisualizeContainerOpened = false;
         draft.problemVisualize.problem = null;
+      });
+
+    case '@application/OPEN_EDIT_RECIPIENT_PAGE':
+      return produce(state, (draft) => {
+        const { recipient } = action.payload;
+        draft.editRecipientPage.editRecipientPageOpened = true;
+        draft.editRecipientPage.recipient = recipient;
+      });
+
+    case '@application/CLOSE_EDIT_RECIPIENT_PAGE':
+      return produce(state, (draft) => {
+        draft.editRecipientPage.editRecipientPageOpened = false;
+        draft.editRecipientPage.recipient = null;
       });
 
     default:
