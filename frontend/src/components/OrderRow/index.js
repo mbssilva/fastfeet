@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaEye, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
@@ -12,15 +12,12 @@ import getInitialLetters from '../../utils/getInitialLetters';
 export default function OrderRow({ order, index }) {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
-  const applicationReduxlState = useSelector((state) => state.application);
 
   function handleMenuVisible() {
     setVisible(!visible);
   }
 
   function handleShowOrderVisualize() {
-    if (applicationReduxlState.orderVisualizeContainerOpened) return;
-
     setVisible(!visible);
     dispatch(openOrderVisualizeContainer(order));
   }

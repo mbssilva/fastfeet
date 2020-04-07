@@ -7,17 +7,23 @@ import { Container } from './styles';
 // import api from '../../services/api';
 
 import DelivererRow from '../../../components/DelivererRow';
+import NewDeliverer from './NewDeliverer';
 
 export default function Deliverers() {
   const [delivererSearch, setDelivererSearch] = useState('');
   const [deliverers, setDeliverers] = useState(['1', '2', '3', '4', '5', '6']);
+  const [newDelivererPageOpened, setNewDelivererPageOpened] = useState(false);
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    setDelivererSearch('');
-  }, []);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
 
-  return (
+      setNewDelivererPageOpened(!newDelivererPageOpened);
+    },
+    [newDelivererPageOpened]
+  );
+
+  return !newDelivererPageOpened ? (
     <Container>
       <h1>Gerenciamento de entregadores</h1>
 
@@ -56,5 +62,7 @@ export default function Deliverers() {
         </tbody>
       </table>
     </Container>
+  ) : (
+    <NewDeliverer name={delivererSearch} />
   );
 }

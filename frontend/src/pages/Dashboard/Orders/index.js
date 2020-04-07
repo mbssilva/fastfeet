@@ -1,11 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { FaSearch, FaPlus } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
-
-// import api from '../../services/api';
 
 import OrderVisualize from '../../../components/OrderVisualize';
 import OrderRow from '../../../components/OrderRow';
@@ -14,7 +11,9 @@ export default function Orders() {
   const [orderSearch, setOrderSearch] = useState('');
   const [orders, setOrders] = useState(['1']);
 
-  const applicationReduxlState = useSelector((state) => state.application);
+  const orderVisualizeReduxState = useSelector(
+    (state) => state.application.orderVisualize
+  );
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
@@ -64,8 +63,8 @@ export default function Orders() {
         </table>
       </Container>
       <OrderVisualize
-        visible={applicationReduxlState.orderVisualizeContainerOpened}
-        order={applicationReduxlState.order}
+        visible={orderVisualizeReduxState.orderVisualizeContainerOpened}
+        order={orderVisualizeReduxState.order}
       />
     </>
   );

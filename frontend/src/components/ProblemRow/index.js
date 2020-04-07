@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaEye, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
 import { OptionsMenu } from './styles';
 
+import { openProblemVisualizeContainer } from '../../store/modules/application/actions';
+
 export default function ProblemRow({ problem, index }) {
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   function handleMenuVisible() {
     setVisible(!visible);
+  }
+
+  function handleShowProblemVisualize() {
+    setVisible(!visible);
+    dispatch(openProblemVisualizeContainer(problem));
   }
 
   return (
@@ -32,7 +41,7 @@ export default function ProblemRow({ problem, index }) {
 
           <OptionsMenu visible={visible}>
             <div>
-              <button type="button">
+              <button type="button" onClick={handleShowProblemVisualize}>
                 <FaEye size={17} color="#33e" />
                 <h6>Visualizar</h6>
               </button>

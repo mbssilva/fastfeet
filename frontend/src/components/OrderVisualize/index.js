@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-// import { FaTimes } from 'react-icons/fa';
+import propTypes from 'prop-types';
 
 import { Wrapper, Container, Image } from './styles';
 
 import { closeOrderVisualizeContainer } from '../../store/modules/application/actions';
 
-// eslint-disable-next-line react/prop-types
 export default function OrderVisualize({ visible, order }) {
   const dispatch = useDispatch();
 
@@ -41,3 +40,8 @@ export default function OrderVisualize({ visible, order }) {
     </Wrapper>
   );
 }
+
+OrderVisualize.propTypes = {
+  visible: propTypes.bool.isRequired,
+  order: propTypes.object.isRequired,
+};

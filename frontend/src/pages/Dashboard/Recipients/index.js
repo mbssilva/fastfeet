@@ -7,17 +7,23 @@ import { Container } from './styles';
 // import api from '../../services/api';
 
 import RecipientRow from '../../../components/RecipientRow';
+import NewRecipient from './NewRecipient';
 
 export default function Recipients() {
   const [recipientSearch, setRecipientSearch] = useState('');
   const [recipients, setRecipients] = useState(['1', '2', '3', '4', '5', '6']);
+  const [newRecipientPageOpened, setNewRecipientPageOpened] = useState(false);
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    setRecipientSearch('');
-  }, []);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
 
-  return (
+      setNewRecipientPageOpened(!newRecipientPageOpened);
+    },
+    [newRecipientPageOpened]
+  );
+
+  return !newRecipientPageOpened ? (
     <Container>
       <h1>Gerenciamento de destinatários</h1>
 
@@ -55,5 +61,7 @@ export default function Recipients() {
         </tbody>
       </table>
     </Container>
+  ) : (
+    <NewRecipient name={recipientSearch} />
   );
 }
