@@ -52,11 +52,3 @@ export const Container = styled.div`
     color: #666;
   }
 `;
-
-export const Image = styled.img.attrs({
-  alt: 'Assinatura do destinatário',
-})`
-  background: #dddf;
-  border-radius: 3px;
-  width: 100%;
-`;

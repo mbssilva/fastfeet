@@ -28,10 +28,7 @@ export default function ProblemRow({ problem, index }) {
         }`}</div>
       </td>
       <td>
-        <div>
-          Infelizmente sofri um acidente e a mercadoria do cliente foi
-          totalmente danificada
-        </div>
+        <div>{problem.description}</div>
       </td>
       <td>
         <div className="RightestTd">

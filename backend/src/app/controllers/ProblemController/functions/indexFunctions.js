@@ -39,7 +39,7 @@ export default async (req, res) => {
     ]
   });
 
-  if (page > Math.ceil(problems.count/5)) {
+  if (page > Math.ceil((problems.count + 1)/5)) {
     return res
       .status(400)
       .json({
