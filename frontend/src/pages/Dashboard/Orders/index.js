@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaSearch, FaPlus } from 'react-icons/fa';
+
+import api from '../../../services/api';
 
 import { Container } from './styles';
 
@@ -11,16 +13,7 @@ import EditOrder from './EditOrder';
 
 export default function Orders() {
   const [orderSearch, setOrderSearch] = useState('');
-  const [orders, setOrders] = useState([
-    {
-      recipient: 'José',
-      deliverer: 'Matheus Bernardi',
-      city: 'toledocity',
-      state: 'paraná',
-      status: 'took',
-      product: 'Geladeira',
-    },
-  ]);
+  const [orders, setOrders] = useState([]);
   const [newOrderPageOpened, setNewOrderPageOpened] = useState(false);
 
   const { orderVisualizeContainerOpened, order } = useSelector(
@@ -30,6 +23,18 @@ export default function Orders() {
   const { editOrderPageOpened } = useSelector(
     (state) => state.application.editOrderPage
   );
+
+  useEffect(() => {
+    async function fillOrders() {
+      try {
+        const response = await api.get('/orders');
+
+        setOrders(response.data);
+      } catch (err) {}
+    }
+
+    fillOrders();
+  }, []);
 
   const handleSubmit = useCallback(
     (event) => {
