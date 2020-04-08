@@ -93,9 +93,5 @@ export const Container = styled.div`
         color: #333;
       }
     }
-
-    #recipientName {
-      width: 1500px;
-    }
   }
 `;

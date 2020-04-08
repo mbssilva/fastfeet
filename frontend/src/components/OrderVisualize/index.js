@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import propTypes from 'prop-types';
 
 import { Wrapper, Container, Image } from './styles';
 
 import { closeOrderVisualizeContainer } from '../../store/modules/application/actions';
 
-export default function OrderVisualize({ visible, order }) {
+export default function OrderVisualize({ visible }) {
   const dispatch = useDispatch();
+  const order = useSelector((state) => state.application.orderVisualize.order);
 
   const handleClose = useCallback(() => {
     dispatch(closeOrderVisualizeContainer());
@@ -20,21 +21,23 @@ export default function OrderVisualize({ visible, order }) {
           <h1>Informações da encomenda</h1>
         </header>
         <div>
-          <small>Rua Beethoven, 1729</small>
-          <small>Diadema - SP</small>
-          <small>09960-580</small>
+          <small>{order && order.recipient.street}</small>
+          <small>
+            {order && `${order.recipient.city} - ${order.recipient.state}`}
+          </small>
+          <small>{order && order.recipient.cep}</small>
           <br />
           <strong>Datas</strong>
           <strong>
-            Retirada: <small>28/12/2019</small>
+            Retirada: <small>{order && order.start_date}</small>
           </strong>
           <strong>
-            Entrega: <small>25/11/2020</small>
+            Entrega: <small>{order && order.end_date}</small>
           </strong>
         </div>
         <footer>
           <strong>Assinatura do destinatário</strong>
-          <Image src="" />
+          <Image src={order && order.signature} />
         </footer>
       </Container>
     </Wrapper>
@@ -43,9 +46,4 @@ export default function OrderVisualize({ visible, order }) {
 
 OrderVisualize.propTypes = {
   visible: propTypes.bool.isRequired,
-  order: propTypes.object,
-};
-
-OrderVisualize.defaultProps = {
-  order: {},
 };

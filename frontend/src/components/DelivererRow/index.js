@@ -26,26 +26,25 @@ export default function DelivererRow({ deliverer, index }) {
     <tr>
       <td>
         <div className="LeftestTd">{`#${
-          index + 1 < 10 ? `0${index + 1}` : index
+          index + 1 < 10 ? `0${index + 1}` : index + 1
         }`}</div>
       </td>
       <td>
         <div>
-          <span className="profilePicture">
-            {getInitialLetters('Matheus Bernardi')}
-          </span>
-          {/* <img
-            className="profilePicture"
-            src=""
-            alt={getInitialLetters('Matheus Bernardi')}
-          /> */}
+          {deliverer.avatar.url ? (
+            <img className="profilePicture" src={deliverer.avatar.url} alt="" />
+          ) : (
+            <span className="profilePicture">
+              {getInitialLetters(deliverer.name)}
+            </span>
+          )}
         </div>
       </td>
       <td>
-        <div>Matheus Bernardi</div>
+        <div>{deliverer.name}</div>
       </td>
       <td>
-        <div>matheus@hotmail.com</div>
+        <div>{deliverer.email}</div>
       </td>
       <td>
         <div className="RightestTd">

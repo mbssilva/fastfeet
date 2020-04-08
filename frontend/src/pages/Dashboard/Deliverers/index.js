@@ -13,7 +13,7 @@ import EditDeliverer from './EditDeliverer';
 
 export default function Deliverers() {
   const [delivererSearch, setDelivererSearch] = useState('');
-  const [deliverers, setDeliverers] = useState(['1', '2', '3', '4', '5', '6']);
+  const [deliverers, setDeliverers] = useState([]);
   const [newDelivererPageOpened, setNewDelivererPageOpened] = useState(false);
 
   const { editDelivererPageOpened } = useSelector(
@@ -24,6 +24,8 @@ export default function Deliverers() {
     async function loadDeliverers() {
       try {
         const response = await api.get('/deliverers');
+
+        console.tron.warn(response.data);
 
         setDeliverers(response.data);
       } catch (err) {}
@@ -44,44 +46,50 @@ export default function Deliverers() {
   if (editDelivererPageOpened) return <EditDeliverer />;
 
   return !newDelivererPageOpened ? (
-    <Container>
-      <h1>Gerenciamento de entregadores</h1>
+    deliverers && (
+      <Container>
+        <h1>Gerenciamento de entregadores</h1>
 
-      <form>
-        <div>
-          <FaSearch size={18} color="#888" />
-          <input
-            type="text"
-            placeholder="Buscar por entregadores"
-            value={delivererSearch}
-            onChange={(event) => {
-              setDelivererSearch(event.target.value);
-            }}
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit}>
-          <FaPlus size={17} />
-          <p>CADASTRAR</p>
-        </button>
-      </form>
+        <form>
+          <div>
+            <FaSearch size={18} color="#888" />
+            <input
+              type="text"
+              placeholder="Buscar por entregadores"
+              value={delivererSearch}
+              onChange={(event) => {
+                setDelivererSearch(event.target.value);
+              }}
+            />
+          </div>
+          <button type="submit" onClick={handleSubmit}>
+            <FaPlus size={17} />
+            <p>CADASTRAR</p>
+          </button>
+        </form>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Foto</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deliverers.map((deliverer, index) => (
-            <DelivererRow key={deliverer} deliverer={deliverer} index={index} />
-          ))}
-        </tbody>
-      </table>
-    </Container>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Foto</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {deliverers.map((deliverer, index) => (
+              <DelivererRow
+                key={deliverer.id}
+                deliverer={deliverer}
+                index={index}
+              />
+            ))}
+          </tbody>
+        </table>
+      </Container>
+    )
   ) : (
     <NewDeliverer name={delivererSearch} />
   );

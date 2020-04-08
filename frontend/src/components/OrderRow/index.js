@@ -34,7 +34,7 @@ export default function OrderRow({ order, index }) {
     <tr>
       <td>
         <div className="LeftestTd">{`#${
-          index + 1 < 10 ? `0${index + 1}` : index
+          index + 1 < 10 ? `0${index + 1}` : index + 1
         }`}</div>
       </td>
       <td>
@@ -50,7 +50,7 @@ export default function OrderRow({ order, index }) {
             />
           ) : (
             <span className="profilePicture">
-              {getInitialLetters('Matheus Bernardi')}
+              {getInitialLetters(order.deliverer.name)}
             </span>
           )}
           <aside>{order.deliverer.name}</aside>
@@ -117,6 +117,6 @@ export default function OrderRow({ order, index }) {
 }
 
 OrderRow.propTypes = {
-  order: propTypes.shape(propTypes.object).isRequired,
+  order: propTypes.shape().isRequired,
   index: propTypes.number.isRequired,
 };

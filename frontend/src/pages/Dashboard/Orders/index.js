@@ -16,7 +16,7 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [newOrderPageOpened, setNewOrderPageOpened] = useState(false);
 
-  const { orderVisualizeContainerOpened, order } = useSelector(
+  const { orderVisualizeContainerOpened } = useSelector(
     (state) => state.application.orderVisualize
   );
 
@@ -29,7 +29,7 @@ export default function Orders() {
       try {
         const response = await api.get('/orders');
 
-        console.tron.log(response.data);
+        console.tron.warn(response.data);
 
         setOrders(response.data);
       } catch (err) {}
@@ -86,12 +86,12 @@ export default function Orders() {
           </thead>
           <tbody>
             {orders.map((order, index) => (
-              <OrderRow key={order} order={order} index={index} />
+              <OrderRow key={order.id} order={order} index={index} />
             ))}
           </tbody>
         </table>
       </Container>
-      <OrderVisualize visible={orderVisualizeContainerOpened} order={order} />
+      <OrderVisualize visible={orderVisualizeContainerOpened} />
     </>
   ) : (
     <NewOrder order={orderSearch || ''} />

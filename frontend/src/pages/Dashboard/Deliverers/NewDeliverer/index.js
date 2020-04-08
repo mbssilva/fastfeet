@@ -39,7 +39,9 @@ export default function NewDeliverer({ name }) {
       };
 
       await api.post('/deliverers', settings);
-    } catch (err) {}
+    } catch (err) {
+      console.tron.error(err);
+    }
 
     history.push('/dashboard/deliverers');
   }
