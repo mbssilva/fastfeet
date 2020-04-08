@@ -67,7 +67,7 @@ export default async (req, res) => {
       where: { canceled_at: null },
       limit: 5,
       offset: (page - 1) * 5,
-      attributes: ['id', 'product', 'start_date', 'end_date'],
+      attributes: ['id', 'product', 'start_date', 'end_date', 'canceled_at'],
       include: [
         {
           model: Recipient,

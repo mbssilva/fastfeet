@@ -38,32 +38,53 @@ export default function OrderRow({ order, index }) {
         }`}</div>
       </td>
       <td>
-        <div>Destinatário</div>
+        <div>{order.recipient.name}</div>
       </td>
       <td>
         <div>
-          <span className="profilePicture">
-            {getInitialLetters('Matheus Bernardi')}
-          </span>
-          {/* <img
-            className="profilePicture"
-            src=""
-            alt={getInitialLetters('Matheus Bernardi')}
-          /> */}
-          <aside>Matheus Bernardi</aside>
+          {order.deliverer.avatar.url ? (
+            <img
+              className="profilePicture"
+              src={order.deliverer.avatar.url}
+              alt=""
+            />
+          ) : (
+            <span className="profilePicture">
+              {getInitialLetters('Matheus Bernardi')}
+            </span>
+          )}
+          <aside>{order.deliverer.name}</aside>
         </div>
       </td>
       <td>
-        <div>Toledo</div>
+        <div>{order.recipient.city}</div>
       </td>
       <td>
-        <div>Paraná</div>
+        <div>{order.recipient.state}</div>
       </td>
       <td>
         <div>
-          <Status status="delivered">
+          <Status
+            status={
+              order.canceled_at
+                ? 'canceled'
+                : order.start_date
+                ? 'took'
+                : order.signature && order.end_date
+                ? 'delivered'
+                : 'pending'
+            }
+          >
             <div />
-            <aside>ENTREGUE</aside>
+            <aside>
+              {order.canceled_at
+                ? 'CANCELADA'
+                : order.start_date
+                ? 'RETIRADA'
+                : order.signature && order.end_date
+                ? 'ENTREGUE'
+                : 'PENDENTE'}
+            </aside>
           </Status>
         </div>
       </td>
@@ -96,13 +117,6 @@ export default function OrderRow({ order, index }) {
 }
 
 OrderRow.propTypes = {
-  order: propTypes.shape({
-    recipient: propTypes.string,
-    deliverer: propTypes.string,
-    city: propTypes.string,
-    state: propTypes.string,
-    status: propTypes.string,
-    product: propTypes.string,
-  }).isRequired,
+  order: propTypes.shape(propTypes.object).isRequired,
   index: propTypes.number.isRequired,
 };
