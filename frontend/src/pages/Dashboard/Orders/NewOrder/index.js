@@ -19,6 +19,7 @@ export default function NewOrder({ order }) {
 
     // eslint-disable-next-line no-console
     console.log(data);
+    history.push('/dashboard/orders');
   }
 
   return (

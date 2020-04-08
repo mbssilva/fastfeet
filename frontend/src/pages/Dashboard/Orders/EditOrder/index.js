@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
@@ -10,6 +10,12 @@ import { closeEditOrderPage } from '../../../../store/modules/application/action
 export default function EditOrder() {
   const dispatch = useDispatch();
   const { order } = useSelector((state) => state.application.editOrderPage);
+
+  useEffect(() => {
+    return () => {
+      dispatch(closeEditOrderPage());
+    };
+  }, [dispatch]);
 
   function handleGoBack() {
     dispatch(closeEditOrderPage());
@@ -30,7 +36,7 @@ export default function EditOrder() {
     <Wrapper>
       <Form initialData={order} onSubmit={handleSubmit}>
         <header>
-          <h1>Cadastro de encomendas</h1>
+          <h1>Edição de encomendas</h1>
           <span>
             <Button back type="button" onClick={handleGoBack}>
               <FaChevronLeft color="#fff" />

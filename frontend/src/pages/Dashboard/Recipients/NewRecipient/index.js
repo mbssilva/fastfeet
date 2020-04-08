@@ -14,6 +14,7 @@ export default function NewRecipient({ name }) {
   function handleSubmit(event) {
     // eslint-disable-next-line no-console
     console.log(event);
+    history.push('/dashboard/recipients');
   }
 
   return (

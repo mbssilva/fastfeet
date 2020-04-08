@@ -57,3 +57,18 @@ export function closeEditOrderPage() {
     type: '@application/CLOSE_EDIT_ORDER_PAGE',
   };
 }
+
+export function openEditDelivererPage(deliverer) {
+  return {
+    type: '@application/OPEN_EDIT_DELIVERER_PAGE',
+    payload: {
+      deliverer,
+    },
+  };
+}
+
+export function closeEditDelivererPage() {
+  return {
+    type: '@application/CLOSE_EDIT_DELIVERER_PAGE',
+  };
+}

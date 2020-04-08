@@ -17,6 +17,10 @@ const INITIAL_STATE = {
     editOrderPageOpened: false,
     order: null,
   },
+  editDelivererPage: {
+    editDelivererPageOpened: false,
+    deliverer: null,
+  },
 };
 
 export default function application(state = INITIAL_STATE, action) {
@@ -71,6 +75,19 @@ export default function application(state = INITIAL_STATE, action) {
       return produce(state, (draft) => {
         draft.editOrderPage.editOrderPageOpened = false;
         draft.editOrderPage.order = null;
+      });
+
+    case '@application/OPEN_EDIT_DELIVERER_PAGE':
+      return produce(state, (draft) => {
+        const { deliverer } = action.payload;
+        draft.editDelivererPage.editDelivererPageOpened = true;
+        draft.editDelivererPage.deliverer = deliverer;
+      });
+
+    case '@application/CLOSE_EDIT_DELIVERER_PAGE':
+      return produce(state, (draft) => {
+        draft.editDelivererPage.editDelivererPageOpened = false;
+        draft.editDelivererPage.deliverer = null;
       });
 
     default:

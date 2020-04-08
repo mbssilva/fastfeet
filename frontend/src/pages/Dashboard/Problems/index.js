@@ -9,7 +9,7 @@ import ProblemRow from '../../../components/ProblemRow';
 export default function Problems() {
   const [problems, setProblems] = useState(['1', '2', '3', '4', '5', '6']);
 
-  const problemVisualizeReduxState = useSelector(
+  const { problemVisualizeContainerOpened, problem } = useSelector(
     (state) => state.application.problemVisualize
   );
 
@@ -34,8 +34,8 @@ export default function Problems() {
         </table>
       </Container>
       <ProblemVisualize
-        visible={problemVisualizeReduxState.problemVisualizeContainerOpened}
-        problem={problemVisualizeReduxState.problem}
+        visible={problemVisualizeContainerOpened}
+        problem={problem}
       />
     </>
   );

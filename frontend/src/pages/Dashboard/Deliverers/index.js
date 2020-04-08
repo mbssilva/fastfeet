@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { FaSearch, FaPlus } from 'react-icons/fa';
 // import { Link } from 'react-router-dom';
 
@@ -8,11 +9,16 @@ import { Container } from './styles';
 
 import DelivererRow from '../../../components/DelivererRow';
 import NewDeliverer from './NewDeliverer';
+import EditDeliverer from './EditDeliverer';
 
 export default function Deliverers() {
   const [delivererSearch, setDelivererSearch] = useState('');
   const [deliverers, setDeliverers] = useState(['1', '2', '3', '4', '5', '6']);
   const [newDelivererPageOpened, setNewDelivererPageOpened] = useState(false);
+
+  const { editDelivererPageOpened } = useSelector(
+    (state) => state.application.editDelivererPage
+  );
 
   const handleSubmit = useCallback(
     (event) => {
@@ -22,6 +28,8 @@ export default function Deliverers() {
     },
     [newDelivererPageOpened]
   );
+
+  if (editDelivererPageOpened) return <EditDeliverer />;
 
   return !newDelivererPageOpened ? (
     <Container>

@@ -23,11 +23,11 @@ export default function Orders() {
   ]);
   const [newOrderPageOpened, setNewOrderPageOpened] = useState(false);
 
-  const orderVisualizeReduxState = useSelector(
+  const { orderVisualizeContainerOpened, order } = useSelector(
     (state) => state.application.orderVisualize
   );
 
-  const editOrderPageReduxState = useSelector(
+  const { editOrderPageOpened } = useSelector(
     (state) => state.application.editOrderPage
   );
 
@@ -40,7 +40,7 @@ export default function Orders() {
     [newOrderPageOpened]
   );
 
-  if (editOrderPageReduxState.editOrderPageOpened) return <EditOrder />;
+  if (editOrderPageOpened) return <EditOrder />;
 
   return !newOrderPageOpened ? (
     <>
@@ -84,10 +84,7 @@ export default function Orders() {
           </tbody>
         </table>
       </Container>
-      <OrderVisualize
-        visible={orderVisualizeReduxState.orderVisualizeContainerOpened}
-        order={orderVisualizeReduxState.order}
-      />
+      <OrderVisualize visible={orderVisualizeContainerOpened} order={order} />
     </>
   ) : (
     <NewOrder order={orderSearch || ''} />

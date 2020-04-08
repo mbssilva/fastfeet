@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import propTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
-import history from '../../../../config/history';
 import api from '../../../../services/api';
+
+import { closeEditDelivererPage } from '../../../../store/modules/application/actions';
 
 import { Wrapper, Container, Button } from './styles';
 
-export default function NewDeliverer({ name }) {
+export default function NewDeliverer() {
+  const dispatch = useDispatch();
   const [urlState, setUrlState] = useState('');
 
   async function handleChange(event) {
@@ -25,21 +27,32 @@ export default function NewDeliverer({ name }) {
     } catch (err) {}
   }
 
+  const { deliverer } = useSelector(
+    (state) => state.application.editDelivererPage
+  );
+
+  useEffect(() => {
+    return () => {
+      dispatch(closeEditDelivererPage());
+    };
+  }, [dispatch]);
+
   function handleGoBack() {
-    history.push('/dashboard/deliverers');
+    dispatch(closeEditDelivererPage());
   }
 
   function handleSubmit(event) {
+    dispatch(closeEditDelivererPage());
+
     // eslint-disable-next-line no-console
     console.log(event);
-    history.push('/dashboard/deliverers');
   }
 
   return (
     <Wrapper>
-      <Form initialData={{ name }} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <header>
-          <h1>Cadastro de entregadores</h1>
+          <h1>Edição de entregadores</h1>
           <span>
             <Button back type="button" onClick={handleGoBack}>
               <FaChevronLeft color="#fff" />
@@ -54,17 +67,13 @@ export default function NewDeliverer({ name }) {
 
         <Container>
           <label htmlFor="avatar">
-            {!urlState ? (
-              <span>Clique para Adicionar foto</span>
-            ) : (
-              <img
-                src={
-                  urlState
-                  // 'https://api.adorable.io/avatars/400/abott@adorable.io.png'
-                }
-                alt=""
-              />
-            )}
+            <img
+              src={
+                urlState ||
+                'https://api.adorable.io/avatars/400/abott@adorable.io.png'
+              }
+              alt="Adicionar Foto"
+            />
 
             <input
               type="file"
@@ -83,7 +92,3 @@ export default function NewDeliverer({ name }) {
     </Wrapper>
   );
 }
-
-NewDeliverer.propTypes = {
-  name: propTypes.string.isRequired,
-};

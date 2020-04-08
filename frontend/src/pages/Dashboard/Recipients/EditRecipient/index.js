@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
@@ -12,6 +12,12 @@ export default function EditRecipient() {
   const { recipient } = useSelector(
     (state) => state.application.editRecipientPage
   );
+
+  useEffect(() => {
+    return () => {
+      dispatch(closeEditRecipientPage());
+    };
+  }, [dispatch]);
 
   function handleGoBack() {
     dispatch(closeEditRecipientPage());

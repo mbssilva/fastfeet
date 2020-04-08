@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
 import { OptionsMenu } from './styles';
 
+import { openEditDelivererPage } from '../../store/modules/application/actions';
+
 import getInitialLetters from '../../utils/getInitialLetters';
 
 export default function DelivererRow({ deliverer, index }) {
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   function handleMenuVisible() {
     setVisible(!visible);
+  }
+
+  function handleOpenEditDeliverer() {
+    setVisible(!visible);
+    dispatch(openEditDelivererPage(deliverer));
   }
 
   return (
@@ -46,7 +55,7 @@ export default function DelivererRow({ deliverer, index }) {
 
           <OptionsMenu visible={visible}>
             <div>
-              <button type="button">
+              <button type="button" onClick={handleOpenEditDeliverer}>
                 <FaPen size={17} color="#33e" />
                 <h6>Editar</h6>
               </button>

@@ -23,7 +23,7 @@ export default function Recipients() {
   ]);
   const [newRecipientPageOpened, setNewRecipientPageOpened] = useState(false);
 
-  const editRecipientPageReduxState = useSelector(
+  const { editRecipientPageOpened } = useSelector(
     (state) => state.application.editRecipientPage
   );
 
@@ -36,8 +36,7 @@ export default function Recipients() {
     [newRecipientPageOpened]
   );
 
-  if (editRecipientPageReduxState.editRecipientPageOpened)
-    return <EditRecipient />;
+  if (editRecipientPageOpened) return <EditRecipient />;
 
   return !newRecipientPageOpened ? (
     <Container>
