@@ -68,13 +68,7 @@ export default function NewDeliverer({ name }) {
             {!urlState ? (
               <span>Clique para Adicionar foto</span>
             ) : (
-              <img
-                src={
-                  urlState
-                  // 'https://api.adorable.io/avatars/400/abott@adorable.io.png'
-                }
-                alt=""
-              />
+              <img src={urlState} alt="" />
             )}
 
             <input

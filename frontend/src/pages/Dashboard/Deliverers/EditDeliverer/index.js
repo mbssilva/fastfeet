@@ -12,6 +12,7 @@ import { Wrapper, Container, Button } from './styles';
 export default function NewDeliverer() {
   const dispatch = useDispatch();
   const [urlState, setUrlState] = useState('');
+  const [idState, setIdState] = useState(0);
 
   async function handleChange(event) {
     try {
@@ -19,11 +20,12 @@ export default function NewDeliverer() {
 
       data.append('file', event.target.files[0]);
 
-      // const response = await api.post('/', data);
+      const response = await api.post('/files', data);
 
-      // const { id, url } = response.data;
+      const { id, url } = response.data;
 
-      // setUrlState(url);
+      setUrlState(url);
+      setIdState(id);
     } catch (err) {}
   }
 
@@ -41,54 +43,61 @@ export default function NewDeliverer() {
     dispatch(closeEditDelivererPage());
   }
 
-  function handleSubmit(event) {
-    dispatch(closeEditDelivererPage());
+  async function handleSubmit(event) {
+    try {
+      const settings = {
+        ...event,
+        avatar_id: idState,
+      };
 
-    // eslint-disable-next-line no-console
-    console.log(event);
+      await api.post('/deliverers', settings);
+    } catch (err) {
+      console.tron.error(err);
+    }
+
+    dispatch(closeEditDelivererPage());
   }
 
   return (
-    <Wrapper>
-      <Form onSubmit={handleSubmit}>
-        <header>
-          <h1>Edição de entregadores</h1>
-          <span>
-            <Button back type="button" onClick={handleGoBack}>
-              <FaChevronLeft color="#fff" />
-              <h3>VOLTAR</h3>
-            </Button>
-            <Button type="submit">
-              <FaCheck color="#fff" />
-              <h3>SALVAR</h3>
-            </Button>
-          </span>
-        </header>
+    deliverer && (
+      <Wrapper>
+        <Form initialData={deliverer} onSubmit={handleSubmit}>
+          <header>
+            <h1>Edição de entregadores</h1>
+            <span>
+              <Button back type="button" onClick={handleGoBack}>
+                <FaChevronLeft color="#fff" />
+                <h3>VOLTAR</h3>
+              </Button>
+              <Button type="submit">
+                <FaCheck color="#fff" />
+                <h3>SALVAR</h3>
+              </Button>
+            </span>
+          </header>
 
-        <Container>
-          <label htmlFor="avatar">
-            <img
-              src={
-                urlState ||
-                'https://api.adorable.io/avatars/400/abott@adorable.io.png'
-              }
-              alt="Adicionar Foto"
-            />
+          <Container>
+            <label htmlFor="avatar">
+              <img
+                src={urlState || deliverer.avatar.url}
+                alt="Adicionar Foto"
+              />
 
-            <input
-              type="file"
-              id="avatar"
-              accept="image/*"
-              onChange={handleChange}
-            />
-          </label>
+              <input
+                type="file"
+                id="avatar"
+                accept="image/*"
+                onChange={handleChange}
+              />
+            </label>
 
-          <h1>Nome</h1>
-          <Input name="name" />
-          <h1>E-mail</h1>
-          <Input name="email" />
-        </Container>
-      </Form>
-    </Wrapper>
+            <h1>Nome</h1>
+            <Input name="name" />
+            <h1>E-mail</h1>
+            <Input name="email" />
+          </Container>
+        </Form>
+      </Wrapper>
+    )
   );
 }
