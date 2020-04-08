@@ -50,7 +50,7 @@ export default async (req, res) => {
     });
   }
 
-  if (page > Math.ceil(deliverers.count/5)) {
+  if (page > Math.ceil((deliverers.count + 1)/5)) {
     return res
       .status(400)
       .json({

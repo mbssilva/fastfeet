@@ -46,7 +46,7 @@ export const Button = styled.button`
 `;
 
 export const Container = styled.div`
-  height: 350px;
+  height: 380px;
   width: 100%;
 
   background: #fff;
@@ -57,23 +57,23 @@ export const Container = styled.div`
 
   label {
     cursor: pointer;
-    margin-left: calc(50% - 60px);
+    margin-left: calc(50% - 80px);
 
     &:hover {
       opacity: 0.7;
     }
 
     span {
-      height: 120px;
-      width: 120px;
+      height: 160px;
+      width: 160px;
       border-radius: 50%;
       border: 3px solid rgba(255, 255, 255, 0.3);
       background-color: #eee;
     }
 
     img {
-      height: 120px;
-      width: 120px;
+      height: 160px;
+      width: 160px;
       border-radius: 50%;
       border: 3px solid rgba(255, 255, 255, 0.3);
       background-color: #eee;
@@ -85,7 +85,7 @@ export const Container = styled.div`
   }
 
   h1 {
-    margin: 15px 10px 3px;
+    margin: 15px 5px 3px;
     font-size: 18px;
     color: #333;
   }
@@ -93,7 +93,7 @@ export const Container = styled.div`
   input {
     height: 40px;
     width: 100%;
-    margin: 0 10px;
+    margin: 0 0px;
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 0 10px;

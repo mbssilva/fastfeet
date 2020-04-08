@@ -10,6 +10,7 @@ import { Wrapper, Container, Button } from './styles';
 
 export default function NewDeliverer({ name }) {
   const [urlState, setUrlState] = useState('');
+  const [idState, setIdState] = useState(0);
 
   async function handleChange(event) {
     try {
@@ -17,11 +18,12 @@ export default function NewDeliverer({ name }) {
 
       data.append('file', event.target.files[0]);
 
-      // const response = await api.post('/', data);
+      const response = await api.post('/files', data);
 
-      // const { id, url } = response.data;
+      const { id, url } = response.data;
 
-      // setUrlState(url);
+      setUrlState(url);
+      setIdState(id);
     } catch (err) {}
   }
 
@@ -29,9 +31,16 @@ export default function NewDeliverer({ name }) {
     history.push('/dashboard/deliverers');
   }
 
-  function handleSubmit(event) {
-    // eslint-disable-next-line no-console
-    console.log(event);
+  async function handleSubmit(event) {
+    try {
+      const settings = {
+        ...event,
+        avatar_id: idState,
+      };
+
+      await api.post('/deliverers', settings);
+    } catch (err) {}
+
     history.push('/dashboard/deliverers');
   }
 

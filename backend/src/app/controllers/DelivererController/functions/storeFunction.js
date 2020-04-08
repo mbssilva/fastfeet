@@ -2,7 +2,7 @@
 import Deliverer from '../../../models/DelivererModel';
 
 export default async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, avatar_id } = req.body;
 
   const deliverer = await Deliverer.findOne({ where: { email }});
 
@@ -13,7 +13,8 @@ export default async (req, res) => {
   const { id } = await Deliverer.create({
     name,
     email,
+    avatar_id
   });
 
-  return res.json({ id, name, email });
+  return res.json({ id, name, email, avatar_id });
 }

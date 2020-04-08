@@ -3,17 +3,21 @@ import propTypes from 'prop-types';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
-import { Wrapper, Container, Button } from './styles';
 import history from '../../../../config/history';
+import api from '../../../../services/api';
+
+import { Wrapper, Container, Button } from './styles';
 
 export default function NewRecipient({ name }) {
   function handleGoBack() {
     history.push('/dashboard/recipients');
   }
 
-  function handleSubmit(event) {
-    // eslint-disable-next-line no-console
-    console.log(event);
+  async function handleSubmit(event) {
+    try {
+      await api.post('/recipients', event);
+    } catch (err) {}
+
     history.push('/dashboard/recipients');
   }
 

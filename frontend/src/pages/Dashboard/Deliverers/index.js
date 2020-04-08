@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaSearch, FaPlus } from 'react-icons/fa';
 // import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 
-// import api from '../../services/api';
+import api from '../../../services/api';
 
 import DelivererRow from '../../../components/DelivererRow';
 import NewDeliverer from './NewDeliverer';
@@ -19,6 +19,18 @@ export default function Deliverers() {
   const { editDelivererPageOpened } = useSelector(
     (state) => state.application.editDelivererPage
   );
+
+  useEffect(() => {
+    async function loadDeliverers() {
+      try {
+        const response = await api.get('/deliverers');
+
+        setDeliverers(response.data);
+      } catch (err) {}
+    }
+
+    loadDeliverers();
+  }, []);
 
   const handleSubmit = useCallback(
     (event) => {

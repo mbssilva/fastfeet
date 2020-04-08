@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
-import { Wrapper, Container, Button } from './styles';
 import history from '../../../../config/history';
+import api from '../../../../services/api';
+
+import { Wrapper, Container, Button } from './styles';
 
 export default function NewOrder({ order }) {
+  const [deliverers, setDeliverers] = useState([]);
+  const [recipients, setRecipients] = useState([]);
+
+  useEffect(() => {
+    async function loader() {
+      try {
+        const responseDeliverers = await api.get('/deliverers');
+        const responseRecipients = await api.get('/recipients');
+
+        setDeliverers(responseDeliverers.data);
+        setRecipients(responseRecipients.data);
+      } catch (err) {}
+    }
+
+    loader();
+  }, []);
+
   function handleGoBack() {
     history.push('/dashboard/orders');
   }
 
-  function handleSubmit(event) {
-    const data = {
-      deliverer: document.getElementById('deliverer').value,
-      ...event,
-    };
+  async function handleSubmit(event) {
+    try {
+      const settings = {
+        recipient_id: document.getElementById('recipient').value,
+        deliveryman_id: document.getElementById('deliverer').value,
+        ...event,
+      };
 
-    // eslint-disable-next-line no-console
-    console.log(data);
+      await api.post('/orders', settings);
+    } catch (err) {}
+
     history.push('/dashboard/orders');
   }
 
@@ -41,17 +63,24 @@ export default function NewOrder({ order }) {
 
         <Container>
           <span>
-            <div id="recipientName">
+            <div>
               <h3>Destinatário</h3>
-              <Input name="recipient" />
+              <select id="recipient">
+                {recipients.map((recipient) => (
+                  <option key={recipient.id} value={recipient.id}>
+                    {recipient.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <h3>Entregador</h3>
               <select id="deliverer">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                {deliverers.map((deliverer) => (
+                  <option key={deliverer.id} value={deliverer.id}>
+                    {deliverer.name}
+                  </option>
+                ))}
               </select>
             </div>
           </span>
