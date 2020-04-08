@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaEye, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
+import api from '../../services/api';
+
 import { Status, OptionsMenu } from './styles';
 
 import {
@@ -28,6 +30,19 @@ export default function OrderRow({ order, index }) {
   function handleOpenEditOrder() {
     setVisible(!visible);
     dispatch(openEditOrderPage(order));
+  }
+
+  async function handleDeleteOrder() {
+    setVisible(!visible);
+
+    if (!window.confirm('Tem certeza que você deseja deletar essa encomenda?'))
+      return;
+
+    try {
+      const response = await api.delete('/orders');
+
+      console.tron.warn(response);
+    } catch (err) {}
   }
 
   return (
@@ -104,7 +119,7 @@ export default function OrderRow({ order, index }) {
                 <FaPen size={17} color="#33e" />
                 <h6>Editar</h6>
               </button>
-              <button type="button">
+              <button type="button" onClick={handleDeleteOrder}>
                 <FaTrashAlt size={17} color="#f12" />
                 <h6>Excluir</h6>
               </button>

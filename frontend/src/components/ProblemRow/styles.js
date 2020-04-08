@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const OptionsMenu = styled.div`
   position: absolute;
   width: 225px;
-  left: calc(-4%);
+  left: calc(-8%);
   top: calc(50px);
   background: rgba(245, 245, 245, 0.75);
   border-radius: 7px;

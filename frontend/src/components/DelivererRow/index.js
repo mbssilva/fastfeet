@@ -71,6 +71,6 @@ export default function DelivererRow({ deliverer, index }) {
 }
 
 DelivererRow.propTypes = {
-  deliverer: propTypes.string.isRequired,
+  deliverer: propTypes.shape().isRequired,
   index: propTypes.number.isRequired,
 };

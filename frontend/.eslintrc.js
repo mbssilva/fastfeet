@@ -41,6 +41,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "no-empty": "off",
     "no-nested-ternary": "off",
+    "no-alert": "off",
   },
   // settings: {
   //   "import/resolver": {
