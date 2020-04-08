@@ -29,10 +29,10 @@ export default function RecipientRow({ recipient, index }) {
         }`}</div>
       </td>
       <td>
-        <div>Thiago Bernardi</div>
+        <div>{recipient.name}</div>
       </td>
       <td>
-        <div>Avenida Ministro Cirne Lima</div>
+        <div>{`${recipient.street}, ${recipient.number}, ${recipient.city} - ${recipient.state}`}</div>
       </td>
       <td>
         <div className="RightestTd">

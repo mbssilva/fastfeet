@@ -29,8 +29,6 @@ export default function Orders() {
       try {
         const response = await api.get('/orders');
 
-        console.tron.warn(response.data);
-
         setOrders(response.data);
       } catch (err) {}
     }

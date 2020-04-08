@@ -25,8 +25,6 @@ export default function Deliverers() {
       try {
         const response = await api.get('/deliverers');
 
-        console.tron.warn(response.data);
-
         setDeliverers(response.data);
       } catch (err) {}
     }
