@@ -15,32 +15,37 @@ export default function OrderVisualize({ visible }) {
   }, [dispatch]);
 
   return (
-    <Wrapper type="button" visible={visible} onClick={handleClose}>
-      <Container>
-        <header>
-          <h1>Informações da encomenda</h1>
-        </header>
-        <div>
-          <small>{order && order.recipient.street}</small>
-          <small>
-            {order && `${order.recipient.city} - ${order.recipient.state}`}
-          </small>
-          <small>{order && order.recipient.cep}</small>
-          <br />
-          <strong>Datas</strong>
-          <strong>
-            Retirada: <small>{order && order.start_date}</small>
-          </strong>
-          <strong>
-            Entrega: <small>{order && order.end_date}</small>
-          </strong>
-        </div>
-        <footer>
-          <strong>Assinatura do destinatário</strong>
-          <Image src={order && order.signature} />
-        </footer>
-      </Container>
-    </Wrapper>
+    order && (
+      <Wrapper type="button" visible={visible} onClick={handleClose}>
+        <Container>
+          <header>
+            <h1>Informações da encomenda</h1>
+          </header>
+          <div>
+            <small>{order.recipient.street}</small>
+            <small>
+              {`${order.recipient.city} - ${order.recipient.state}`}
+            </small>
+            <small>{order.recipient.cep}</small>
+            <br />
+            <strong>
+              Produto: <small>{order.product}</small>
+            </strong>
+            <strong>Datas</strong>
+            <strong>
+              Retirada: <small>{order.start_date}</small>
+            </strong>
+            <strong>
+              Entrega: <small>{order.end_date}</small>
+            </strong>
+          </div>
+          <footer>
+            <strong>Assinatura do destinatário</strong>
+            <Image src={order.signature} />
+          </footer>
+        </Container>
+      </Wrapper>
+    )
   );
 }
 

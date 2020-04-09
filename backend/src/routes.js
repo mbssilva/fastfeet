@@ -27,6 +27,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.get('/recipients', jwtAuthorization, RecipientController.index);
 routes.post('/recipients', jwtAuthorization, RecipientController.store);
+routes.delete('/recipients', jwtAuthorization, RecipientController.delete);
 
 routes.get('/deliverers', jwtAuthorization, DelivererController.index);
 routes.post('/deliverers', jwtAuthorization, DelivererController.store);

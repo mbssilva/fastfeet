@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaEye, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
+import api from '../../services/api';
+import history from '../../config/history';
+
 import { OptionsMenu } from './styles';
 
 import { openProblemVisualizeContainer } from '../../store/modules/application/actions';
@@ -20,6 +23,22 @@ export default function ProblemRow({ problem, index }) {
     dispatch(openProblemVisualizeContainer(problem));
   }
 
+  async function handleDeleteProblem() {
+    setVisible(!visible);
+
+    if (!window.confirm('Tem certeza que você deseja deletar essa encomenda?'))
+      return;
+
+    try {
+      const settings = {
+        id: problem.id,
+      };
+
+      await api.delete('/problems', { data: settings });
+      history.push('/dashboard/problems');
+    } catch (err) {}
+  }
+
   return (
     <tr>
       <td>
@@ -28,7 +47,7 @@ export default function ProblemRow({ problem, index }) {
         }`}</div>
       </td>
       <td>
-        <div>{problem.description}</div>
+        <div>{problem.descriptionrecipients}</div>
       </td>
       <td>
         <div className="RightestTd">
@@ -42,7 +61,7 @@ export default function ProblemRow({ problem, index }) {
                 <FaEye size={17} color="#33e" />
                 <h6>Visualizar</h6>
               </button>
-              <button type="button">
+              <button type="button" onClick={handleDeleteProblem}>
                 <FaTrashAlt size={17} color="#f12" />
                 <h6>Cancelar encomenda</h6>
               </button>

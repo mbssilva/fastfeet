@@ -4,6 +4,7 @@ import { FaEllipsisH, FaEye, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
 import api from '../../services/api';
+import history from '../../config/history';
 
 import { Status, OptionsMenu } from './styles';
 
@@ -39,9 +40,12 @@ export default function OrderRow({ order, index }) {
       return;
 
     try {
-      const response = await api.delete('/orders');
+      const settings = {
+        id: order.id,
+      };
 
-      console.tron.warn(response);
+      await api.delete('/orders', { data: settings });
+      history.push('/dashboard/orders');
     } catch (err) {}
   }
 

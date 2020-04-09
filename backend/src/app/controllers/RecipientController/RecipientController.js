@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 import indexFunction from './functions/indexFunction';
 import storeFunction from './functions/storeFunction';
+import deleteFunction from './functions/deleteFunction';
 
 class RecipientController {
   async index(req, res) {
@@ -29,6 +30,10 @@ class RecipientController {
     });
 
     return storeFunction(req, res);
+  }
+
+  async delete (req, res) {
+    return deleteFunction(req, res);
   }
 }
 

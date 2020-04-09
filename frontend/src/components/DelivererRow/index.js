@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { FaEllipsisH, FaPen, FaTrashAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 
+import api from '../../services/api';
+import history from '../../config/history';
+
 import { OptionsMenu } from './styles';
 
 import { openEditDelivererPage } from '../../store/modules/application/actions';
@@ -20,6 +23,22 @@ export default function DelivererRow({ deliverer, index }) {
   function handleOpenEditDeliverer() {
     setVisible(!visible);
     dispatch(openEditDelivererPage(deliverer));
+  }
+
+  async function handleDeleteDeliverer() {
+    setVisible(!visible);
+
+    if (!window.confirm('Tem certeza que você deseja deletar esse entregador?'))
+      return;
+
+    try {
+      const settings = {
+        id: deliverer.id,
+      };
+
+      await api.delete('/deliverers', { data: settings });
+      history.push('/dashboard/deliverers');
+    } catch (err) {}
   }
 
   return (
@@ -58,7 +77,7 @@ export default function DelivererRow({ deliverer, index }) {
                 <FaPen size={17} color="#33e" />
                 <h6>Editar</h6>
               </button>
-              <button type="button">
+              <button type="button" onClick={handleDeleteDeliverer}>
                 <FaTrashAlt size={17} color="#f12" />
                 <h6>Excluir</h6>
               </button>
