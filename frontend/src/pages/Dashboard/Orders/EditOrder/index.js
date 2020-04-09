@@ -59,7 +59,7 @@ export default function EditOrder() {
         <Form
           initialData={
             order && {
-              recipient: order.recipient.name,
+              product: order.product,
             }
           }
           onSubmit={handleSubmit}
