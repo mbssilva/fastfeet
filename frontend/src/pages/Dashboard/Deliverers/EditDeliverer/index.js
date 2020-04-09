@@ -4,6 +4,7 @@ import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
 import api from '../../../../services/api';
+import history from '../../../../config/history';
 
 import { closeEditDelivererPage } from '../../../../store/modules/application/actions';
 
@@ -48,14 +49,13 @@ export default function NewDeliverer() {
       const settings = {
         ...event,
         avatar_id: idState,
+        id: deliverer.id,
       };
 
-      await api.post('/deliverers', settings);
-    } catch (err) {
-      console.tron.error(err);
-    }
+      await api.put('/deliverers', settings);
+    } catch (err) {}
 
-    dispatch(closeEditDelivererPage());
+    history.push('/dashboard/deliverers');
   }
 
   return (

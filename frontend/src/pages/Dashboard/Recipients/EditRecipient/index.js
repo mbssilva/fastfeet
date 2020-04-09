@@ -4,6 +4,7 @@ import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 import { Form, Input } from '@rocketseat/unform';
 
 import api from '../../../../services/api';
+import history from '../../../../config/history';
 
 import { Wrapper, Container, Button } from './styles';
 
@@ -27,10 +28,15 @@ export default function EditRecipient() {
 
   async function handleSubmit(event) {
     try {
-      // await api.put('/recipients', event);
+      const settings = {
+        ...event,
+        id: recipient.id,
+      };
+
+      await api.put('/recipients', settings);
     } catch (err) {}
 
-    dispatch(closeEditRecipientPage());
+    history.push('/dashboard/recipients');
   }
 
   return (

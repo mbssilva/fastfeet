@@ -6,8 +6,8 @@ export default async (req, res) => {
     id,
     name,
     street,
-    complement,
     number,
+    complement,
     city,
     state,
     cep } = req.body;
@@ -20,11 +20,13 @@ export default async (req, res) => {
 
   if (name) recipient.name = name;
   if (street) recipient.street = street;
-  if (complement) recipient.complement = complement;
   if (number) recipient.number = number;
   if (city) recipient.city = city;
   if (state) recipient.state = state;
   if (cep) recipient.cep = cep;
+  if (complement) recipient.complement = complement;
+
+  await recipient.save();
 
   return res.json({
     id,
