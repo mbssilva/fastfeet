@@ -10,7 +10,9 @@ import Queue from '../../../../lib/Queue';
 import cancellationMail from '../../../jobs/cancellationMail';
 
 export default async (req, res) => {
-  const order = await Order.findByPk(req.userId, {
+  const { id } = req.body;
+
+  const order = await Order.findByPk(id, {
     include: [
       {
         model: Deliverer,

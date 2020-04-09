@@ -11,7 +11,7 @@ import Queue from '../../../../lib/Queue';
 import cancellationMail from '../../../jobs/cancellationMail';
 
 export default async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.body;
 
   const problem = await Problem.findByPk(id);
 

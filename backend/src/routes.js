@@ -46,7 +46,7 @@ routes.put('/deliveryman/:id', DeliverymanController.update);
 
 routes.get('/problems', jwtAuthorization, ProblemController.index);
 routes.get('/problems/:id', jwtAuthorization, ProblemController.show);
-routes.delete('/problems/:id', jwtAuthorization, ProblemController.delete);
+routes.delete('/problems', jwtAuthorization, ProblemController.delete);
 routes.post('/problems', ProblemController.store);
 
 export default routes;

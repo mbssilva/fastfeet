@@ -1,8 +1,9 @@
-import { setSeconds, setMinutes, setHours, setMilliseconds } from 'date-fns';
 import Order from '../../../models/OrderModel';
 
 export default async (req, res) => {
-  const order = await Order.findByPk(req.userId);
+  const { id } = req.body;
+
+  const order = await Order.findByPk(id);
 
   if (!order) {
     return res.status(400).json({ error: 'This order does not exist' });
