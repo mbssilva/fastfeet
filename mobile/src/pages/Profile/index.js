@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { updateProfileRequest } from '../../store/modules/user/actions';
-import { signOut } from '../../store/modules/auth/actions';
+// import { updateProfileRequest } from '../../store/modules/user/actions';
+// import { signOut } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -39,19 +39,19 @@ export default function Profile() {
   }, [profile]);
 
   function handleSubmit() {
-    dispatch(
-      updateProfileRequest({
-        name,
-        email,
-        oldPassword,
-        password,
-        confirmPassword,
-      })
-    );
+    // dispatch(
+    //   updateProfileRequest({
+    //     name,
+    //     email,
+    //     oldPassword,
+    //     password,
+    //     confirmPassword,
+    //   })
+    // );
   }
 
   function handleLogout() {
-    dispatch(signOut());
+    // dispatch(signOut());
   }
 
   return (

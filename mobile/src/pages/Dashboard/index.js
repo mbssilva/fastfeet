@@ -16,11 +16,11 @@ export default function Dashboard() {
       try {
         const response = await api.get('/appointments');
 
-        setAppointments(response.data.rows);
+        // setAppointments(response.data.rows);
       } catch (err) {}
     }
 
-    loadAppointments();
+    // loadAppointments();
   }, []);
 
   return (

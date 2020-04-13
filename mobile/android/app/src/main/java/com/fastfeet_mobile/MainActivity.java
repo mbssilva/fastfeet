@@ -1,4 +1,4 @@
-package com.gobarber_mobile;
+package com.fastfeet_mobile;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "gobarber_mobile";
+    return "fastfeet_mobile";
   }
 }

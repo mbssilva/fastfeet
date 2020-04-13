@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Image } from 'react-native';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Image} from 'react-native';
 // import propTypes from 'prop-types';
 
 import AuthLayout from '../../components/layouts/Auth';
 
-import logo from '../../assets/logo@2x.png';
+// import logo from '../../assets/logo@2x.png';
 
 // import { signInRequest } from '../../store/modules/auth/actions';
 
-import { Container, Form, FormInput, SubmitButton } from './styles';
+import {Container, Form, FormInput, SubmitButton} from './styles';
 
 export default function Login() {
   // const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function Login() {
   return (
     <AuthLayout>
       <Container>
-        <Image source={logo} />
+        {/* <Image source={logo} /> */}
 
         <Form>
           <FormInput
