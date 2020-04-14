@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import indexFunction from './functions/indexFunction';
 import showFunction from './functions/showFunction';
 import updateFunction from './functions/updateFunction';
+import storeFunction from './functions/storeFunction';
 
 class OrderController {
   async index(req, res) {
@@ -11,6 +12,10 @@ class OrderController {
 
   async show(req, res) {
     return showFunction(req, res);
+  }
+
+  async store(req, res) {
+    return storeFunction(req, res);
   }
 
   async update(req, res) {
