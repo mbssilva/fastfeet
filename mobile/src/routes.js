@@ -6,13 +6,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Routes() {
-  const signed = useSelector((state) => state.auth.signed);
+  const signed = useSelector((state) => state.login.signed);
 
   return (
     <NavigationContainer>
@@ -35,11 +35,11 @@ function Routes() {
             component={Dashboard}
             options={Dashboard.navigationOptions}
           />
-          <Tab.Screen
+          {/* <Tab.Screen
             name="Profile"
             component={Profile}
             options={Profile.navigationOptions}
-          />
+          /> */}
         </Tab.Navigator>
       ) : (
         <Stack.Navigator

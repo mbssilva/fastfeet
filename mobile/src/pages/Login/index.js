@@ -3,31 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'react-native';
 // import propTypes from 'prop-types';
 
-import AuthLayout from '../../components/layouts/Auth';
+import LoginLayout from '../../components/layouts/Login';
 
-// import { signInRequest } from '../../store/modules/auth/actions';
+import { LoginRequest } from '../../store/modules/login/actions';
 
 import { Container, Form, FormInput, SubmitButton } from './styles';
 
 export default function Login() {
-  // const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.loading);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.login.loading);
   const [id, setId] = useState('');
 
   function handleSubmit() {
-    // dispatch(signInRequest(email, password));
+    dispatch(LoginRequest(id));
   }
 
   return (
-    <AuthLayout>
+    <LoginLayout>
       <Container>
         {/* <Image source={logo} /> */}
 
         <Form>
           <FormInput
             keyboardType="numeric"
-            autoCorrect={false}
-            autoCapitalize="none"
             placeholder="Informe seu ID de cadastro"
             returnKeyType="send"
             value={id}
@@ -41,7 +39,7 @@ export default function Login() {
           </SubmitButton>
         </Form>
       </Container>
-    </AuthLayout>
+    </LoginLayout>
   );
 }
 

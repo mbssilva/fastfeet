@@ -38,5 +38,6 @@ module.exports = {
     'no-console': 'off',
     'camelcase': 'off',
     'no-empty': 'off',
+    'no-param-reassign': 'off',
   },
 };

@@ -6,17 +6,12 @@ const INITIAL_STATE = {
 
 export default function user(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case '@auth/SIGN_IN_SUCCESS':
+    case '@login/LOGIN_SUCCESS':
       return produce(state, (draft) => {
-        draft.profile = action.payload.userData;
+        draft.profile = action.payload;
       });
 
-    case '@user/UPDATE_PROFILE_SUCCESS':
-      return produce(state, (draft) => {
-        draft.profile = action.payload.profile;
-      });
-
-    case '@auth/SIGN_OUT':
+    case '@login/LOGOUT':
       return produce(state, (draft) => {
         draft.profile = null;
       });
