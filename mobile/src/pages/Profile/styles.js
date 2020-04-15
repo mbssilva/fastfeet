@@ -1,51 +1,43 @@
 import styled from 'styled-components/native';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-
-export const Container = styled.SafeAreaView`
+export const Wrapper = styled.SafeAreaView`
   flex: 1;
+  background: #fff;
+
+  align-items: center;
+  padding: 10px 20px;
 `;
 
-export const Title = styled.Text`
-  font-size: 20px;
-  color: #fff;
-  font-weight: bold;
-  align-self: center;
-  margin-top: 30px;
-`;
-export const Separator = styled.View`
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 20px 10px 30px;
-`;
-
-export const Form = styled.ScrollView.attrs({
-  contentContainerStyle: { padding: 20 },
-  showsVerticalScrollIndicator: false,
-})`
+export const Container = styled.View`
   align-self: stretch;
 `;
 
-export const FormInput = styled(Input)`
-  margin-bottom: 10px;
+export const Avatar = styled.Image`
+  height: 130px;
+  width: 130px;
+  border-radius: 65px;
+  align-self: center;
+  margin: 50px 0;
 `;
 
-export const SubmitButton = styled.TouchableOpacity`
-  margin-top: 5px;
-  height: 50px;
-  background: #3b9eff;
-  border-radius: 4px;
+export const Description = styled.Text`
+  margin: 10px 0 3px;
+  color: #888;
+  font-size: 15px;
+`;
 
-  align-items: center;
-  justify-content: center;
+export const Content = styled.Text`
+  color: #444;
+  font-size: 22px;
+  font-weight: bold;
 `;
 
 export const LogoutButton = styled.TouchableOpacity`
-  margin-top: 25px;
+  margin-top: 60px;
   height: 50px;
   background: #f64c75;
-  border-radius: 4px;
+  border-radius: 5px;
+  align-self: stretch;
 
   align-items: center;
   justify-content: center;

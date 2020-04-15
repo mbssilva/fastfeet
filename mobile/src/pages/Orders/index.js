@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 import api from '../../services/api';
 
 import Appointment from '../../components/Appointment';
+import SignedLayout from '../../components/layouts/Signed';
 
 import { Container, Title } from './styles';
 
@@ -24,14 +25,16 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <Container>
-      <Title>Agendamentos</Title>
-    </Container>
+    <SignedLayout>
+      <Container>
+        <Title>Agendamentos</Title>
+      </Container>
+    </SignedLayout>
   );
 }
 
 function DashboardTabIcon({ color }) {
-  return <Icon name="event" size={22} color={color} />;
+  return <Icon name="reorder" size={25} color={color} />;
 }
 
 Dashboard.navigationOptions = {

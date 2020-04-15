@@ -5,7 +5,7 @@ import api from '../../../services/api';
 
 import { LoginSuccess, LoginFailure } from './actions';
 
-function* Login({ payload }) {
+export function* Login({ payload }) {
   try {
     const { id } = payload;
 
@@ -15,10 +15,7 @@ function* Login({ payload }) {
 
     yield put(LoginSuccess(id, name, email, avatar_id, createdAt));
   } catch (err) {
-    Alert.alert(
-      'Falha na autenticação',
-      'Houve um erro no login! Verifique seus dados'
-    );
+    Alert.alert('Falha no login', 'Este não é um ID válido!');
 
     yield put(LoginFailure());
   }
