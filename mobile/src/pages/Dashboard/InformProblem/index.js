@@ -33,7 +33,7 @@ InformProblem.navigationOptions = ({ navigation }) => {
 
 InformProblem.navigationOptions = ({ navigation }) => {
   return {
-    headerTitle: 'Detalhes de encomenda',
+    headerTitle: 'Informar Problema',
     headerTransparent: true,
     headerLeft: () => (
       <TouchableOpacity

@@ -34,7 +34,11 @@ function Dashboard() {
         component={Orders}
         options={Orders.navigationOptions}
       />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={Details.navigationOptions}
+      />
       <Stack.Screen name="InformProblem" component={InformProblem} />
       <Stack.Screen name="VisualizeProblem" component={VisualizeProblem} />
       <Stack.Screen name="ConfirmOrder" component={ConfirmOrder} />

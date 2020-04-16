@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 5px;
   background: #fff;
 
   align-items: center;
@@ -14,14 +14,13 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
-  margin-bottom: 10px;
+  margin: 5px 0 10px;
   padding: 10px 20px;
 `;
 
 export const ProgressContainer = styled.View`
-  height: 100px;
   align-self: stretch;
-  /* background: yellow; */
+  margin: 5px 0 25px;
 `;
 
 export const Subtitle = styled.View`

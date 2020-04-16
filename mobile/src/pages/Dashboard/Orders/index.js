@@ -24,7 +24,7 @@ import {
   OrdersList,
 } from './styles';
 
-export default function Orders() {
+export default function Orders({ navigation }) {
   const dispatch = useDispatch();
   const [orders, setOrders] = useState(['1']);
 
@@ -36,7 +36,6 @@ export default function Orders() {
         // setAppointments(response.data.rows);
       } catch (err) {}
     }
-
     // loadOrders();
   }, []);
 
@@ -82,7 +81,7 @@ export default function Orders() {
             </Switch>
           </ContainerHeader>
           <OrdersList>
-            <Order />
+            <Order navigation={navigation} />
           </OrdersList>
         </Container>
       </Wrapper>
@@ -92,4 +91,8 @@ export default function Orders() {
 
 Orders.navigationOptions = {
   headerShown: false,
+};
+
+Order.propTypes = {
+  navigation: propTypes.shape(propTypes.object).isRequired,
 };
