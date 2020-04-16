@@ -39,5 +39,7 @@ module.exports = {
     'camelcase': 'off',
     'no-empty': 'off',
     'no-param-reassign': 'off',
+    'no-nested-ternary': 'off',
+    'no-unused-expressions': 'off',
   },
 };

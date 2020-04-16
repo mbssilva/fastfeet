@@ -18,10 +18,23 @@ export const Header = styled.View`
   padding: 10px 20px;
 `;
 
-export const ProgressBar = styled.View`
-  height: 20px;
+export const ProgressContainer = styled.View`
+  height: 100px;
   align-self: stretch;
-  background: yellow;
+  /* background: yellow; */
+`;
+
+export const Subtitle = styled.View`
+  align-self: stretch;
+  margin: 0 32px 0 27px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const SubtitleText = styled.Text`
+  color: #aaa;
+  font-size: 12px;
+  text-align: center;
 `;
 
 export const BottomContent = styled.View`

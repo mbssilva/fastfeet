@@ -4,7 +4,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { parseISO, formatDistance } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
-import { Container, Header, ProgressBar, BottomContent } from './styles';
+import ProgressBar from '../ProgressBar';
+
+import {
+  Container,
+  Header,
+  ProgressContainer,
+  Subtitle,
+  SubtitleText,
+  BottomContent,
+} from './styles';
 
 export default function Order() {
   // const dateParsed = useMemo(() => {
@@ -29,7 +38,14 @@ export default function Order() {
           Encomenda 01
         </Text>
       </Header>
-      <ProgressBar />
+      <ProgressContainer>
+        <ProgressBar status="pending" />
+        <Subtitle>
+          <SubtitleText>Aguardando{'\n'} Retirada</SubtitleText>
+          <SubtitleText style={{ marginLeft: '-5%' }}>Retirada</SubtitleText>
+          <SubtitleText>Entregue</SubtitleText>
+        </Subtitle>
+      </ProgressContainer>
       <BottomContent>
         <View>
           <Text style={{ color: '#bbb', fontSize: 14 }}>Data</Text>
