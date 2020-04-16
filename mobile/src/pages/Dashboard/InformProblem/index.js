@@ -30,3 +30,21 @@ InformProblem.navigationOptions = ({ navigation }) => {
     ),
   };
 };
+
+InformProblem.navigationOptions = ({ navigation }) => {
+  return {
+    headerTitle: 'Detalhes de encomenda',
+    headerTransparent: true,
+    headerLeft: () => (
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('SelectProvider');
+        }}
+      >
+        <View>
+          <Icon name="chevron-left" size={30} color="#7159c1" />
+        </View>
+      </TouchableOpacity>
+    ),
+  };
+};

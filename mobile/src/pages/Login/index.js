@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { StatusBar, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Image } from 'react-native';
 // import propTypes from 'prop-types';
 
 import LoginLayout from '../../components/layouts/Login';
@@ -19,27 +19,30 @@ export default function Login() {
   }
 
   return (
-    <LoginLayout>
-      <Container>
-        {/* <Image source={logo} /> */}
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <LoginLayout>
+        <Container>
+          {/* <Image source={logo} /> */}
 
-        <Form>
-          <FormInput
-            keyboardType="numeric"
-            placeholder="Informe seu ID de cadastro"
-            returnKeyType="send"
-            value={id}
-            onChangeText={(text) => {
-              setId(text);
-            }}
-          />
+          <Form>
+            <FormInput
+              keyboardType="numeric"
+              placeholder="Informe seu ID de cadastro"
+              returnKeyType="send"
+              value={id}
+              onChangeText={(text) => {
+                setId(text);
+              }}
+            />
 
-          <SubmitButton loading={loading} onPress={handleSubmit}>
-            Entrar no sistema
-          </SubmitButton>
-        </Form>
-      </Container>
-    </LoginLayout>
+            <SubmitButton loading={loading} onPress={handleSubmit}>
+              Entrar no sistema
+            </SubmitButton>
+          </Form>
+        </Container>
+      </LoginLayout>
+    </>
   );
 }
 

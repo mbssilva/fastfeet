@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <Stack.Navigator
       initialRouteName="Orders"
-      headerMode="float"
+      headerMode="screen"
       keyboardHandlingEnabled
       screenOptions={{
         headerTransparent: false,
