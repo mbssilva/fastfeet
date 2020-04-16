@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Login from './pages/Login';
-import Orders from './pages/Orders';
+import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 
 const Stack = createStackNavigator();
@@ -19,6 +19,7 @@ function Routes() {
       {signed ? (
         <Tab.Navigator
           lazy={false}
+          initialRouteName="Dashboard"
           tabBarOptions={{
             activeTintColor: '#7159c1',
             inactiveTintColor: 'rgba(80, 80, 80, 0.5)',
@@ -31,12 +32,12 @@ function Routes() {
           }}
         >
           <Tab.Screen
-            name="Entregas"
-            component={Orders}
-            options={Orders.navigationOptions}
+            name="Dashboard"
+            component={Dashboard}
+            options={Dashboard.navigationOptions}
           />
           <Tab.Screen
-            name="Meu perfil"
+            name="Profile"
             component={Profile}
             options={Profile.navigationOptions}
           />

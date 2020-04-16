@@ -1,5 +1,13 @@
 import styled from 'styled-components/native';
 
+export const Wrapper = styled.SafeAreaView`
+  flex: 1;
+  background: #fff;
+
+  align-items: center;
+  padding: 10px 20px;
+`;
+
 export const Container = styled.SafeAreaView`
   flex: 1;
 `;
