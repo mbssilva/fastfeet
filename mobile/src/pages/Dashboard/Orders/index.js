@@ -68,16 +68,34 @@ export default function Orders({ navigation }) {
           <ContainerHeader>
             <Title>Entregas</Title>
             <Switch>
-              <Text
-                style={{ fontWeight: 'bold', fontSize: 15, color: '#7159c1' }}
-              >
-                Pendentes
-              </Text>
-              <Text
-                style={{ fontWeight: 'bold', fontSize: 15, color: '#808080' }}
-              >
-                Entregues
-              </Text>
+              <TouchableOpacity onPress={() => {}}>
+                <View>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: 15,
+                      color: '#7159c1',
+                      textDecorationLine: 'underline',
+                    }}
+                  >
+                    Pendentes
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => {}}>
+                <View>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      fontSize: 15,
+                      color: '#808080',
+                    }}
+                  >
+                    Entregues
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </Switch>
           </ContainerHeader>
           <OrdersList>
