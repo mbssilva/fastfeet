@@ -84,7 +84,11 @@ export default function Details({ navigation }) {
             </View>
           </Button>
 
-          <Button onPress={() => {}}>
+          <Button
+            onPress={() => {
+              navigation.navigate('VisualizeProblem');
+            }}
+          >
             <View style={{ alignItems: 'center' }}>
               <AdIcon name="infocirlceo" size={22} color="#a81" />
               <Text style={{ textAlign: 'center', marginTop: 5 }}>

@@ -1,37 +1,34 @@
 import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.SafeAreaView`
-  flex: 1;
-`;
-
-export const ProvidersList = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: false,
-  numColumns: 2,
-})`
-  margin-top: 60px;
-  padding: 0 20px;
-`;
-
-export const Provider = styled(RectButton)`
-  background: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  flex: 1;
+export const Header = styled.View`
+  align-self: stretch;
+  background: transparent;
   align-items: center;
-  margin: 0 10px 20px;
+  margin: 60px 0 20px;
 `;
 
-export const Avatar = styled.Image`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+export const Problem = styled.View`
+  background: #fff;
+  margin: 10px 20px;
+  align-self: stretch;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 20px 10px;
+  min-height: 60px;
+  flex-direction: row;
+  align-items: center;
 `;
 
-export const Name = styled.Text`
-  margin-top: 15px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
+export const Right = styled.View`
+  background: red;
+  padding: 5px;
+  margin-right: 10px;
+`;
+
+export const TextContainer = styled.Text`
+  color: #666;
+`;
+
+export const Date = styled.Text`
+  color: #666;
 `;

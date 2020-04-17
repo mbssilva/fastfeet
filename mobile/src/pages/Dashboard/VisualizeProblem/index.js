@@ -1,69 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import SignedLayout from '../../../components/layouts/Signed';
+import Background from '../../../components/layouts/Signed';
 
-import api from '../../../services/api';
+import { Header, Problem, Right, TextContainer, Date } from './styles';
 
-import { Container, ProvidersList, Provider, Avatar, Name } from './styles';
-
-export default function VisualizeProblem({ navigation }) {
-  const [providers, setProviders] = useState([]);
-
-  useEffect(() => {
-    async function loadProviders() {
-      try {
-        const response = await api.get('/providers');
-
-        setProviders(response.data);
-      } catch (err) {}
-    }
-
-    loadProviders();
-  }, []);
-
+export default function VisualizeProblem() {
   return (
-    <SignedLayout>
-      <Container>
-        <ProvidersList
-          data={providers}
-          keyExtractor={(provider) => String(provider.id)}
-          renderItem={({ item: provider }) => (
-            <Provider
-              onPress={() => {
-                navigation.navigate('SelectDateTime', { provider });
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <Background>
+        <Header>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 'bold',
+              color: '#fff',
+            }}
+          >
+            Encomenda 01
+          </Text>
+        </Header>
+
+        <Problem>
+          <Right>
+            <TextContainer
+              style={{
+                flexWrap: 'wrap',
               }}
             >
-              <Avatar
-                source={{
-                  uri: provider.avatar
-                    ? provider.avatar.url
-                    : `https://api.adorable.io/avatar/50/${
-                        provider.name + String(provider.id)
-                      }.png`,
-                }}
-              />
-              <Name>{provider.name}</Name>
-            </Provider>
-          )}
-        />
-      </Container>
-    </SignedLayout>
+              Destinatário ausente rjnirjnf erj fkr jerk jer erjvbjerkweifn ero nf
+            </TextContainer>
+          </Right>
+
+          <Date
+            style={{
+              marginRight: 0,
+              marginLeft: 'auto',
+            }}
+          >
+            14/01/2020
+          </Date>
+        </Problem>
+      </Background>
+    </>
   );
 }
 
 VisualizeProblem.navigationOptions = ({ navigation }) => {
   return {
-    title: 'Selecione o prestador',
+    headerShown: true,
+    headerTintColor: '#fff',
+    headerTitle: 'Visualizar problemas',
+    headerTransparent: true,
     headerLeft: () => (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Dashboard');
+          navigation.navigate('Details');
+        }}
+        style={{
+          padding: 12,
         }}
       >
         <View>
-          <Icon name="chevron-left" size={25} color="#fff" />
+          <Icon name="chevron-left" size={30} color="#fff" />
         </View>
       </TouchableOpacity>
     ),
