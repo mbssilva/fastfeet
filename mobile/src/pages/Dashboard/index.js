@@ -49,7 +49,11 @@ function Dashboard() {
         component={VisualizeProblem}
         options={VisualizeProblem.navigationOptions}
       />
-      <Stack.Screen name="ConfirmOrder" component={ConfirmOrder} />
+      <Stack.Screen
+        name="ConfirmOrder"
+        component={ConfirmOrder}
+        options={ConfirmOrder.navigationOptions}
+      />
     </Stack.Navigator>
   );
 }

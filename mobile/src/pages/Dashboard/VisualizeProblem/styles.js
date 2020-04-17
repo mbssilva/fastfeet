@@ -19,16 +19,13 @@ export const Problem = styled.View`
   align-items: center;
 `;
 
+export const Left = styled.View`
+  margin-left: 0;
+  margin-right: 90px;
+`;
+
 export const Right = styled.View`
-  background: red;
-  padding: 5px;
-  margin-right: 10px;
-`;
-
-export const TextContainer = styled.Text`
-  color: #666;
-`;
-
-export const Date = styled.Text`
-  color: #666;
+  margin-right: 0;
+  margin-left: auto;
+  width: 80px;
 `;

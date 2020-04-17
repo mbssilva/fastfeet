@@ -19,7 +19,7 @@ function Routes() {
     <NavigationContainer>
       {signed ? (
         <Tab.Navigator
-          lazy
+          lazy={false}
           initialRouteName="Dashboard"
           tabBarOptions={{
             activeTintColor: '#7159c1',

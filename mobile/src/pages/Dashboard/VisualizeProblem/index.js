@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Background from '../../../components/layouts/Signed';
 
-import { Header, Problem, Right, TextContainer, Date } from './styles';
+import { Header, Problem, Left, Right, TextContainer, Date } from './styles';
 
 export default function VisualizeProblem() {
   return (
@@ -24,24 +24,25 @@ export default function VisualizeProblem() {
         </Header>
 
         <Problem>
-          <Right>
-            <TextContainer
+          <Left>
+            <Text
               style={{
-                flexWrap: 'wrap',
+                color: '#666',
               }}
             >
-              Destinatário ausente rjnirjnf erj fkr jerk jer erjvbjerkweifn ero nf
-            </TextContainer>
-          </Right>
+              Destinatário ausente
+            </Text>
+          </Left>
 
-          <Date
-            style={{
-              marginRight: 0,
-              marginLeft: 'auto',
-            }}
-          >
-            14/01/2020
-          </Date>
+          <Right>
+            <Text
+              style={{
+                color: '#666',
+              }}
+            >
+              14/01/2020
+            </Text>
+          </Right>
         </Problem>
       </Background>
     </>

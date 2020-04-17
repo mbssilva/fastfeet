@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import MiIcon from 'react-native-vector-icons/MaterialIcons';
@@ -98,7 +99,9 @@ export default function Details({ navigation }) {
           </Button>
 
           <Button
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('ConfirmOrder');
+            }}
             style={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
           >
             <View style={{ alignItems: 'center' }}>
@@ -135,4 +138,10 @@ Details.navigationOptions = ({ navigation }) => {
       </TouchableOpacity>
     ),
   };
+};
+
+Details.propTypes = {
+  navigation: propTypes.shape({
+    navigate: propTypes.func,
+  }).isRequired,
 };
