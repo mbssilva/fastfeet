@@ -16,7 +16,7 @@ import {
   Button,
 } from './styles';
 
-export default function Details() {
+export default function Details({ navigation }) {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
@@ -71,7 +71,9 @@ export default function Details() {
 
         <ButtonDeck>
           <Button
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('InformProblem');
+            }}
             style={{ borderTopLeftRadius: 10, borderBottomLeftRadius: 10 }}
           >
             <View style={{ alignItems: 'center' }}>

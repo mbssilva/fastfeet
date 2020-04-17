@@ -1,48 +1,46 @@
-import React, { useEffect } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// import { Container } from './styles';
+import { Input, SubmitButton } from './styles';
 
-import SignedLayout from '../../../components/layouts/Signed';
+import Background from '../../../components/layouts/Signed';
 
-export default function InformProblem({ route }) {
-  useEffect(() => {
-    console.tron.warn(route.params);
-  }, [route]);
-
-  return <SignedLayout />;
+export default function InformProblem({ navigation }) {
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+      <Background>
+        <Input />
+        <SubmitButton onPress={() => {}}>
+          <View>
+            <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>
+              Enviar
+            </Text>
+          </View>
+        </SubmitButton>
+      </Background>
+    </>
+  );
 }
 
 InformProblem.navigationOptions = ({ navigation }) => {
   return {
-    title: 'Selecione o prestador',
-    headerLeft: () => (
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('SelectProvider');
-        }}
-      >
-        <View>
-          <Icon name="chevron-left" size={25} color="#fff" />
-        </View>
-      </TouchableOpacity>
-    ),
-  };
-};
-
-InformProblem.navigationOptions = ({ navigation }) => {
-  return {
-    headerTitle: 'Informar Problema',
+    headerShown: true,
+    headerTintColor: '#fff',
+    headerTitle: 'Informar problema',
     headerTransparent: true,
     headerLeft: () => (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('SelectProvider');
+          navigation.navigate('Details');
+        }}
+        style={{
+          padding: 12,
         }}
       >
         <View>
-          <Icon name="chevron-left" size={30} color="#7159c1" />
+          <Icon name="chevron-left" size={30} color="#fff" />
         </View>
       </TouchableOpacity>
     ),

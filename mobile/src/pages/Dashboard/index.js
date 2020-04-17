@@ -39,7 +39,11 @@ function Dashboard() {
         component={Details}
         options={Details.navigationOptions}
       />
-      <Stack.Screen name="InformProblem" component={InformProblem} />
+      <Stack.Screen
+        name="InformProblem"
+        component={InformProblem}
+        options={InformProblem.navigationOptions}
+      />
       <Stack.Screen name="VisualizeProblem" component={VisualizeProblem} />
       <Stack.Screen name="ConfirmOrder" component={ConfirmOrder} />
     </Stack.Navigator>
