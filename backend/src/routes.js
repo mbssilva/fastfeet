@@ -35,7 +35,7 @@ routes.post('/deliverers', jwtAuthorization, DelivererController.store);
 routes.put('/deliverers', jwtAuthorization, DelivererController.update);
 routes.delete('/deliverers', jwtAuthorization, DelivererController.delete);
 
-routes.post('/files', jwtAuthorization, upload.single('file'), FileController.store);
+routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/orders', jwtAuthorization, OrderController.index);
 routes.post('/orders', jwtAuthorization, OrderController.store);

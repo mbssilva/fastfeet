@@ -4,6 +4,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RNCamera } from 'react-native-camera';
 
+import api from '../../../services/api';
+
 import Background from '../../../components/layouts/Signed';
 
 import { CameraContainer, SendButton } from './styles';
@@ -74,18 +76,22 @@ export default function ConfirmOrder() {
   async function takePicture(camera) {
     const options = { quality: 0.5, base64: true };
     const data = await camera.takePictureAsync(options);
-    // CameraRoll.saveToCameraRoll('signature', data.uri);
-    // const teste = CameraRoll.getPhotos('signature');
 
-    // console.
+    const formData = new FormData();
+    const timeStamp = new Date();
 
-    // const formData = new FormData();
+    formData.append('file', {
+      uri: data.uri,
+      type: 'image/jpg',
+      name: `${data.uri}_${timeStamp}.jpg`,
+    });
 
-    // formData.append('file', {
-    //   uri: data.uri,
-    //   type: 'image/jpeg',
-    //   name: `${data.uri}_${timeStamp}.jpg`,
-    // });
+    try {
+      const response = await api.post('/files', formData);
+      console.tron.warn(response);
+    } catch (err) {
+      console.tron.error(err);
+    }
   }
 
   return (
