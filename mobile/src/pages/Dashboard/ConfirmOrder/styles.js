@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const CameraContainer = styled.View`
   flex: 1;
   flex-direction: column;
-  padding: 60px 20px 0;
+  padding: 70px 20px 0;
 `;
 
 export const SendButton = styled.TouchableOpacity`

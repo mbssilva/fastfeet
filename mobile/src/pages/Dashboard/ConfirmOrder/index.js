@@ -12,13 +12,25 @@ function PendingView() {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: 'lightgreen',
+        padding: 50,
+        backgroundColor: 'green',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 190,
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 5,
       }}
     >
-      <Text>Waiting</Text>
+      <Text
+        style={{
+          fontSize: 24,
+          color: '#fff',
+          fontWeight: 'bold',
+        }}
+      >
+        Waiting
+      </Text>
     </View>
   );
 }
@@ -62,7 +74,18 @@ export default function ConfirmOrder() {
   async function takePicture(camera) {
     const options = { quality: 0.5, base64: true };
     const data = await camera.takePictureAsync(options);
-    console.tron.warn(data.uri);
+    // CameraRoll.saveToCameraRoll('signature', data.uri);
+    // const teste = CameraRoll.getPhotos('signature');
+
+    // console.
+
+    // const formData = new FormData();
+
+    // formData.append('file', {
+    //   uri: data.uri,
+    //   type: 'image/jpeg',
+    //   name: `${data.uri}_${timeStamp}.jpg`,
+    // });
   }
 
   return (
@@ -73,17 +96,17 @@ export default function ConfirmOrder() {
           autoFocus
           flashMode="off"
           androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
+            title: 'Permissão para uso da câmera',
+            message: 'O App precisa de sua permissão para usar sua câmera',
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
+          // androidRecordAudioPermissionOptions={{
+          //   title: 'Permissão para gravação de áudio',
+          //   message: 'O App precisa de sua permissão para gravar áudios',
+          //   buttonPositive: 'Ok',
+          //   buttonNegative: 'Cancel',
+          // }}
           style={{
             flex: 1,
             justifyContent: 'flex-end',
@@ -141,4 +164,9 @@ ConfirmOrder.navigationOptions = ({ navigation }) => {
       </TouchableOpacity>
     ),
   };
+};
+
+Trigger.propTypes = {
+  takePicture: propTypes.func.isRequired,
+  camera: propTypes.shape({}).isRequired,
 };
