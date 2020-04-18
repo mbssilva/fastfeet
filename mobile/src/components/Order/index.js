@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import propTypes from 'prop-types';
-import { parseISO, formatDistance } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { parseISO, format } from 'date-fns';
 
 import ProgressBar from '../ProgressBar';
 
@@ -16,16 +15,13 @@ import {
   BottomContent,
 } from './styles';
 
-export default function Order({ navigation }) {
-  // const dateParsed = useMemo(() => {
-  //   return formatDistance(parseISO(data.date), new Date(), {
-  //     locale: pt,
-  //     addSuffix: true,
-  //   });
-  // }, [data.date]);
+export default function Order({ navigation, order, index }) {
+  useEffect(() => {
+    console.tron.warn(order);
+  }, []);
 
-  function goToDetailsPage() {
-    navigation.navigate('Details');
+  function getStatus() {
+    return order.end_date ? 'delivered' : order.start_date ? 'took' : 'pending';
   }
 
   return (
@@ -40,11 +36,11 @@ export default function Order({ navigation }) {
             marginLeft: 10,
           }}
         >
-          Encomenda 01
+          {`Encomenda ${index + 1}`}
         </Text>
       </Header>
       <ProgressContainer>
-        <ProgressBar status="pending" />
+        <ProgressBar status={getStatus()} />
         <Subtitle>
           <SubtitleText>Aguardando{'\n'} Retirada</SubtitleText>
           <SubtitleText style={{ marginLeft: '-4%' }}>Retirada</SubtitleText>
@@ -55,16 +51,20 @@ export default function Order({ navigation }) {
         <View>
           <Text style={{ color: '#bbb', fontSize: 14 }}>Data</Text>
           <Text style={{ color: '#444', fontSize: 16, fontWeight: 'bold' }}>
-            14/01/2020
+            {format(parseISO(order.created_at), 'dd/MM/yyyy')}
           </Text>
         </View>
         <View>
           <Text style={{ color: '#bbb', fontSize: 14 }}>Cidade</Text>
           <Text style={{ color: '#444', fontSize: 16, fontWeight: 'bold' }}>
-            Curitiba
+            {order.recipient.city}
           </Text>
         </View>
-        <TouchableOpacity onPress={goToDetailsPage}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Details', { order, status: getStatus() })
+          }
+        >
           <View>
             <Text
               style={{ color: '#7159c1', fontSize: 15, fontWeight: 'bold' }}
@@ -82,4 +82,10 @@ Order.propTypes = {
   navigation: propTypes.shape({
     navigate: propTypes.func,
   }).isRequired,
+  order: propTypes.shape({
+    recipient: propTypes.shape({
+      city: propTypes.string,
+    }),
+  }).isRequired,
+  index: propTypes.number.isRequired,
 };

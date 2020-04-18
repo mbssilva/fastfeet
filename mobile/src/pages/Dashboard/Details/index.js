@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
+import { parseISO, format } from 'date-fns';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import MiIcon from 'react-native-vector-icons/MaterialIcons';
 import AdIcon from 'react-native-vector-icons/AntDesign';
@@ -17,7 +18,15 @@ import {
   Button,
 } from './styles';
 
-export default function Details({ navigation }) {
+export default function Details({ navigation, route }) {
+  const { order } = route.params;
+  const status =
+    route.params.status === 'delivered'
+      ? 'Entregue' // delivered - Entregue
+      : route.params.status === 'took'
+      ? 'Retirado' // took - Retirado
+      : 'Pendente'; // pending - Pendente
+
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
@@ -38,11 +47,13 @@ export default function Details({ navigation }) {
           </Header>
           <Content>
             <Title>DESTINATÁRIO</Title>
-            <Info>Ludwig van Beethoven</Info>
+            <Info>{order.recipient.name}</Info>
             <Title>ENDEREÇO DA ENTREGA</Title>
-            <Info>Rua Beethoven, 1729, Diadema - SP, 09999-444</Info>
+            <Info>
+              {`${order.recipient.street}, ${order.recipient.number}, ${order.recipient.city} - ${order.recipient.state}, ${order.recipient.cep}`}
+            </Info>
             <Title>PRODUTO</Title>
-            <Info>Yamaha SX7</Info>
+            <Info>{order.product}</Info>
           </Content>
         </Container>
 
@@ -62,11 +73,19 @@ export default function Details({ navigation }) {
           </Header>
           <Content>
             <Title>STATUS</Title>
-            <Info>Pendente</Info>
+            <Info>{status}</Info>
             <Title>DATA DA RETIRADA</Title>
-            <Info>03/03/2020</Info>
+            <Info>
+              {order.start_date
+                ? format(parseISO(order.start_date), 'dd/MM/yyyy')
+                : '- - / - - / - -'}
+            </Info>
             <Title>DATA DA ENTREGA</Title>
-            <Info> - - / - - / - - </Info>
+            <Info>
+              {order.end_date
+                ? format(parseISO(order.end_date), 'dd/MM/yyyy')
+                : '- - / - - / - -'}
+            </Info>
           </Content>
         </Container>
 
@@ -143,5 +162,12 @@ Details.navigationOptions = ({ navigation }) => {
 Details.propTypes = {
   navigation: propTypes.shape({
     navigate: propTypes.func,
+    params: propTypes.shape(),
+  }).isRequired,
+  route: propTypes.shape({
+    params: propTypes.shape({
+      order: propTypes.shape(),
+      status: propTypes.string,
+    }),
   }).isRequired,
 };

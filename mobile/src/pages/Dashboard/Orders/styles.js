@@ -68,5 +68,11 @@ export const Switch = styled.View`
 `;
 
 export const OrdersList = styled.View`
-  /* background: yellow; */
+  flex: 1;
+`;
+
+export const List = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})`
+  margin-top: 5px;
 `;

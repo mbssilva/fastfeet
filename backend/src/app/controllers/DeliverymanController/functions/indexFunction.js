@@ -16,7 +16,7 @@ export default async (req, res) => {
     },
     limit: 5,
     offset: (page - 1)*5,
-    attributes: ['id', 'product', 'start_date', 'end_date'],
+    attributes: ['id', 'product', 'start_date', 'end_date', 'created_at'],
     include: [
       {
         model: Recipient,

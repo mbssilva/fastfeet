@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StatusBar, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import propTypes from 'prop-types';
@@ -22,22 +22,23 @@ import {
   Title,
   Switch,
   OrdersList,
+  List,
 } from './styles';
 
 export default function Orders({ navigation }) {
   const dispatch = useDispatch();
-  const [orders, setOrders] = useState(['1']);
+  const { id } = useSelector((state) => state.user.profile);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     async function loadOrders() {
       try {
-        const orders = await api.get('/appointments');
-
-        // setAppointments(response.data.rows);
+        const response = await api.get(`/deliveryman/${id}`);
+        setOrders(response.data);
       } catch (err) {}
     }
-    // loadOrders();
-  }, []);
+    loadOrders();
+  }, [id]);
 
   function handleLogout() {
     dispatch(Logout());
@@ -99,7 +100,13 @@ export default function Orders({ navigation }) {
             </Switch>
           </ContainerHeader>
           <OrdersList>
-            <Order navigation={navigation} />
+            <List
+              data={orders}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item, index }) => (
+                <Order navigation={navigation} order={item} index={index} />
+              )}
+            />
           </OrdersList>
         </Container>
       </Wrapper>
@@ -111,6 +118,8 @@ Orders.navigationOptions = {
   headerShown: false,
 };
 
-Order.propTypes = {
-  navigation: propTypes.shape(propTypes.object).isRequired,
+Orders.propTypes = {
+  navigation: propTypes.shape({
+    navigate: propTypes.func,
+  }).isRequired,
 };
