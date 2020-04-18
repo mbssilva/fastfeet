@@ -48,7 +48,7 @@ routes.post('/deliveryman/:id', DeliverymanController.store);
 routes.put('/deliveryman', DeliverymanController.update);
 
 routes.get('/problems', jwtAuthorization, ProblemController.index);
-routes.get('/problems/:id', jwtAuthorization, ProblemController.show);
+routes.get('/problems/:id', ProblemController.show);
 routes.post('/problems', ProblemController.store);
 routes.delete('/problems', jwtAuthorization, ProblemController.delete);
 

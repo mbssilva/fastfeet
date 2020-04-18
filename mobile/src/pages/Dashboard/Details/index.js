@@ -106,7 +106,7 @@ export default function Details({ navigation, route }) {
 
           <Button
             onPress={() => {
-              navigation.navigate('VisualizeProblem');
+              navigation.navigate('VisualizeProblem', { order });
             }}
           >
             <View style={{ alignItems: 'center' }}>

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import propTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import api from '../../../services/api';
 
 import Background from '../../../components/layouts/Signed';
 
 import { Header, Problem, Left, Right, TextContainer, Date } from './styles';
 
-export default function VisualizeProblem() {
+export default function VisualizeProblem({ route }) {
+  const { id: order_id } = route.params.order;
+
+  useEffect(() => {
+    async function loadProblems() {
+      try {
+        const response = api.get(`/problems/${order_id}`);
+
+        console.tron.warn(response);
+      } catch (err) {}
+    }
+
+    loadProblems();
+  }, [order_id]);
+
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
@@ -70,4 +87,17 @@ VisualizeProblem.navigationOptions = ({ navigation }) => {
       </TouchableOpacity>
     ),
   };
+};
+
+VisualizeProblem.propTypes = {
+  navigation: propTypes.shape({
+    navigate: propTypes.func,
+  }).isRequired,
+  route: propTypes.shape({
+    params: propTypes.shape({
+      order: propTypes.shape({
+        id: propTypes.number,
+      }),
+    }),
+  }).isRequired,
 };
