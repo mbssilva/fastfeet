@@ -12,9 +12,8 @@ export default async (req, res) => {
     where: {
       deliveryman_id: id,
       canceled_at: null,
-      signature_id: null,
     },
-    attributes: ['id', 'product', 'start_date', 'end_date'],
+    attributes: ['id', 'product', 'start_date', 'end_date', 'created_at'],
     include: [
       {
         model: Recipient,
@@ -67,5 +66,5 @@ export default async (req, res) => {
     return false;
   });
 
-  return res.json(offsetOrders);
+  return res.json(filteredOrders);
 };

@@ -22,6 +22,7 @@ import {
   ContainerHeader,
   Title,
   Switch,
+  StatusText,
   OrdersList,
   List,
 } from './styles';
@@ -30,17 +31,22 @@ export default function Orders({ navigation }) {
   const dispatch = useDispatch();
   const { id, avatar, name } = useSelector((state) => state.user.profile);
   const [orders, setOrders] = useState([]);
+  const [statusPending, setStatusPending] = useState(true);
 
   useEffect(() => {
     async function loadOrders() {
       try {
-        const response = await api.get(`/deliveryman/${id}`);
-        setOrders(response.data);
+        if (statusPending) {
+          const response = await api.get(`/deliveryman/${id}`);
+          setOrders(response.data);
+        } else {
+          const response = await api.get(`/deliveryman/${id}/deliveries`);
+          setOrders(response.data);
+        }
       } catch (err) {}
     }
-    console.tron.warn(avatar);
     loadOrders();
-  }, [id, avatar]);
+  }, [id, avatar, statusPending]);
 
   function handleLogout() {
     dispatch(Logout());
@@ -54,7 +60,6 @@ export default function Orders({ navigation }) {
           {avatar ? (
             <Avatar
               source={{
-                // uri: `https://api.adorable.io/avatar/200/profile.png`,
                 uri: `${avatar.url}`,
               }}
             />
@@ -95,32 +100,39 @@ export default function Orders({ navigation }) {
           <ContainerHeader>
             <Title>Entregas</Title>
             <Switch>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  setStatusPending(true);
+                }}
+              >
                 <View>
-                  <Text
+                  <StatusText
+                    pending={statusPending}
                     style={{
                       fontWeight: 'bold',
                       fontSize: 15,
-                      color: '#7159c1',
-                      textDecorationLine: 'underline',
                     }}
                   >
                     Pendentes
-                  </Text>
+                  </StatusText>
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  setStatusPending(false);
+                }}
+              >
                 <View>
-                  <Text
+                  <StatusText
+                    pending={!statusPending}
                     style={{
                       fontWeight: 'bold',
                       fontSize: 15,
-                      color: '#808080',
                     }}
                   >
                     Entregues
-                  </Text>
+                  </StatusText>
                 </View>
               </TouchableOpacity>
             </Switch>

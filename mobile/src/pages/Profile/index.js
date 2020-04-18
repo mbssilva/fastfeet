@@ -5,6 +5,8 @@ import propTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import getInitialLetters from '../../utils/getInitialLetters';
+
 import { Logout } from '../../store/modules/login/actions';
 
 import {
@@ -33,11 +35,33 @@ export default function Profile() {
     <Wrapper>
       {profile && (
         <>
-          <Avatar
-            source={{
-              uri: `https://api.adorable.io/avatar/200/${profile.name}.png`,
-            }}
-          />
+          {profile.avatar ? (
+            <Avatar
+              source={{
+                uri: `${profile.avatar.url}`,
+              }}
+            />
+          ) : (
+            <View
+              style={{
+                backgroundColor: '#ddd',
+                height: 80,
+                width: 80,
+                borderRadius: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  color: '#7159c1',
+                  fontSize: 32,
+                }}
+              >
+                {getInitialLetters(profile.name)}
+              </Text>
+            </View>
+          )}
           <Container>
             <Description>Nome completo</Description>
             <Content>{profile.name}</Content>

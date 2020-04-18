@@ -67,6 +67,11 @@ export const Switch = styled.View`
   width: 150px;
 `;
 
+export const StatusText = styled.Text`
+  text-decoration: ${(props) => (props.pending ? 'underline' : 'none')};
+  color: ${(props) => (props.pending ? '#7159c1' : '#808080')};
+`;
+
 export const OrdersList = styled.View`
   flex: 1;
 `;
