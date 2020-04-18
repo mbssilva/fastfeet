@@ -7,9 +7,9 @@ export default async (req, res) => {
   const order = await Order.findByPk(delivery_id);
   const issue = await Problem.findOne({ where: {delivery_id} });
 
-  if (issue) {
-    return res.status(400).json({ error: 'This problem has already been storage' });
-  }
+//  if (issue) {
+//    return res.status(400).json({ error: 'This problem has already been storage' });
+//  }
 
   if (!order) {
     return res.status(400).json({ error: 'This order does not exist' });

@@ -92,7 +92,7 @@ export default function Details({ navigation, route }) {
         <ButtonDeck>
           <Button
             onPress={() => {
-              navigation.navigate('InformProblem');
+              navigation.navigate('InformProblem', { order });
             }}
             style={{ borderTopLeftRadius: 10, borderBottomLeftRadius: 10 }}
           >

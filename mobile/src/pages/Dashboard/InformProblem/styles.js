@@ -4,6 +4,9 @@ export const Input = styled.TextInput.attrs({
   placeholder: 'Inclua aqui o problema que ocorreu na entrega',
   multiline: true,
   textAlignVertical: 'top',
+  autoCapitalize: 'sentences',
+  autoCorrect: true,
+  autoFocus: true,
 })`
   height: 250px;
   background: #fff;
