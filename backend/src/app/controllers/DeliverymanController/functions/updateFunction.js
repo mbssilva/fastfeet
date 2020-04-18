@@ -3,14 +3,15 @@ import {
   setMinutes,
   setHours,
   setMilliseconds,
-  toDate
+  parseISO,
+  toDate,
 } from 'date-fns';
 import { Op } from 'sequelize';
 
 import Order from '../../../models/OrderModel';
 
 export default async (req, res) => {
-  const order = await Order.findByPk(req.params.id);
+  const order = await Order.findByPk(req.body.delivery_id);
 
   if (!order) {
     return res.status(400).json({ error: 'This order does not exist' });
@@ -59,7 +60,7 @@ export default async (req, res) => {
     return res.json(todayOrders);
   }
 
-  if (end_date) order.end_date = toDate(parseInt(end_date, 10));
+  if (end_date) order.end_date = parseISO(String(end_date));
   if (signature_id) order.signature_id = signature_id;
 
   await order.save();

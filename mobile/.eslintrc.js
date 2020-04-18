@@ -41,5 +41,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-nested-ternary': 'off',
     'no-unused-expressions': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

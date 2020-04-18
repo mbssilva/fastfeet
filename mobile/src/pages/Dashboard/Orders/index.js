@@ -27,11 +27,12 @@ import {
   List,
 } from './styles';
 
-export default function Orders({ navigation }) {
+export default function Orders({ navigation, route }) {
   const dispatch = useDispatch();
   const { id, avatar, name } = useSelector((state) => state.user.profile);
   const [orders, setOrders] = useState([]);
   const [statusPending, setStatusPending] = useState(true);
+  const [forceRefresh, setForceRefresh] = useState(true);
 
   useEffect(() => {
     async function loadOrders() {
@@ -46,7 +47,7 @@ export default function Orders({ navigation }) {
       } catch (err) {}
     }
     loadOrders();
-  }, [id, avatar, statusPending]);
+  }, [id, avatar, statusPending, forceRefresh, route.params]);
 
   function handleLogout() {
     dispatch(Logout());
@@ -98,7 +99,18 @@ export default function Orders({ navigation }) {
 
         <Container>
           <ContainerHeader>
-            <Title>Entregas</Title>
+            <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+              <Title style={{ marginRight: 5 }}>Entregas</Title>
+              <TouchableOpacity
+                onPress={() => {
+                  setForceRefresh(!forceRefresh);
+                }}
+              >
+                <View>
+                  <Icon name="autorenew" size={23} color="red" />
+                </View>
+              </TouchableOpacity>
+            </View>
             <Switch>
               <TouchableOpacity
                 onPress={() => {
@@ -160,4 +172,11 @@ Orders.propTypes = {
   navigation: propTypes.shape({
     navigate: propTypes.func,
   }).isRequired,
+  route: propTypes.shape({
+    params: propTypes.object,
+  }),
+};
+
+Orders.defaultProps = {
+  route: {},
 };

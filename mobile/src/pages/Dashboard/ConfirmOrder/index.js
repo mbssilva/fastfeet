@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Alert, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RNCamera } from 'react-native-camera';
 
@@ -31,7 +31,7 @@ function PendingView() {
           fontWeight: 'bold',
         }}
       >
-        Waiting
+        CARREGANDO
       </Text>
     </View>
   );
@@ -72,23 +72,66 @@ function Trigger({ takePicture, camera }) {
   );
 }
 
-export default function ConfirmOrder() {
+export default function ConfirmOrder({ navigation, route }) {
+  const { id: delivery_id } = route.params.order;
+  const [fileData, setFileData] = useState(new FormData());
+
   async function takePicture(camera) {
-    const options = { quality: 0.5, base64: true };
-    const data = await camera.takePictureAsync(options);
+    try {
+      setFileData(new FormData());
+      const options = { quality: 0.5, base64: true };
+      const data = await camera.takePictureAsync(options);
 
-    const formData = new FormData();
-    const timeStamp = new Date();
+      const timeStamp = new Date();
+      const formData = new FormData();
 
-    formData.append('file', {
-      uri: data.uri,
-      type: 'image/jpg',
-      name: `${data.uri}_${timeStamp}.jpg`,
-    });
+      formData.append('file', {
+        uri: data.uri,
+        type: 'image/jpg',
+        name: `${data.uri}_${timeStamp}.jpg`,
+      });
+
+      if (formData._parts === []) {
+        formData.append('file', {
+          uri: data.uri,
+          type: 'image/jpg',
+          name: `${data.uri}_${timeStamp}.jpg`,
+        });
+      }
+
+      setFileData(formData);
+    } catch (err) {
+      console.tron.error(err);
+      if (
+        err.message === 'Camera capture failed. Camera is already capturing.'
+      ) {
+        Alert.alert(
+          'Houve um erro',
+          'Não clique muito rápido no botão de captura!'
+        );
+      }
+    }
+  }
+
+  async function handleSubmit() {
+    if (fileData._parts === []) return;
 
     try {
-      const response = await api.post('/files', formData);
-      console.tron.warn(response);
+      const responseFiles = await api.post('/files', fileData);
+      setFileData(new FormData());
+
+      const { id: signature_id } = responseFiles.data;
+
+      const response = await api.put('/deliveryman', {
+        signature_id,
+        delivery_id,
+        end_date: new Date(),
+      });
+
+      console.tron.warn(response.data);
+
+      Alert.alert('Parabéns', 'Entrega entregue com sucesso!');
+      navigation.navigate('Orders', { signature_id });
     } catch (err) {
       console.tron.error(err);
     }
@@ -133,7 +176,7 @@ export default function ConfirmOrder() {
           }
         </RNCamera>
 
-        <SendButton onPress={() => {}}>
+        <SendButton onPress={handleSubmit}>
           <Text
             style={{
               fontSize: 14,
@@ -141,7 +184,7 @@ export default function ConfirmOrder() {
               fontWeight: 'bold',
             }}
           >
-            ENVIAR FOTO
+            CONFIRMAR ENTREGA
           </Text>
         </SendButton>
       </CameraContainer>
@@ -170,6 +213,19 @@ ConfirmOrder.navigationOptions = ({ navigation }) => {
       </TouchableOpacity>
     ),
   };
+};
+
+ConfirmOrder.propTypes = {
+  navigation: propTypes.shape({
+    navigate: propTypes.func,
+  }).isRequired,
+  route: propTypes.shape({
+    params: propTypes.shape({
+      order: propTypes.shape({
+        id: propTypes.number,
+      }),
+    }),
+  }).isRequired,
 };
 
 Trigger.propTypes = {

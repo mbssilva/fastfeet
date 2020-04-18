@@ -119,7 +119,7 @@ export default function Details({ navigation, route }) {
 
           <Button
             onPress={() => {
-              navigation.navigate('ConfirmOrder');
+              navigation.navigate('ConfirmOrder', { order });
             }}
             style={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
           >
