@@ -11,9 +11,9 @@ export function* Login({ payload }) {
 
     const response = yield call(api.post, `/deliveryman/${id}`);
 
-    const { name, email, avatar_id, createdAt } = response.data;
+    const { name, email, avatar_id, createdAt, avatar } = response.data;
 
-    yield put(LoginSuccess(id, name, email, avatar_id, createdAt));
+    yield put(LoginSuccess(id, name, email, avatar_id, createdAt, avatar));
   } catch (err) {
     Alert.alert('Falha no login', 'Este não é um ID válido!');
 

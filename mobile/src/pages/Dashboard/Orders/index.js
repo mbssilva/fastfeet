@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import propTypes from 'prop-types';
 
 import api from '../../../services/api';
+import getInitialLetters from '../../../utils/getInitialLetters';
 
 import { Logout } from '../../../store/modules/login/actions';
 
@@ -27,7 +28,7 @@ import {
 
 export default function Orders({ navigation }) {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user.profile);
+  const { id, avatar, name } = useSelector((state) => state.user.profile);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -37,8 +38,9 @@ export default function Orders({ navigation }) {
         setOrders(response.data);
       } catch (err) {}
     }
+    console.tron.warn(avatar);
     loadOrders();
-  }, [id]);
+  }, [id, avatar]);
 
   function handleLogout() {
     dispatch(Logout());
@@ -49,11 +51,35 @@ export default function Orders({ navigation }) {
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <Wrapper>
         <Header>
-          <Avatar
-            source={{
-              uri: `https://api.adorable.io/avatar/200/profile.png`,
-            }}
-          />
+          {avatar ? (
+            <Avatar
+              source={{
+                // uri: `https://api.adorable.io/avatar/200/profile.png`,
+                uri: `${avatar.url}`,
+              }}
+            />
+          ) : (
+            <View
+              style={{
+                backgroundColor: '#ddd',
+                height: 80,
+                width: 80,
+                borderRadius: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  color: '#7159c1',
+                  fontSize: 32,
+                }}
+              >
+                {getInitialLetters(name)}
+              </Text>
+            </View>
+          )}
+
           <ContentView>
             <UpperText>Bem vindo de volta,</UpperText>
             <BottomText>Matheus Bernardi</BottomText>

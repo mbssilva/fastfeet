@@ -18,7 +18,7 @@ import {
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.profile);
+  const { profile } = useSelector((state) => state.user);
 
   function handleLogout() {
     dispatch(Logout());
@@ -35,9 +35,7 @@ export default function Profile() {
         <>
           <Avatar
             source={{
-              uri: `https://api.adorable.io/avatar/200/${
-                profile.name + profile.id
-              }.png`,
+              uri: `https://api.adorable.io/avatar/200/${profile.name}.png`,
             }}
           />
           <Container>

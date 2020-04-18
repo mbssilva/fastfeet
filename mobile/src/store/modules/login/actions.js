@@ -7,7 +7,7 @@ export function LoginRequest(id) {
   };
 }
 
-export function LoginSuccess(id, name, email, avatar_id, createdAt) {
+export function LoginSuccess(id, name, email, avatar_id, createdAt, avatar) {
   return {
     type: '@login/LOGIN_SUCCESS',
     payload: {
@@ -16,6 +16,7 @@ export function LoginSuccess(id, name, email, avatar_id, createdAt) {
       email,
       avatar_id,
       createdAt,
+      avatar,
     },
   };
 }

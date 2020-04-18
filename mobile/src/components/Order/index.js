@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import propTypes from 'prop-types';
@@ -16,10 +16,6 @@ import {
 } from './styles';
 
 export default function Order({ navigation, order, index }) {
-  useEffect(() => {
-    console.tron.warn(order);
-  }, []);
-
   function getStatus() {
     return order.end_date ? 'delivered' : order.start_date ? 'took' : 'pending';
   }
