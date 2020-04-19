@@ -1,5 +1,5 @@
 # fastfeet
-Este projeto é para um sistema para uma transportadora fictícia. Ele foi desenvolvido como atividade final do Bootcamp Go Stack da RocketSeat, um bootcamp focado na stack React (JS e Native) e Node.js.
+Este projeto é um sistema para uma transportadora fictícia. Ele foi desenvolvido como atividade final do Bootcamp Go Stack da RocketSeat, um bootcamp focado na stack React (JS e Native) e Node.js.
 
 O projeto é composto de Frontend Web, Mobile e backend na forma de uma Api Rest. Nele, foram usadas diversas ferramentas e tecnologias, desde o backend (que utiliza o banco de dados PostgreSQL, o MongoDB e o Redis, ferramentas para envio automático de e-mails e mais), até o frontend que utiliza a Arquitetura Flux e foi implementado na como uma SPA através do Framework React.
 
