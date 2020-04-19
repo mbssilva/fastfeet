@@ -58,25 +58,7 @@ O PostgreSQL, o mongoDB e o Redis foram executados em containers no docker.
  - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
  - O backend roda na porta 3003, mas isso pode ser alterado no arquivo server.js (em ./src)
  - Uma vez que um banco de PostgreSQL, um mongoDB e um Redis estejam disponíveis para uso, pode-se criar um arquivo .env (da mesma forma que o .env.example, e adicionar as devidas configurações lá). Contudo, como eu tiver problemas na aplicação com o uso das variáveis de ambiente, acabei não utilizando o .env)
- - Configure os bancos de dados conforme abaixo. Caso tenha problema com as variáveis de ambiente, as configurações podem ser feitas diretamente nos arquivos de configuração (./src/config - database para o postgreSQL, mongo para o mongoDB, redis para o Redis)
-  MAIL_TRAP_USER: b5885566263**** (mude para o seu user)
-  MAIL_TRAP_PASSWORD: 363b1a3927**** (mude para a sua senha)
-  MAIL_TRAP_PORT: 2525 (mude para a sua porta)
-  MAIL_TRAP_HOST: smtp.mailtrap.io (mude para seu host)
-
-  JWT_SECRET: fastfeetjwtsecret
-
-  DB_DIALECT: postgres
-  DB_HOST: localhost
-  DB_USERNAME: postgres
-  DB_PASSWORD: docker
-  DB_DATABASE: fastfeet
-
-  MONGO_URL: mongodb://localhost:27017/mongofeet
-  
-  REDIS_HOST: 127.0.0.1
-  REDIS_PORT: 6379
-  
+ - Configure os bancos de dados conforme abaixo. Caso tenha problema com as variáveis de ambiente, as configurações podem ser feitas diretamente nos arquivos de configuração (./src/config - database para o postgreSQL, mongo para o mongoDB, redis para o Redis) (.env.example disponível em ./)  
   - Configura também o envio de e-mails. Eu utilizei a ferramenta Mail trap, e caso as variáveis de ambiente não funcionem corretamente, pode-se acessar o arquivo de configuração do Mail diretamente em .src/config (Mail.js)
 Uma vez configurada a aplicação, deve-se migrar as configurações criadas com o Sequelize com o comando sequelize-cli db:migrate, que rodará migrations pendentes
   - Uma vez que o backend está com os bancos devidamente configurados, basta rodar na raiz da pasta do backend yarn start para iniciar o servidor e em um terminal separado yarn queue para permitir a execução dos background jobs.
