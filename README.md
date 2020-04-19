@@ -9,36 +9,36 @@ Em toda a aplicação foi utilizado o ESLint para padronização da escrita.
 # Backend
 O backend foi desenvolvido em Node.js. Ele ficou responsável por manipular o banco de dados SQL (PostgreSQL) através do ORM (Object-Relational Mapper) Sequelize. Essa aplicação foi segmentada em MVC e rotas (algumas públicas outras privadas), junto do cors, de modo que as rotas quando devidamente acessadas executa uma função específica do Controller correspondente.
 1) Rotas e Controllers:
-  routes.post('/users', UserController.store);
+  - routes.post('/users', UserController.store);
 
-  routes.post('/sessions', SessionController.store);
+  - routes.post('/sessions', SessionController.store);
 
-  routes.get('/recipients', jwtAuthorization, RecipientController.index);
-  routes.post('/recipients', jwtAuthorization, RecipientController.store);
-  routes.put('/recipients', jwtAuthorization, RecipientController.update);
-  routes.delete('/recipients', jwtAuthorization, RecipientController.delete);
+  - routes.get('/recipients', jwtAuthorization, RecipientController.index);
+  - routes.post('/recipients', jwtAuthorization, RecipientController.store);
+  - routes.put('/recipients', jwtAuthorization, RecipientController.update);
+  - routes.delete('/recipients', jwtAuthorization, RecipientController.delete);
 
-  routes.get('/deliverers', jwtAuthorization, DelivererController.index);
-  routes.post('/deliverers', jwtAuthorization, DelivererController.store);
-  routes.put('/deliverers', jwtAuthorization, DelivererController.update);
-  routes.delete('/deliverers', jwtAuthorization, DelivererController.delete);
+  - routes.get('/deliverers', jwtAuthorization, DelivererController.index);
+  - routes.post('/deliverers', jwtAuthorization, DelivererController.store);
+  - routes.put('/deliverers', jwtAuthorization, DelivererController.update);
+  - routes.delete('/deliverers', jwtAuthorization, DelivererController.delete);
 
-  routes.post('/files', upload.single('file'), FileController.store);
+  - routes.post('/files', upload.single('file'), FileController.store);
 
-  routes.get('/orders', jwtAuthorization, OrderController.index);
-  routes.post('/orders', jwtAuthorization, OrderController.store);
-  routes.put('/orders', jwtAuthorization, OrderController.update);
-  routes.delete('/orders', jwtAuthorization, OrderController.delete);
+  - routes.get('/orders', jwtAuthorization, OrderController.index);
+  - routes.post('/orders', jwtAuthorization, OrderController.store);
+  - routes.put('/orders', jwtAuthorization, OrderController.update);
+  - routes.delete('/orders', jwtAuthorization, OrderController.delete);
 
-  routes.get('/deliveryman/:id', DeliverymanController.index);
-  routes.get('/deliveryman/:id/deliveries', DeliverymanController.show);
-  routes.post('/deliveryman/:id', DeliverymanController.store);
-  routes.put('/deliveryman', DeliverymanController.update);
+  - routes.get('/deliveryman/:id', DeliverymanController.index);
+  - routes.get('/deliveryman/:id/deliveries', DeliverymanController.show);
+  - routes.post('/deliveryman/:id', DeliverymanController.store);
+  - routes.put('/deliveryman', DeliverymanController.update);
 
-  routes.get('/problems', jwtAuthorization, ProblemController.index);
-  routes.get('/problems/:id', ProblemController.show);
-  routes.post('/problems', ProblemController.store);
-  routes.delete('/problems', jwtAuthorization, ProblemController.delete);
+  - routes.get('/problems', jwtAuthorization, ProblemController.index);
+  - routes.get('/problems/:id', ProblemController.show);
+  - routes.post('/problems', ProblemController.store);
+  - routes.delete('/problems', jwtAuthorization, ProblemController.delete);
   
 Para realizar o login e autenticar o usuário e sua sessão de login (para, inclusive, mantê-lo logado caso o site seja fechado), foi utilizado o módulo jsonwebtoken para gerar um token caso o usuário realmente seja um user da aplicação.
 Para lidar com arquivos de imagem, foi utilizado o Multer, uma vez que o backend precisava lidar com as fotos do entregadores e das assinaturas dos destinatários (uma vez que para confirmar o recebimento da encomenda, o entregador precisava tirar uma foto da assinatura do destinatário).
