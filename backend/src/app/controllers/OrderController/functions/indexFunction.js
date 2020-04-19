@@ -97,7 +97,7 @@ export default async (req, res) => {
         {
           model: File,
           as: 'signature',
-          attributes: ['id', 'name', 'path'],
+          attributes: ['id', 'name', 'path', 'url'],
         },
       ],
     });

@@ -17,7 +17,7 @@ export const Wrapper = styled.button`
 
 export const Container = styled.div`
   position: absolute;
-  top: calc(50% - 150px);
+  top: ${(props) => (props.signed ? 'calc(50% - 250px)' : 'calc(50% - 150px)')};
   left: calc(50% - 220px);
   z-index: +5;
 
@@ -26,7 +26,7 @@ export const Container = styled.div`
   border-radius: 5px;
   padding: 15px;
 
-  height: 300px;
+  height: ${(props) => (props.signed ? '520px' : '300px')};
   min-width: 400px;
   max-width: 450px;
 
@@ -82,6 +82,10 @@ export const Image = styled.img.attrs({
   alt: 'Assinatura do destinatário',
 })`
   background: #dddf;
+  align-self: center;
   border-radius: 3px;
-  width: 100%;
+  width: 82%;
+  height: 82%;
+  max-height: 350px;
+  max-width: 420px;
 `;
