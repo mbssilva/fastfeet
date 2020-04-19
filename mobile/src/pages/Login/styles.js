@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import logo from '../../assets/logo.png';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -8,6 +10,14 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 0 30px;
+`;
+
+export const Logo = styled.Image.attrs({
+  source: logo,
+  resizeMode: 'stretch',
+})`
+  width: 350px;
+  height: 55px;
 `;
 
 export const Form = styled.View`

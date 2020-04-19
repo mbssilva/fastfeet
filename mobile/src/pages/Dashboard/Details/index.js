@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export default function Details({ navigation, route }) {
-  const { order } = route.params;
+  const { order, index } = route.params;
   const status =
     route.params.status === 'delivered'
       ? 'Entregue' // delivered - Entregue
@@ -106,7 +106,7 @@ export default function Details({ navigation, route }) {
 
           <Button
             onPress={() => {
-              navigation.navigate('VisualizeProblem', { order });
+              navigation.navigate('VisualizeProblem', { order, index });
             }}
           >
             <View style={{ alignItems: 'center' }}>
@@ -168,6 +168,7 @@ Details.propTypes = {
     params: propTypes.shape({
       order: propTypes.shape(),
       status: propTypes.string,
+      index: propTypes.number,
     }),
   }).isRequired,
 };

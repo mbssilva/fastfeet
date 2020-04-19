@@ -58,7 +58,11 @@ export default function Order({ navigation, order, index }) {
         </View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('Details', { order, status: getStatus() })
+            navigation.navigate('Details', {
+              order,
+              status: getStatus(),
+              index,
+            })
           }
         >
           <View>
@@ -82,6 +86,7 @@ Order.propTypes = {
     recipient: propTypes.shape({
       city: propTypes.string,
     }),
+    created_at: propTypes.string,
   }).isRequired,
   index: propTypes.number.isRequired,
 };

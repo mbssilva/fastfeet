@@ -8,10 +8,13 @@ export default async (req, res) => {
   const { id } = req.params;
   const { page = 1 }  = req.query;
 
-  const problems = await Problem.findByPk(id, {
+  const problems = await Problem.findAll({
     limit: 5,
     offset: 5*(page-1),
-    attributes: ['id', 'description'],
+    where: {
+      delivery_id: id,
+    },
+    attributes: ['id', 'description', 'created_at'],
     include: [
       {
         model: Order,

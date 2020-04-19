@@ -101,7 +101,6 @@ export default function ConfirmOrder({ navigation, route }) {
 
       setFileData(formData);
     } catch (err) {
-      console.tron.error(err);
       if (
         err.message === 'Camera capture failed. Camera is already capturing.'
       ) {
@@ -132,9 +131,7 @@ export default function ConfirmOrder({ navigation, route }) {
 
       Alert.alert('Parabéns', 'Entrega entregue com sucesso!');
       navigation.navigate('Orders', { signature_id });
-    } catch (err) {
-      console.tron.error(err);
-    }
+    } catch (err) {}
   }
 
   return (

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { StatusBar, Image } from 'react-native';
+import propTypes from 'prop-types';
+import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-// import propTypes from 'prop-types';
 
-import LoginLayout from '../../components/layouts/Login';
+import Background from '../../components/layouts/Login';
 
 import { LoginRequest } from '../../store/modules/login/actions';
 
-import { Container, Form, FormInput, SubmitButton } from './styles';
+import { Container, Logo, Form, FormInput, SubmitButton } from './styles';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -21,9 +21,9 @@ export default function Login() {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-      <LoginLayout>
+      <Background>
         <Container>
-          {/* <Image source={logo} /> */}
+          <Logo />
 
           <Form>
             <FormInput
@@ -41,13 +41,13 @@ export default function Login() {
             </SubmitButton>
           </Form>
         </Container>
-      </LoginLayout>
+      </Background>
     </>
   );
 }
 
-// SignIn.propTypes = {
-//   navigation: propTypes.shape({
-//     navigate: propTypes.func,
-//   }).isRequired,
-// };
+Login.propTypes = {
+  navigation: propTypes.shape({
+    navigate: propTypes.func,
+  }).isRequired,
+};
