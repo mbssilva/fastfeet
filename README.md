@@ -54,7 +54,7 @@ O PostgreSQL, o mongoDB e o Redis foram executados em containers no docker.
 - Com 101% de certeza, nunca mais implemento um backend sem documentá-lo concomitantemente. Em certo ponto, eu já estava perdido sobre o que cada rota fazia, e isso me atrasou no desenvolvimento da parte Mobile e Web.
 - Planejar os recursos e a estrutura da API antes de sair codando. Em certo ponto, já não sabia o que já tinha sido implementado, ou os nomes que foram utilizados para os controllers, ou o que um determinado controller fazia exatamente. Percebi que o melhor é antes de codar, analisar o que precisa ser implementado e desenhar uma árvore ou um diagrama do que precisa estar na aplicação, estabelendo critérios e um sistema de ToDo's ou checklist para não me perder.
 
- + Colocando o Backend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta backend):
+ --> Colocando o Backend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta backend):
  - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
  - O backend roda na porta 3003, mas isso pode ser alterado no arquivo server.js (em ./src)
  - Uma vez que um banco de PostgreSQL, um mongoDB e um Redis estejam disponíveis para uso, pode-se criar um arquivo .env (da mesma forma que o .env.example, e adicionar as devidas configurações lá). Contudo, como eu tiver problemas na aplicação com o uso das variáveis de ambiente, acabei não utilizando o .env)
@@ -69,16 +69,44 @@ O frontend foi desenvolvido em ReactJs. Ele é a parte web da aplicação, que �
 
 Entre as ferramentas utilizadas pode-se destacar:
  - Redux: para permitir a criação de estados globais e do redux-persit para persistir dados armazenados no estado de um determinado reducer do redux.
- - Styled-components: Uma ferramenta muito útil para encapsular a estilização de um componenente e permitir um agilidade maior na hora de criar os componentes.
+ - Styled-components: Uma ferramenta muito útil para encapsular a estilização de um componenente e permitir uma agilidade maior na hora de criar os componentes.
  - Reactotron: para debugar a aplicação.
 
 O Reactotron está instalado e configurado na aplicação. Ele funcionará automaticamente caso a aplicação esteja em modo de desenvolvimento.
 
 + Problemas e aprendizados que gostaria de destacar:
  - Ficou claro que preciso melhorar minhas habilidades na estilização. Desenvolver um senso de proporção melhor. Não digo que tenho problemas com a sintaxe do css por exemplo, mas percebo que devo me aperfeiçoar na hora de estilizar páginas e componenetes.
- - Por não ter documentado a Api do backend tive bastante dificuldades na hora de integrar o frontend ao backend e perdi muito tempo analisando os retornos da api e debugando a aplicação, o que me atrasou e me atrapalhou bastante.
+ - Por não ter documentado a Api do backend tive bastante dificuldades na hora de integrar o frontend ao backend e perdi muito tempo analisando os retornos da api e debugando a aplicação, o que me atrasou e me atrapalhou bastante. Em virtude das dificuldades que foram surgindo, realizei algumas modificações no código do backend.
 
-+ Colocando o Frontend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta frontend):
+ --> Colocando o Frontend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta frontend):
  - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
  - O frontend roda na porta 3000
  - Execute yarn start na raiz para iniciar a página de desenvolvimento
+
+ # Mobile
+ --> A aplicação Mobile é apenas para android. Não houve tempo de testá-la no ios.
+
+ O mobile foi desenvolvido com o React Native. Ele é a parte mobile da aplicação, que é acessada apenas pelos entregadores da transportadora. Essa aplicação foi dividida em páginas que são roteadas com o react-navigation (versão 5) e consome o backend da aplicação utilizando a ferramenta axios para realizar as requisições.
+ Essa aplicação também usa o Redux para criar estados globais, o styled-components para criar componentes encapsulando a lógica, a marcação e a estilização, e o Reactotron.
+
+Particularmente essa foi a parte que mais gostei de trabalhar de todo o projeto.
+
+Entre as ferramentas utilizadas pode-se destacar:
+ - React-navigation(versão 5): Já havia utilizado outras versões, mas essa versão do react-navigation foi a que achei a melhor para trabalhar (desde instalar e configurar até a implementação com a nova sintaxe que veio com essa versão).
+ - Styled-components: Além dos fatos expostos anteriormente em relação à essa ferramenta, destaco que ela é um facilitador por evitar o uso de uma sintaxe ligeiramente diferente (que é o que ocorre geralmente no React Native)
+ - Reactotron: para debugar a aplicação.
+
++ Problemas e aprendizados que gostaria de destacar:
+ - Inacreditavelmente essa foi a parte da aplicação que mais gostei e que menos tive dificuldades (só apanhei para configurar o react-native, mas depois deu tudo certo)
+ - Por não ter documentado a Api do backend tive bastante dificuldades na hora de integrar o frontend ao backend e perdi muito tempo analisando os retornos da api e debugando a aplicação, o que me atrasou e me atrapalhou bastante (porém bem menos que no frontend). Em virtude das dificuldades que foram surgindo, realizei algumas modificações no código do backend.
+
++ Colocando o Mobile para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta mobile):
+ - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
+ - O mobile roda na porta 8081
+ - Eu utilizei um celular android conenctado via USB ao computador.
+ - Após conectado o cleular (USB) e devidamente configurado (depuração ativada), deve-se rodar yarn android para que a aplicação seja instalada no celular.
+ - Depois de instalado deve-se rodar yarn start.
+ - Pode ser necessário redirecionar a porta 8081, nesse caso, execute: adb reverse tcp:8081 tcp:8081
+ - Para buscar a aplicação mobile funcionar corretamente, pode ser necessário redirecionar a porta do server (3003). Execute: adb reverse tcp:3003 tcp:3003 e yarn start --reset-cache
+
+
