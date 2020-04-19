@@ -12,22 +12,44 @@ import EditRecipient from './EditRecipient';
 
 export default function Recipients() {
   const [recipientSearch, setRecipientSearch] = useState('');
-  const [recipients, setRecipients] = useState([
-    {
-      name: 'Matheus',
-      street: 'Rua do teste',
-      number: '1155',
-      cep: '85903450',
-      city: 'toledocity',
-      state: 'rússia',
-      complement: 'sibéria tupiniquim',
-    },
-  ]);
+  const [recipients, setRecipients] = useState([]);
   const [newRecipientPageOpened, setNewRecipientPageOpened] = useState(false);
 
   const { editRecipientPageOpened } = useSelector(
     (state) => state.application.editRecipientPage
   );
+
+  useEffect(() => {
+    async function loadRecipients() {
+      try {
+        const response = await api.get('/recipients', {
+          params: {
+            name: recipientSearch,
+          },
+        });
+
+        setRecipients(response.data);
+      } catch (err) {
+        console.tron.warn(err);
+      }
+    }
+
+    loadRecipients();
+  }, [recipientSearch]);
+
+  useEffect(() => {
+    async function loadRecipients() {
+      try {
+        const response = await api.get('/recipients');
+
+        setRecipients(response.data);
+      } catch (err) {
+        console.tron.warn(err);
+      }
+    }
+
+    loadRecipients();
+  }, []);
 
   useEffect(() => {
     async function loadRecipients() {
@@ -89,7 +111,7 @@ export default function Recipients() {
           <tbody>
             {recipients.map((recipient, index) => (
               <RecipientRow
-                key={recipient}
+                key={recipient.id}
                 recipient={recipient}
                 index={index}
               />

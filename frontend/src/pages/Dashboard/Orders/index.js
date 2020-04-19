@@ -27,6 +27,22 @@ export default function Orders() {
   useEffect(() => {
     async function fillOrders() {
       try {
+        const response = await api.get('/orders', {
+          params: {
+            product: orderSearch,
+          },
+        });
+
+        setOrders(response.data);
+      } catch (err) {}
+    }
+
+    fillOrders();
+  }, [orderSearch]);
+
+  useEffect(() => {
+    async function fillOrders() {
+      try {
         const response = await api.get('/orders');
 
         setOrders(response.data);

@@ -23,6 +23,22 @@ export default function Deliverers() {
   useEffect(() => {
     async function loadDeliverers() {
       try {
+        const response = await api.get('/deliverers', {
+          params: {
+            deliverer: delivererSearch,
+          },
+        });
+
+        setDeliverers(response.data);
+      } catch (err) {}
+    }
+
+    loadDeliverers();
+  }, [delivererSearch]);
+
+  useEffect(() => {
+    async function loadDeliverers() {
+      try {
         const response = await api.get('/deliverers');
 
         setDeliverers(response.data);

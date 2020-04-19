@@ -10,7 +10,7 @@ export default async (req, res) => {
   let recipient;
 
   if (name) {
-    recipient = await Recipient.findOne({
+    recipient = await Recipient.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,

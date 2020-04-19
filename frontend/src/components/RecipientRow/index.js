@@ -80,6 +80,6 @@ export default function RecipientRow({ recipient, index }) {
 }
 
 RecipientRow.propTypes = {
-  recipient: propTypes.string.isRequired,
+  recipient: propTypes.shape().isRequired,
   index: propTypes.number.isRequired,
 };

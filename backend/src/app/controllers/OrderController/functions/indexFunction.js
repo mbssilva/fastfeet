@@ -17,7 +17,7 @@ export default async (req, res) => {
       if (product[i] === 'ç' || product[i] === 'Ç') product[i] = 'c';
     }
 
-    orders = await Order.findAllandCount({
+    orders = await Order.findAndCountAll({
       order: [['id', 'ASC']],
       where: {
         canceled_at: null,
