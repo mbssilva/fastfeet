@@ -7,7 +7,7 @@ Em toda a aplicação foi utilizado o ESLint para padronização da escrita.
 
 
 # Backend
-O backend foi desenvolvido em Node.js. Ele ficou responsável por manipular o banco de dados SQL (PostgreSQL) através do ORM (Object-Relational Mapper) Sequelize. Essa aplicação foi segmentada em MVC e rotas (algumas públicas outras privadas), junto do cors, de modo que as rotas quando devidamente acessadas executa uma função específica do Controller correspondente.
+O backend foi desenvolvido em Node.js. Ele ficou responsável por manipular o banco de dados SQL (PostgreSQL) através do ORM (Object-Relational Mapper) Sequelize. Essa aplicação foi segmentada em MVC e rotas (algumas públicas outras privadas), junto do cors (para permitir eventualmente um controle de acesso ao backend), de modo que as rotas quando devidamente acessadas executa uma função específica do Controller correspondente.
 1) Rotas e Controllers:
   - routes.post('/users', UserController.store);
 
@@ -54,7 +54,7 @@ O PostgreSQL, o mongoDB e o Redis foram executados em containers no docker.
 - Com 101% de certeza, nunca mais implemento um backend sem documentá-lo concomitantemente. Em certo ponto, eu já estava perdido sobre o que cada rota fazia, e isso me atrasou no desenvolvimento da parte Mobile e Web.
 - Planejar os recursos e a estrutura da API antes de sair codando. Em certo ponto, já não sabia o que já tinha sido implementado, ou os nomes que foram utilizados para os controllers, ou o que um determinado controller fazia exatamente. Percebi que o melhor é antes de codar, analisar o que precisa ser implementado e desenhar uma árvore ou um diagrama do que precisa estar na aplicação, estabelendo critérios e um sistema de ToDo's ou checklist para não me perder.
 
- + Colocando o Backend para funcionar (portanto, aqui as pastas são apresentadas a partir da raíz da pasta backend):
+ + Colocando o Backend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta backend):
  - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
  - O backend roda na porta 3003, mas isso pode ser alterado no arquivo server.js (em ./src)
  - Uma vez que um banco de PostgreSQL, um mongoDB e um Redis estejam disponíveis para uso, pode-se criar um arquivo .env (da mesma forma que o .env.example, e adicionar as devidas configurações lá). Contudo, como eu tiver problemas na aplicação com o uso das variáveis de ambiente, acabei não utilizando o .env)
@@ -64,3 +64,21 @@ Uma vez configurada a aplicação, deve-se migrar as configurações criadas com
   - Uma vez que o backend está com os bancos devidamente configurados, basta rodar na raiz da pasta do backend yarn start para iniciar o servidor e em um terminal separado yarn queue para permitir a execução dos background jobs.
   - Dessa forma o backend deverá estar funcionando corretamente
   
+# Frontend
+O frontend foi desenvolvido em ReactJs. Ele é a parte web da aplicação, que é acessada apenas pela administração da transportadora. Essa aplicação foi dividida em páginas que são roteadas com o react-router-dom e consome o backend da aplicação utilizando a ferramenta axios para realizar as requisições.
+
+Entre as ferramentas utilizadas pode-se destacar:
+ - Redux: para permitir a criação de estados globais e do redux-persit para persistir dados armazenados no estado de um determinado reducer do redux.
+ - Styled-components: Uma ferramenta muito útil para encapsular a estilização de um componenente e permitir um agilidade maior na hora de criar os componentes.
+ - Reactotron: para debugar a aplicação.
+
+O Reactotron está instalado e configurado na aplicação. Ele funcionará automaticamente caso a aplicação esteja em modo de desenvolvimento.
+
++ Problemas e aprendizados que gostaria de destacar:
+ - Ficou claro que preciso melhorar minhas habilidades na estilização. Desenvolver um senso de proporção melhor. Não digo que tenho problemas com a sintaxe do css por exemplo, mas percebo que devo me aperfeiçoar na hora de estilizar páginas e componenetes.
+ - Por não ter documentado a Api do backend tive bastante dificuldades na hora de integrar o frontend ao backend e perdi muito tempo analisando os retornos da api e debugando a aplicação, o que me atrasou e me atrapalhou bastante.
+
++ Colocando o Frontend para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta frontend):
+ - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
+ - O frontend roda na porta 3000
+ - Execute yarn start na raiz para iniciar a página de desenvolvimento
