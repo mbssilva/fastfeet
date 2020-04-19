@@ -86,6 +86,8 @@ Order.propTypes = {
     recipient: propTypes.shape({
       city: propTypes.string,
     }),
+    start_date: propTypes.string,
+    end_date: propTypes.string,
     created_at: propTypes.string,
   }).isRequired,
   index: propTypes.number.isRequired,

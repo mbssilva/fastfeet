@@ -49,24 +49,44 @@ function Trigger({ takePicture, camera }) {
       <TouchableOpacity
         style={{
           flex: 0,
-          backgroundColor: '#fff',
-          borderRadius: 5,
-          padding: 15,
-          paddingHorizontal: 20,
+          backgroundColor: 'rgba(80, 80, 80, 0.12)',
+          borderRadius: 50,
+          padding: 20,
           alignSelf: 'center',
-          margin: 20,
+          margin: 10,
         }}
         onPress={() => takePicture(camera)}
       >
-        <Text
-          style={{
-            fontSize: 14,
-            color: '#f4f',
-            fontWeight: 'bold',
-          }}
-        >
-          TIRAR FOTO
-        </Text>
+        <Icon name="camera-alt" size={28} color="rgba(255, 255, 255, 0.8)" />
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function Flash({ light, setLight }) {
+  return (
+    <View
+      style={{
+        flex: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
+      }}
+    >
+      <TouchableOpacity
+        style={{
+          flex: 0,
+          backgroundColor: 'rgba(80, 80, 80, 0.12)',
+          borderRadius: 50,
+          padding: 20,
+          alignSelf: 'center',
+        }}
+        onPress={() => {
+          if (light === 'off') {
+            setLight('torch');
+          } else setLight('off');
+        }}
+      >
+        <Icon name="highlight" size={28} color="yellow" />
       </TouchableOpacity>
     </View>
   );
@@ -75,6 +95,7 @@ function Trigger({ takePicture, camera }) {
 export default function ConfirmOrder({ navigation, route }) {
   const { id: delivery_id } = route.params.order;
   const [fileData, setFileData] = useState(new FormData());
+  const [light, setLight] = useState('off');
 
   async function takePicture(camera) {
     try {
@@ -140,7 +161,7 @@ export default function ConfirmOrder({ navigation, route }) {
         <RNCamera
           type={RNCamera.Constants.Type.back}
           autoFocus
-          flashMode="off"
+          flashMode={light}
           androidCameraPermissionOptions={{
             title: 'Permissão para uso da câmera',
             message: 'O App precisa de sua permissão para usar sua câmera',
@@ -163,12 +184,15 @@ export default function ConfirmOrder({ navigation, route }) {
             status !== 'READY' ? (
               <PendingView />
             ) : (
-              <Trigger
-                takePicture={() => {
-                  takePicture(camera);
-                }}
-                camera={camera}
-              />
+              <>
+                <Flash light={light} setLight={setLight} />
+                <Trigger
+                  takePicture={() => {
+                    takePicture(camera);
+                  }}
+                  camera={camera}
+                />
+              </>
             )
           }
         </RNCamera>
@@ -228,4 +252,9 @@ ConfirmOrder.propTypes = {
 Trigger.propTypes = {
   takePicture: propTypes.func.isRequired,
   camera: propTypes.shape({}).isRequired,
+};
+
+Flash.propTypes = {
+  light: propTypes.string.isRequired,
+  setLight: propTypes.func.isRequired,
 };

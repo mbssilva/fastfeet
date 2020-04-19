@@ -42,5 +42,6 @@ module.exports = {
     'no-nested-ternary': 'off',
     'no-unused-expressions': 'off',
     'no-underscore-dangle': 'off',
+    'no-undef': 'off',
   },
 };
