@@ -47,8 +47,9 @@ export default function ProblemRow({ problem, index }) {
         }`}</div>
       </td>
       <td>
-        <div>{problem.descriptionrecipients}</div>
+        <div>{problem.description}</div>
       </td>
+
       <td>
         <div className="RightestTd">
           <button type="button" onClick={handleMenuVisible}>
@@ -74,6 +75,9 @@ export default function ProblemRow({ problem, index }) {
 }
 
 ProblemRow.propTypes = {
-  problem: propTypes.string.isRequired,
+  problem: propTypes.shape({
+    description: propTypes.string,
+    id: propTypes.number,
+  }).isRequired,
   index: propTypes.number.isRequired,
 };

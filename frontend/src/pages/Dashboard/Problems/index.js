@@ -9,7 +9,7 @@ import ProblemVisualize from '../../../components/ProblemVisualize';
 import ProblemRow from '../../../components/ProblemRow';
 
 export default function Problems() {
-  const [problems, setProblems] = useState(['1', '2', '3', '4', '5', '6']);
+  const [problems, setProblems] = useState([]);
 
   const { problemVisualizeContainerOpened } = useSelector(
     (state) => state.application.problemVisualize
@@ -21,7 +21,6 @@ export default function Problems() {
         const response = await api.get('/problems');
 
         setProblems(response.data);
-        setProblems(['1']);
       } catch (err) {
         console.tron.log(err);
       }

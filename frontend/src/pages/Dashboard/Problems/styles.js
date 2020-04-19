@@ -48,7 +48,8 @@ export const Container = styled.div`
             background: #fff;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: left;
+            padding-left: 10px;
 
             span {
               font-size: 15px;
@@ -68,6 +69,8 @@ export const Container = styled.div`
         .RightestTd {
           border-radius: 0 7px 7px 0;
           position: relative;
+          justify-content: center;
+          padding-left: 10px;
 
           > button {
             background: none;
