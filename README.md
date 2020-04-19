@@ -95,18 +95,23 @@ Entre as ferramentas utilizadas pode-se destacar:
  - React-navigation(versão 5): Já havia utilizado outras versões, mas essa versão do react-navigation foi a que achei a melhor para trabalhar (desde instalar e configurar até a implementação com a nova sintaxe que veio com essa versão).
  - Styled-components: Além dos fatos expostos anteriormente em relação à essa ferramenta, destaco que ela é um facilitador por evitar o uso de uma sintaxe ligeiramente diferente (que é o que ocorre geralmente no React Native)
  - Reactotron: para debugar a aplicação.
+ - React Native Camera: Para utilizar a câmera do celular para fotografar a assinatura do destinatário.
 
 + Problemas e aprendizados que gostaria de destacar:
  - Inacreditavelmente essa foi a parte da aplicação que mais gostei e que menos tive dificuldades (só apanhei para configurar o react-native, mas depois deu tudo certo)
  - Por não ter documentado a Api do backend tive bastante dificuldades na hora de integrar o frontend ao backend e perdi muito tempo analisando os retornos da api e debugando a aplicação, o que me atrasou e me atrapalhou bastante (porém bem menos que no frontend). Em virtude das dificuldades que foram surgindo, realizei algumas modificações no código do backend.
 
-+ Colocando o Mobile para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta mobile):
+--> Colocando o Mobile para funcionar (portanto, aqui as pastas são apresentadas a partir da raiz da pasta mobile):
  - Lembre-se de rodar yarn para instalar as dependências após baixar o projeto
  - O mobile roda na porta 8081
  - Eu utilizei um celular android conenctado via USB ao computador.
- - Após conectado o cleular (USB) e devidamente configurado (depuração ativada), deve-se rodar yarn android para que a aplicação seja instalada no celular.
- - Depois de instalado deve-se rodar yarn start.
+ - Após conectado o celular (USB) e devidamente configurado (depuração ativada), deve-se rodar yarn android para que a aplicação seja instalada no celular.
+ - Depois de instalado deve-se rodar yarn start para iniciar a aplicação
  - Pode ser necessário redirecionar a porta 8081, nesse caso, execute: adb reverse tcp:8081 tcp:8081
- - Para buscar a aplicação mobile funcionar corretamente, pode ser necessário redirecionar a porta do server (3003). Execute: adb reverse tcp:3003 tcp:3003 e yarn start --reset-cache
+ - Para permitir que a aplicação mobile funcione corretamente, pode ser necessário redirecionar a porta do server da API (3003). Execute: adb reverse tcp:3003 tcp:3003
 
-
+--> Considerações finais:
+- Notei que tive um aprendizado muito grande "botando a mão na massa". Esse aprendizado ficou mais nítido para mim quando comparei o esforço despendido para implementar a versão Web em relação a versão Mobile. A criação de componenetes foi muito mais intuitiva e rápida. Sequer precisei olhar alguma documentação do CSS.
+- A falta de planejamento foi um fator mais prejudicial do que eu esperava. Comecei a codar sem ao menos planejar muito o backend e não o documentei. Isso prejudicou bastante na hora de implementar o frontend e o mobile. Contudo, nos próximos projetos irei usar ferramentas específicas de gerenciamento de projetos com o Trello por exemplo.
+- Falta de tempo foi um complicador. A aplicação definitivamente poderia estar melhor (bem melhor). Tanto em relação as animaçãoes, quando no tocante a estilização da interface. Também não houve tempo ara analisar mais profundamente o backend junto com o frontend por exemplo, para implementar a paginação da listagem de algumas páginas, ou mesmo para implementar um Scroll Infinito.
+- Agradeço a equipe da Rocketseat o apoio e as dúvidas tiradas. Com o conteúdo que aprendi no Semana OmniStack (em especial o uso de WebSockets - acho que era esse o nome) e com o que aprendi nesse Bootcamp me sinto pronto para implementar uma ideia que tenho faz um tempo e não sabia nem por onde começar.
